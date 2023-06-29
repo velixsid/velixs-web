@@ -67,28 +67,34 @@
                             <form action="{!! route('dash.personal.axios.update') !!}" id="form-update-profile">
                                 <div class="bg-white dark:bg-gray-800 w-full border px-5 pb-5 pt-7 dark:border-gray-800 rounded-xl overflow-hidden">
                                     <div class="grid md:grid-cols-2 gap-3 gap-y-5">
-                                        <div class="md:col-span-1">
+                                        <div class="md:col-span-1 col-span-2">
                                             <div class="rounded-md border border-gray-300 dark:border-gray-700 px-3 py-2 shadow-sm focus-within:border-gray-600 focus-within:ring-0 focus-within:ring-gray-600">
                                                 <label class="block text-xs font-medium text-gray-900 dark:text-gray-200">Full Name:</label>
                                                 <input value="{{ $auth->name }}" autocomplete="off" type="text" name="name" class="block w-full border-0 p-0 py-1 text-gray-900 dark:text-gray-100 bg-transparent placeholder-gray-500 dark:placeholder-gray-400 focus:ring-0 sm:text-sm" placeholder="Ex: Nakiri Va">
                                             </div>
                                         </div>
-                                        <div class="md:col-span-1">
+                                        <div class="md:col-span-1 col-span-2">
                                             <div class="rounded-md border border-gray-300 dark:border-gray-700 px-3 py-2 shadow-sm focus-within:border-gray-600 focus-within:ring-0 focus-within:ring-gray-600">
                                                 <label class="block text-xs font-medium text-gray-900 dark:text-gray-200">Username:</label>
                                                 <input value="{{ $auth->username }}" autocomplete="off" type="text" name="username" class="block w-full border-0 p-0 py-1 text-gray-900 dark:text-gray-50 bg-transparent placeholder-gray-500 dark:placeholder-gray-400 focus:ring-0 sm:text-sm" placeholder="Ex: nakiri">
                                             </div>
                                         </div>
-                                        <div class="md:col-span-1">
+                                        <div class="md:col-span-1 col-span-2">
                                             <div class="relative rounded-md border border-gray-300 dark:border-gray-700 px-3 py-2 shadow-sm focus-within:border-gray-600 focus-within:ring-0 focus-within:ring-gray-600"">
                                                 <label class="absolute -top-2 left-2 -mt-px inline-block bg-white dark:bg-gray-800 px-1 text-xs font-medium text-gray-900 dark:text-gray-50">Email</label>
                                                 <input value="{{ $auth->email }}" autocomplete="off" type="email" name="email" class="block w-full border-0 p-0 py-1 text-gray-900 dark:text-gray-50 bg-transparent placeholder-gray-500 dark:placeholder-gray-400 focus:ring-0 sm:text-sm" placeholder="email@example.com">
                                             </div>
                                         </div>
-                                        <div class="md:col-span-1">
+                                        <div class="md:col-span-1 col-span-2">
                                             <div class="relative rounded-md border border-gray-300 dark:border-gray-700 px-3 py-2 shadow-sm focus-within:border-gray-600 focus-within:ring-0 focus-within:ring-gray-600"">
                                                 <label class="absolute -top-2 left-2 -mt-px inline-block bg-white dark:bg-gray-800 px-1 text-xs font-medium text-gray-900 dark:text-gray-50">Whatsapp</label>
                                                 <input value="{{ $auth->whatsapp }}" autocomplete="off" type="text" name="whatsapp" class="block w-full py-1 border-0 p-0 text-gray-900 dark:text-gray-50 bg-transparent placeholder-gray-500 dark:placeholder-gray-400 focus:ring-0 sm:text-sm" placeholder="62xxx">
+                                            </div>
+                                        </div>
+                                        <div class="col-span-2">
+                                            <div class="relative rounded-md border border-gray-300 dark:border-gray-700 px-3 py-2 shadow-sm focus-within:border-gray-600 focus-within:ring-0 focus-within:ring-gray-600"">
+                                                <label class="absolute -top-2 left-2 -mt-px inline-block bg-white dark:bg-gray-800 px-1 text-xs font-medium text-gray-900 dark:text-gray-50">About</label>
+                                                <textarea autocomplete="off" name="about" class="block w-full border-0 p-0 py-1 text-gray-900 dark:text-gray-50 bg-transparent placeholder-gray-500 dark:placeholder-gray-400 focus:ring-0 sm:text-sm" rows="6" placeholder="About you">{{ $auth->about }}</textarea>
                                             </div>
                                         </div>
                                     </div>

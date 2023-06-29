@@ -249,7 +249,7 @@
                                 <div class="pb-2">
                                     <!-- flex -->
                                     @if ($auth)
-                                        <a href="{!! route('dash.personal') !!}" class="flex items-center px-5">
+                                        <a href="{!! route('dash') !!}" class="flex items-center px-5">
                                             <div class="flex-shrink-0">
                                                 <img class="h-10 w-10 rounded-full" src="{!! $auth->_avatar() !!}" alt="{!! $auth->name !!}">
                                             </div>
@@ -259,11 +259,13 @@
                                             </div>
                                             <div class="ml-auto flex-shrink-0 rounded-full p-1 text-gray-300 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2">
                                                 <span class="sr-only">View Profile</span>
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="tabler-icon tabler-icon-user-circle">
-                                                    <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
-                                                    <path d="M12 10m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"></path>
-                                                    <path d="M6.168 18.849a4 4 0 0 1 3.832 -2.849h4a4 4 0 0 1 3.834 2.855"></path>
-                                                </svg>
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                    <path d="M4 4h6v8h-6z"></path>
+                                                    <path d="M4 16h6v4h-6z"></path>
+                                                    <path d="M14 12h6v8h-6z"></path>
+                                                    <path d="M14 4h6v4h-6z"></path>
+                                                 </svg>
                                             </div>
                                         </a>
                                     @else

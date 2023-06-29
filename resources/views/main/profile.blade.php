@@ -32,7 +32,7 @@
                                           <span class="dark:bg-slate-950 bg-slate-50 pr-0 lg:pr-3 text-sm text-gray-900 dark:text-gray-500">About</span>
                                         </div>
                                       </div>
-                                    <div class="text-xs leading-relaxed text-invert md:text-base md:leading-8 dark:text-gray-200" id="typed-about"></div>
+                                    <div class="text-xs leading-relaxed text-invert md:text-base md:leading-8 dark:text-gray-200" id="typed-about" data-value="{{ $user->about ?? 'This profile has not been filled with information about me yet.' }}"></div>
                                 </div>
                             </div>
                         </div>
@@ -75,9 +75,8 @@
 
 @push('js')
     <script>
-        const text = `{{ $user->about ?? 'This profile has not been filled with information about me yet.' }}`;
+        const text = document.getElementById("typed-about").getAttribute("data-value");
         let index = 0;
-
         function typeAbout(){
             if (index < text.length) {
                 document.getElementById("typed-about").innerHTML += text.charAt(index);

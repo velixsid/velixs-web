@@ -81,4 +81,4 @@ Route::group([
 });
 
 
-Route::get('/p/{username}', [MainController::class, 'profile'])->name('profile');
+Route::get('/@{username}', [MainController::class, 'profile'])->name('profile');

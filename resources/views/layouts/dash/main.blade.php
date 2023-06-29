@@ -26,7 +26,7 @@
             class="lg:!flex flex-grow h-full flex-col w-[280px] overflow-y-auto scroll-hidden lg:border-r border-dashed border-gray-200 dark:border-gray-800 pt-5 fixed lg:bg-transparent bg-white dark:bg-gray-900 animate-fade-in-left-bounce">
                 <div class="relative">
                     <div class="flex justify-between items-center px-4">
-                        <img class="h-8 w-auto" src="{!! asset('assets/img/logo.svg') !!}" alt="Your Company">
+                        <img class="h-8 w-auto" src="{!! asset('assets/img/logo.svg') !!}" alt="Ilsya">
                         <button @click="$store.nav.toggle()" class="text-gray-600 lg:hidden">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -38,7 +38,7 @@
                     </div>
                     <div class="mt-5 flex flex-grow flex-col">
                         <nav class="flex-1 space-y-1 gap-y-1 px-3 pb-4">
-                            <a href="{!! route('dash.personal') !!}" class="text-gray-900 group my-2 flex items-center px-4 py-5 text-sm font-medium ilsya-scale-105 rounded-xl bg-gray-200/60 dark:bg-gray-800">
+                            <a href="{!! route('profile',$auth->username) !!}" class="text-gray-900 group my-2 flex items-center px-4 py-5 text-sm font-medium ilsya-scale-105 rounded-xl bg-gray-200/60 dark:bg-gray-800">
                                 <div class="h-11 w-11 rounded-full overflow-hidden mr-2.5">
                                     <img class="object-cover object-center w-full h-full" src="{!! $auth->_avatar() !!}" alt="">
                                 </div>

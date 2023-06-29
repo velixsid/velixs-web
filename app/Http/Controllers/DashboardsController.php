@@ -32,6 +32,7 @@ class DashboardsController extends Controller
                 'email' => 'required|email|unique:users,email,'.auth()->id(),
                 'username' => 'required|string|max:255|unique:users,username,'.auth()->id(),
                 'whatsapp' => 'max:30|unique:users,whatsapp,'.auth()->id().'|nullable',
+                'about' => 'max:255|nullable',
             ]);
 
             $user = auth()->user();
@@ -39,6 +40,7 @@ class DashboardsController extends Controller
             $user->email = $request->email;
             $user->username = $request->username;
             $user->whatsapp = $request->whatsapp;
+            $user->about = $request->about;
             $user->save();
             RateLimiter::hit('personal-update:'.auth()->id());
 
