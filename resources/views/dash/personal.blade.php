@@ -158,6 +158,13 @@
             })
         });
 
+        // regex input username only a-z0-9+
+        document.querySelector('input[name="username"]').addEventListener('keyup', function(){
+            // lowercase
+            this.value = this.value.replace(/[^a-z0-9+]/gi, '').toLowerCase();
+        })
+
+
         // axios update profile
         document.getElementById('form-update-profile').addEventListener('submit', function(e){
             e.preventDefault();

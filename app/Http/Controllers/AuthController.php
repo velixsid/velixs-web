@@ -50,9 +50,11 @@ class AuthController extends Controller
         if($request->method() == 'POST' && $request->ajax()) {
             $request->validate([
                 'fullname' => 'required',
-                'username' => 'required|unique:users,username',
+                'username' => 'required|regex:/^[a-z0-9]+$/|unique:users,username',
                 'email' => 'required|email|unique:users,email',
                 'password' => 'required|min:8',
+            ],[
+                'username.regex' => 'Username can only contain letters and numbers'
             ]);
 
             $user = new User();
