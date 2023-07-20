@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('payment_whatsapp')->nullable();
             $table->string('bot_whatsapp')->nullable();
             $table->string('contact_whatsapp')->default('[]');
-            $table->longText('contact_email')->nullable();
+            $table->string('contact_email')->nullable();
             $table->timestamps();
         });
     }

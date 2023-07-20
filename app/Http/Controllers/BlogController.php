@@ -19,7 +19,7 @@ class BlogController extends Controller
     }
 
     public function show($slug) {
-        $row = Blog::where('slug',$slug)->first();
+        $row = Blog::where('slug', $slug)->first();
         if(!$row) return abort(404, 'Content not found.');
         $data['row'] = $row;
         $row->recordView();

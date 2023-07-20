@@ -66,7 +66,14 @@ class User extends Authenticatable
     ];
 
     public function _avatar(){
-        return $this->avatar ? asset('storage/avatars/'.$this->avatar) : asset('storage/avatars/default.png');
+        return $this->avatar ? asset('storage/'.$this->avatar) : asset('storage/avatars/default.png');
+    }
+
+    public function _verified(){
+        if($this->role == 'admin'){
+            return true;
+        }
+        return false;
     }
 
     public function _owned_license(){

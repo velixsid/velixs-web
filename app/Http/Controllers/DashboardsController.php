@@ -131,10 +131,10 @@ class DashboardsController extends Controller
             $imgFile->fit(300, 300);
             $imgFile->encode('jpg', 80);
             Storage::put('avatars/'.$input['imagename'], $imgFile);
-            if(Storage::exists('avatars/'.$auth->avatar)){
-                Storage::delete('avatars/'.$auth->avatar);
+            if($auth->avatar){
+                Storage::delete($auth->avatar);
             }
-            $auth->avatar = $input['imagename'];
+            $auth->avatar = 'avatars/'.$input['imagename'];
             $auth->save();
             RateLimiter::hit('avatar-update:'.auth()->id());
         } catch (e){

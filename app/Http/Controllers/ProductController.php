@@ -22,7 +22,7 @@ class ProductController extends Controller
     public function show($slug){
         $item  = Product::where([
             'slug' => $slug,
-            'is_published' => 1,
+            ['is_published', '!=', 0],
         ]);
         if(!$item->exists()) return abort(404);
         $item = $item->first();
@@ -93,7 +93,7 @@ class ProductController extends Controller
         RateLimiter:: hit('claim-digital-product:'.auth()->id());
         $product = Product::where([
             'slug' => $slug,
-            'is_published' => 1,
+            ['is_published', '!=', 0],
         ]);
 
         if(!$product->exists()) return response()->json([

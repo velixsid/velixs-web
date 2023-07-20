@@ -32,7 +32,7 @@ class Product extends Component
                 $product = $product->whereJsonContains('tags', $tags_id->id);
             }
         }
-        $product = $product->where('is_published', 1);
+        $product = $product->where('is_published','!=', 0);
         $product = $product->orderBy('created_at', 'desc');
         $product = $product->paginate($this->perPage);
         return view('livewire.product',[

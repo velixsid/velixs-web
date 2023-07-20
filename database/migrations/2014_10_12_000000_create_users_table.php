@@ -27,6 +27,7 @@ return new class extends Migration
 
             $table->text('about')->nullable();
             $table->string('title_profile')->nullable();
+            $table->string('suspended')->nullable();
 
             $table->rememberToken();
             $table->timestamps();

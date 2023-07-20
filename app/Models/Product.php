@@ -31,10 +31,10 @@ class Product extends Model
 
     public function _image()
     {
-        return $this->image ? asset($this->image) : asset('storage/blogs/default.png');
+        return $this->image ? asset('storage/'.$this->image) : asset('storage/blogs/default.png');
     }
 
-    public function _tags() {
+    public function _tags($col = null) {
         try {
             $tags_id = $this->tags;
             $tags = [];
@@ -43,6 +43,9 @@ class Product extends Model
                 if ($tag) {
                     array_push($tags, $tag);
                 }
+            }
+            if($col){
+                $tags = collect($tags)->pluck($col);
             }
             return $tags;
         }catch (\Exception $e){
@@ -72,8 +75,8 @@ class Product extends Model
 
     public function _archiveRelease(){
         $release = $this->release;
-        if(!$release) return null;
-        return isset($release['archive']) ? $release['archive'] : $release = null;
+        if(!$release) return [];
+        return isset($release['archive']) ? $release['archive'] : $release = [];
     }
 
     public function _display_price($currency = 'usd'){
@@ -91,6 +94,20 @@ class Product extends Model
         }
     }
 
+    public function _price($currency){
+        $price = $this->price;
+        if($currency == 'idr') {
+            if(isset($price['idr'])){
+                return $price['idr'];
+            }
+        }else if($currency == 'usd'){
+            if(isset($price['usd'])){
+                return $price['usd'];
+            }
+        }
+        return 0;
+    }
+
     public function _isFree(){
         $price = $this->price;
         if(isset($price['idr'])){
@@ -100,5 +117,12 @@ class Product extends Model
             if($price['usd'] == 0) return true;
         }
         return false;
+    }
+
+    //
+    public static function paidOnly(){
+        return self::where("is_published", '!=', 0)
+            ->whereJsonDoesntContain('price->usd', 0)
+            ->whereJsonDoesntContain('price->idr', 0);
     }
 }

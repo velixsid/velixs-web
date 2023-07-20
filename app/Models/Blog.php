@@ -36,7 +36,7 @@ class Blog extends Model
 
     public function _image()
     {
-        return $this->image ? asset($this->image) : asset('storage/blogs/default.png');
+        return $this->image ? asset('storage/'.$this->image) : asset('storage/blogs/default.png');
     }
 
     public function _tags() {
@@ -60,7 +60,7 @@ class Blog extends Model
     }
 
     public function recordView(){
-        $user_id = auth()->check() ? auth()->user()->id : null;
+        $user_id = auth()->check() ? auth()->id() : null;
         $ip = request()->ip();
         $row = null;
         if($user_id){

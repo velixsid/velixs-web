@@ -4,7 +4,6 @@ namespace App\Helpers;
 
 use App\Models\Blog;
 use App\Models\OwnedLicense;
-use App\Models\User;
 use App\Models\Websettings;
 
 class Layouts

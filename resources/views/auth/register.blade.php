@@ -121,6 +121,11 @@
     @vite('resources/js/app.js')
     @include('layouts.toast')
     <script>
+        // regex input username only a-z0-9+
+        document.querySelector('input[name="username"]').addEventListener('keyup', function(){
+            // lowercase
+            this.value = this.value.replace(/[^a-z0-9+]/gi, '').toLowerCase();
+        })
         document.getElementById('form-register').addEventListener('submit', function(e){
             e.preventDefault();
             button = this.querySelector('button[type="submit"]');

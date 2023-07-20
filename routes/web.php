@@ -25,6 +25,8 @@ Route::get('/search', [MainController::class, 'search'])->name('search.axios');
 Route::get('/terms-of-service', [MainController::class, 'tos'])->name('tos');
 Route::get('/privacy-policy', [MainController::class, 'privacy'])->name('privacy');
 
+Route::get('/sus',[MainController::class, 'sus'])->name('sus');
+
 // auth routes start
 Route::get('login',[AuthController::class, 'index'])->name('login')->middleware('guest');
 Route::post('login',[AuthController::class, 'index'])->name('login')->middleware('guest');
@@ -51,15 +53,15 @@ Route::group([
     'prefix' => 'item',
 ],function(){
     Route::get('/',[ProductController::class, 'index'])->name('product');
-    Route::get('/claim/{slug}',[ProductController::class, 'claim'])->name('product.claim_library.axios');
+    Route::get('/claim/{slug}',[ProductController::class, 'claim'])->name('product.claim_library.axios')->middleware('auth.suspended');
     Route::get('/sort/{sort}',[ProductController::class, 'index'])->name('product.sort');
     Route::get('/{slug}',[ProductController::class, 'show'])->name('product.detail');
-    Route::get('/wishlist/{slug}',[ProductController::class, 'toggle_wishlist'])->name('product.axios.toggle.wishlist');
+    Route::get('/wishlist/{slug}',[ProductController::class, 'toggle_wishlist'])->name('product.axios.toggle.wishlist')->middleware('auth.suspended');
 });
 
 Route::group([
     'prefix' => 'dash',
-    'middleware' => 'auth'
+    'middleware' => ['auth','auth.suspended']
 ],function(){
     Route::get('/',[DashboardsController::class, 'index'])->name('dash');
     Route::get('/personal', [DashboardsController::class, 'personal'])->name('dash.personal');
@@ -82,3 +84,6 @@ Route::group([
 
 
 Route::get('/@{username}', [MainController::class, 'profile'])->name('profile');
+
+// admin routes start
+require_once __DIR__ . '/admin.php';

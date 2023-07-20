@@ -145,7 +145,7 @@
                                                     </svg>
                                                     Sign In
                                                 </a>
-                                                <a href="#" class="flex items-center rounded-md px-3 py-2 font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-800">
+                                                <a href="{!! route('register') !!}" class="flex items-center rounded-md px-3 py-2 font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-800">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="mr-1 w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 text-slate-700 dark:text-slate-300">
                                                         <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
                                                         <path d="M12 10m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"></path>

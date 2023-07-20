@@ -36,6 +36,10 @@ class OwnedLicense extends Model
         }
     }
 
+    public function _user(){
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
     public function _expires_at()
     {
         if($this->expires_at) {

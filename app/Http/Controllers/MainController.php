@@ -20,6 +20,14 @@ class MainController extends Controller
         return Layouts::view('main/landing');
     }
 
+    public function sus(Request $request){
+        if(!auth()->check()) return redirect()->route('main');
+        if(!auth()->user()->suspended) return redirect()->route('main');
+        return view('main.sus',[
+            'message' => auth()->user()->suspended,
+        ]);
+    }
+
     public function contact(){
         return Layouts::view('main/contact',[
             'seo' => (object)[

@@ -28,8 +28,8 @@ class DatabaseSeeder extends Seeder
             'meta_title' => 'VELIXS - Web Development',
             'meta_description' => 'Velixs adalah sebuah perusahaan yang bergerak di bidang pengembangan website dan aplikasi berbasis web.',
             'meta_keywords' => 'velixs, web development, web developer, web developer indonesia, web developer bandung, web developer jakarta, web developer surabaya, web developer semarang, web developer yogyakarta, web developer malang, web developer bali, web developer medan, web developer palembang, web developer makassar, web developer aceh, web developer kalimantan, web developer sumatera, web developer sulawesi, web developer papua, web developer jawa, web developer sumatera, web developer indonesia, web developer terbaik, web developer terpercaya, web developer murah, web developer profesional, web developer berkualitas, web developer handal, web developer terbaik indonesia, web developer terpercaya indonesia, web developer murah indonesia, web developer profesional indonesia, web developer berkualitas indonesia, web developer handal indonesia, web developer terbaik bandung, web developer terpercaya bandung, web developer murah bandung, web developer profesional bandung, web developer berkualitas bandung, web developer handal bandung',
-            'meta_thumbnail' => 'http://127.0.0.1:8000/storage/web/thumbnail.jpg',
-            'logo' => 'http://127.0.0.1:8000/storage/web/logo.svg',
+            'meta_thumbnail' => 'http://127.0.0.1:8000/web/thumbnail.jpg',
+            'logo' => 'http://127.0.0.1:8000/web/logo.svg',
             'payment_whatsapp' => '6281234567890',
             'bot_whatsapp' => '6281234567890',
             'contact_whatsapp' => json_encode([
@@ -83,7 +83,7 @@ class DatabaseSeeder extends Seeder
             [
                 'title' => 'Lorem ipsum dolor sit amet',
                 'slug' => 'lorem-ipsum-dolor-sit-amet',
-                'image' => 'storage/blogs/1.png',
+                'image' => 'blogs/1.png',
                 'content' => 'lorem',
                 'author' => $admin->id,
                 'tags' => json_encode(array(1, 2)),
@@ -95,7 +95,7 @@ class DatabaseSeeder extends Seeder
             [
                 'title' => 'Lorem ipsum dolor sit amet 2',
                 'slug' => 'lorem-ipsum-dolor-sit-amet-2',
-                'image' => 'storage/blogs/2.png',
+                'image' => 'blogs/2.png',
                 'content' => 'lorem',
                 'author' => $admin->id,
                 'tags' => json_encode(array(3, 2)),
@@ -107,7 +107,7 @@ class DatabaseSeeder extends Seeder
             [
                 'title' => 'Autentikasi dengan Laravel Sanctum & Fortify untuk SPA',
                 'slug' => 'autentikasi-dengan-laravel-sanctum-fortify-untuk-spa',
-                'image' => 'storage/blogs/3.png',
+                'image' => 'blogs/3.png',
                 'content' => 'Nah jetstream sendiri juga menggunakan fortify sebagai api auth nya, namun, jika kita tidak ingin menggunakan jetstream melainkan ingin memakai fortify nya saja juga bisa, terlebih lagi, kita bisa turn off view nya yang by default bisa kita tentukan dalam AppServiceProvider, kali ini saya akan menganggap bahwa Anda ingin memakai fortify sebagai api saja, dan untuk view auth nya menggunakan spa yang telah Anda punya.',
                 'author' => $admin->id,
                 'tags' => json_encode(array(3, 1)),
@@ -119,7 +119,7 @@ class DatabaseSeeder extends Seeder
             [
                 'title' => 'Membangun Forum Dengan Laravel TDD Sudah Selesai',
                 'slug' => 'membangun-forum-dengan-laravel-tdd-sudah-selesai',
-                'image' => 'storage/blogs/4.png',
+                'image' => 'blogs/4.png',
                 'content' => 'Nah jetstream sendiri juga menggunakan fortify sebagai api auth nya, namun, jika kita tidak ingin menggunakan jetstream melainkan ingin memakai fortify nya saja juga bisa, terlebih lagi, kita bisa turn off view nya yang by default bisa kita tentukan dalam AppServiceProvider, kali ini saya akan menganggap bahwa Anda ingin memakai fortify sebagai api saja, dan untuk view auth nya menggunakan spa yang telah Anda punya.',
                 'author' => $admin->id,
                 'tags' => json_encode(array(3, 1, 2)),
@@ -131,7 +131,7 @@ class DatabaseSeeder extends Seeder
             [
                 'title' => 'Perbedaan ForEach dan Map Dalam Javascript',
                 'slug' => 'perbedaan-foreach-dan-map-dalam-javascript',
-                'image' => 'storage/blogs/5.png',
+                'image' => 'blogs/5.png',
                 'content' => 'Jika Anda sering bermain dengan JavaScript akhir - akhir ini, Anda mungkin menemukan dua metode Array yang sepertinya fungsi dari kedua itu sama.',
                 'author' => $admin->id,
                 'tags' => json_encode(array(3, 2)),
@@ -143,7 +143,7 @@ class DatabaseSeeder extends Seeder
             [
                 'title' => 'Inertia.js Sekarang Sudah Versi 1.0',
                 'slug' => 'inertiajs-sekarang-sudah-versi-1-0',
-                'image' => 'storage/blogs/8.png',
+                'image' => 'blogs/8.png',
                 'content' => 'Tepat pada tanggal 14 januari, Inertia.js telah resmi rilis versi 1.0, yang mana pada rilis kali ini semua di buat lebih singkat. Lebih singkat dalam arti tidak terpisah-pisah lagi.',
                 'author' => $admin->id,
                 'tags' => json_encode(array(2)),
@@ -155,7 +155,7 @@ class DatabaseSeeder extends Seeder
             [
                 'title' => 'PHP dan Laravel Fixer Dengan Duster',
                 'slug' => 'php-dan-laravel-fixer-dengan-duster',
-                'image' => 'storage/blogs/7.png',
+                'image' => 'blogs/7.png',
                 'content' => 'Tepat pada tanggal 14 januari, Inertia.js telah resmi rilis versi 1.0, yang mana pada rilis kali ini semua di buat lebih singkat. Lebih singkat dalam arti tidak terpisah-pisah lagi.',
                 'author' => $admin->id,
                 'tags' => json_encode(array(1)),
@@ -167,7 +167,7 @@ class DatabaseSeeder extends Seeder
             [
                 'title' => 'Intro to Hellayan.com',
                 'slug' => 'intro-to-hellayan-com',
-                'image' => 'storage/blogs/6.png',
+                'image' => 'blogs/6.png',
                 'content' => 'Hellayan adalah platform kursus yang mana setiap hal akan di ajarkan dari tulisan seperti layaknya buku, namun ini hanya online.',
                 'author' => $admin->id,
                 'tags' => json_encode(array(2,3)),
@@ -187,7 +187,7 @@ class DatabaseSeeder extends Seeder
             \App\Models\Blog::insert([
                 'title' => 'Lorem ipsum dolor sit amet '.$i,
                 'slug' => 'lorem-'.$random,
-                'image' => 'storage/blogs/'.$rand.'.png',
+                'image' => 'blogs/'.$rand.'.png',
                 'content' => 'lorem',
                 'author' => $admin->id,
                 'tags' => json_encode(array(1, 2)),
@@ -259,7 +259,7 @@ class DatabaseSeeder extends Seeder
             \App\Models\Product::insert([
                 'title' => 'Lorem ipsum dolor sit amet '.$i,
                 'slug' => $random,
-                'image' => 'storage/item/'.$rand.'.png',
+                'image' => 'item/'.$rand.'.png',
                 'content' => 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Rem libero possimus illo sit voluptas ex! asdas daw awaw dgnawydgayw duayw yauwgduy agudawd awd awd awd awdawd',
                 'author' => $admin->id,
                 'tags' => json_encode(array(rand(1,3), rand(4,8))),

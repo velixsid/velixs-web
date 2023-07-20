@@ -23,7 +23,7 @@
             x-transition:leave="transition ease-in duration-300"
             x-transition:leave-start="transform translate-x-0"
             x-transition:leave-end="transform translate-x-[-100%]"
-            class="lg:!flex flex-grow h-full flex-col w-[280px] overflow-y-auto scroll-hidden lg:border-r border-dashed border-gray-200 dark:border-gray-800 pt-5 fixed lg:bg-transparent bg-white dark:bg-gray-900 animate-fade-in-left-bounce">
+            class="lg:!flex flex-grow h-full flex-col w-[280px] overflow-y-auto scroll-hidden lg:border-r border-dashed border-gray-200 dark:border-gray-800 pt-5 fixed lg:bg-transparent bg-white dark:bg-gray-900">
                 <div class="relative">
                     <div class="flex justify-between items-center px-4">
                         <img class="h-8 w-auto" src="{!! asset('assets/img/logo.svg') !!}" alt="Ilsya">
