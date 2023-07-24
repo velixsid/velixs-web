@@ -5,11 +5,14 @@ namespace App\Http\Controllers;
 use App\Helpers\Layouts;
 use App\Models\OwnedLicense;
 use App\Models\Product;
+use App\Models\ProductVisitor;
+use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 
 class ProductController extends Controller
 {
+    use DispatchesJobs;
     public function index(){
         $data['tags'] = request()->query('tags');
         $data['seo'] = (object)[
@@ -19,13 +22,32 @@ class ProductController extends Controller
         return Layouts::view('product.index', $data);
     }
 
-    public function show($slug){
+    public function show(Request $request, $slug){
         $item  = Product::where([
             'slug' => $slug,
             ['is_published', '!=', 0],
         ]);
         if(!$item->exists()) return abort(404);
         $item = $item->first();
+
+        //hit visitor
+        $user_id = auth()->check() ? auth()->id() : null;
+        $visitor = null;
+        if($user_id){
+            $visitor = ProductVisitor::where('product_id', $item->id)->where('user_id', $user_id);
+        } else {
+            $visitor = ProductVisitor::where('product_id', $item->id)->where('ip', $request->ip());
+        }
+
+        if(!$visitor->exists()){
+            \App\Jobs\InsertVisitorProductJob::dispatch([
+                'ip' => $request->ip(),
+                'user_id' => $user_id,
+                'product_id' => $item->id,
+                'user_agent' => $request->userAgent(),
+            ]);
+        }
+
         $data['item'] = $item;
         $data['seo'] = (object)[
             'title' => $item->title,

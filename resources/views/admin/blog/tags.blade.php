@@ -1,6 +1,6 @@
 @extends('layouts.admin.main')
 
-@section('title', 'Manage Product Tags')
+@section('title', 'Manage Blog Tags')
 
 @section('content')
 <div class="card">
@@ -28,7 +28,7 @@
                 <h5 class="modal-title" id="modalCenterTitle">Edit Tags</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="{!! route('admin.product.tags.update') !!}" method="post" id="form-update">
+            <form action="{!! route('admin.blog.tags.update') !!}" method="post" id="form-update">
                 @csrf
                 <input type="hidden" name="id">
                 <div class="modal-body isloading">
@@ -65,7 +65,7 @@
                 <h5 class="modal-title" id="modalCenterTitle">New Tags</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="{!! route('admin.product.tags.create') !!}" method="post" id="form-create">
+            <form action="{!! route('admin.blog.tags.create') !!}" method="post" id="form-create">
                 @csrf
                 <div class="modal-body">
                     <div class="row g-2">
@@ -98,8 +98,8 @@
         $(function () {
             const table = new itables({
                 table: '.ilsya-datatables',
-                ajax: '{!! route('admin.product.tags.json') !!}',
-                url_delete: '{!! route('admin.product.tags.destroy') !!}',
+                ajax: '{!! route('admin.blog.tags.json') !!}',
+                url_delete: '{!! route('admin.blog.tags.destroy') !!}',
                 columns: [
                     { data: '' },
                     { data: 'id' },
@@ -108,7 +108,7 @@
                     { data: 'slug' },
                     { data: '' }
                 ],
-                header: 'List Products',
+                header: 'List Tags',
                 customDefs: [
                     {
                         targets: -1,
@@ -144,7 +144,7 @@
             $("#modal-edit .isloading").show();
             $.ajax({
                 type: "GET",
-                url: '{!! route('admin.product.tags.edit','') !!}/'+id,
+                url: '{!! route('admin.blog.tags.edit','') !!}/'+id,
                 success: function(data){
                     $("#modal-edit .isloading").hide();
                     $("#modal-edit .content").show();

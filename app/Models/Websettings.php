@@ -13,7 +13,6 @@ class Websettings extends Model
     protected $guarded = [];
 
     public static function getWebsiteSettings(){
-        Cache::forget('website_settings');
         return Cache::remember('website_settings', 60 * 24, function () {
             return self::first();
         });

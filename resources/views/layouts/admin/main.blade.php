@@ -2,7 +2,7 @@
 
 <html
   lang="en"
-  class="dark-style layout-navbar-fixed layout-menu-fixed"
+  class="light-style layout-navbar-fixed layout-menu-fixed"
   dir="ltr"
   data-theme="theme-default"
   data-assets-path="{{ asset('assets/dash') }}/"
@@ -61,6 +61,12 @@
           <div class="menu-inner-shadow"></div>
 
           <ul class="menu-inner py-1">
+            <li class="menu-item {{ Route::is('admin.index') ? 'active' : '' }}">
+                <a href="{!! route('admin.index') !!}" class="menu-link">
+                    <i class="menu-icon tf-icons ti ti-home"></i>
+                    <div data-i18n="Main Dashboards">Main Dashboards</div>
+                </a>
+            </li>
             <li class="menu-header small text-uppercase">
               <span class="menu-header-text">Content</span>
             </li>
@@ -88,6 +94,34 @@
                 </li>
                 <li class="menu-item {{ Route::is('admin.product.tags') ? 'active' : '' }}">
                   <a href="{!! route('admin.product.tags') !!}" class="menu-link">
+                    <div data-i18n="Manage Category">Manage Category</div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="menu-item {{ Route::is('admin.blog*') ? 'active open' : '' }}">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="menu-icon tf-icons" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <path d="M8 21h8a5 5 0 0 0 5 -5v-3a3 3 0 0 0 -3 -3h-1v-2a5 5 0 0 0 -5 -5h-4a5 5 0 0 0 -5 5v8a5 5 0 0 0 5 5z"></path>
+                    <path d="M7 7m0 1.5a1.5 1.5 0 0 1 1.5 -1.5h3a1.5 1.5 0 0 1 1.5 1.5v0a1.5 1.5 0 0 1 -1.5 1.5h-3a1.5 1.5 0 0 1 -1.5 -1.5z"></path>
+                    <path d="M7 14m0 1.5a1.5 1.5 0 0 1 1.5 -1.5h7a1.5 1.5 0 0 1 1.5 1.5v0a1.5 1.5 0 0 1 -1.5 1.5h-7a1.5 1.5 0 0 1 -1.5 -1.5z"></path>
+                 </svg>
+                <div data-i18n="Blog">Blog</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item {{ Route::is('admin.blog.index') ? 'active' : '' }}">
+                  <a href="{!! route('admin.blog.index') !!}" class="menu-link">
+                    <div data-i18n="Manage Blog">Manage Blog</div>
+                  </a>
+                </li>
+                <li class="menu-item {{ Route::is('admin.blog.create') ? 'active' : '' }}">
+                  <a href="{!! route('admin.blog.create') !!}" class="menu-link">
+                    <div data-i18n="New Blog">New Blog</div>
+                  </a>
+                </li>
+                <li class="menu-item {{ Route::is('admin.blog.tags') ? 'active' : '' }}">
+                  <a href="{!! route('admin.blog.tags') !!}" class="menu-link">
                     <div data-i18n="Manage Category">Manage Category</div>
                   </a>
                 </li>

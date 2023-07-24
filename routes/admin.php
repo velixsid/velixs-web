@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\Admin\ABlogController;
 use App\Http\Controllers\Admin\AProductController;
 use App\Http\Controllers\Admin\FilesController;
 use App\Http\Controllers\Admin\LicenseController;
+use App\Http\Controllers\Admin\MainController;
 use App\Http\Controllers\Admin\OtherController;
 use App\Http\Controllers\Admin\UsersController;
 use Illuminate\Support\Facades\Route;
@@ -23,9 +25,7 @@ Route::group([
     'prefix' => 'admin',
     'middleware' => ['isadmin']
 ],function(){
-    Route::get('/', function () {
-        return view('admin.index');
-    })->name('admin.index');
+    Route::get('/', [MainController::class, 'index'])->name('admin.index');
 
     Route::prefix('product')->group(function () {
         Route::get('/',[AProductController::class, 'index'])->name('admin.product.index');
@@ -50,6 +50,27 @@ Route::group([
         Route::post('/tags/destroy',[AProductController::class, 'tags_destroy'])->name('admin.product.tags.destroy');
         Route::get('/tags/edit/{id}',[AProductController::class, 'tags_edit'])->name('admin.product.tags.edit');
         Route::post('/tags/update',[AProductController::class, 'tags_update'])->name('admin.product.tags.update');
+    });
+
+    Route::prefix('blog')->group(function () {
+        Route::get('/',[ABlogController::class, 'index'])->name('admin.blog.index');
+        Route::get('/trash',[ABlogController::class, 'trash'])->name('admin.blog.trash');
+        Route::get('/trash/recovery/{id}',[ABlogController::class, 'trash_recovery'])->name('admin.blog.trash.recovery');
+        Route::get('/json',[ABlogController::class, 'json'])->name('admin.blog.json');
+        Route::post('/destroy',[ABlogController::class, 'destroy'])->name('admin.blog.destroy');
+        Route::post('/destroy/force',[ABlogController::class, 'destroy_force'])->name('admin.blog.destroy.force');
+
+        Route::get('/create', [ABlogController::class, 'create'])->name('admin.blog.create');
+        Route::post('/store', [ABlogController::class, 'store'])->name('admin.blog.store');
+        Route::get('/edit/{id}', [ABlogController::class, 'edit'])->name('admin.blog.edit');
+        Route::post('/update/{id}', [ABlogController::class, 'update'])->name('admin.blog.update');
+
+        Route::get('/tags',[ABlogController::class, 'tags_index'])->name('admin.blog.tags');
+        Route::get('/tags/json',[ABlogController::class, 'tags_index'])->name('admin.blog.tags.json');
+        Route::post('/tags/create',[ABlogController::class, 'tags_create'])->name('admin.blog.tags.create');
+        Route::post('/tags/destroy',[ABlogController::class, 'tags_destroy'])->name('admin.blog.tags.destroy');
+        Route::get('/tags/edit/{id}',[ABlogController::class, 'tags_edit'])->name('admin.blog.tags.edit');
+        Route::post('/tags/update',[ABlogController::class, 'tags_update'])->name('admin.blog.tags.update');
     });
 
     Route::prefix('license')->group(function(){

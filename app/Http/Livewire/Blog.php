@@ -30,6 +30,7 @@ class Blog extends Component
     public function render()
     {
         $blogs = $this->model::select('*');
+        $blogs = $blogs->where('is_published', '!=', '0');
         if($this->tags){
             $tags_id = BlogTags::where('slug', $this->tags)->first();
             if($tags_id){

@@ -7,12 +7,14 @@ use App\Models\Blog;
 use App\Models\License;
 use App\Models\Product;
 use App\Models\User;
+use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
 
 class MainController extends Controller
 {
+    use DispatchesJobs;
     public function index(Request $request){
         $data['seo'] = (object)[
             'title'=> 'Landing Page',

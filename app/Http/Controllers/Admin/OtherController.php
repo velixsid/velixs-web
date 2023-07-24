@@ -6,6 +6,7 @@ use App\Helpers\Layouts;
 use App\Http\Controllers\Controller;
 use App\Models\Websettings;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class OtherController extends Controller
 {
@@ -19,7 +20,6 @@ class OtherController extends Controller
 
     public function settings_meta(Request $request){
         if(!$request->ajax()) return redirect()->route('admin.settings');
-
         $ws = Websettings::find(1);
         $ws->meta_title = $request->meta_title;
         $ws->meta_description = $request->meta_description;
@@ -29,6 +29,7 @@ class OtherController extends Controller
         $ws->logo = $request->logo;
 
         if($ws->save()){
+            Cache::forget('website_settings');
             return response()->json([
                 'status' => 'success',
                 'message' => 'Meta settings updated successfully'
@@ -60,6 +61,7 @@ class OtherController extends Controller
         }
         $ws->social_links = json_encode($data);
         $ws->save();
+        Cache::forget('website_settings');
 
         return response()->json([
             'status' => 'success',
@@ -76,6 +78,7 @@ class OtherController extends Controller
         $ws->contact_whatsapp = $request->contact_whatsapp;
         $ws->contact_email = $request->contact_email;
         $ws->save();
+        Cache::forget('website_settings');
 
         return response()->json([
             'status' => 'success',

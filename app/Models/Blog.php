@@ -39,7 +39,7 @@ class Blog extends Model
         return $this->image ? asset('storage/'.$this->image) : asset('storage/blogs/default.png');
     }
 
-    public function _tags() {
+    public function _tags($col = null) {
         try {
             $tags_id = $this->tags;
             $tags = [];
@@ -48,6 +48,9 @@ class Blog extends Model
                 if ($tag) {
                     array_push($tags, $tag);
                 }
+            }
+            if($col){
+                $tags = collect($tags)->pluck($col);
             }
             return $tags;
         }catch (\Exception $e){
@@ -59,27 +62,19 @@ class Blog extends Model
         return $this->hasMany(BlogView::class, 'blog_id');
     }
 
-    public function recordView(){
-        $user_id = auth()->check() ? auth()->id() : null;
-        $ip = request()->ip();
-        $row = null;
-        if($user_id){
-            $row = BlogView::where('blog_id',$this->id)->where('user_id',$user_id);
-        } else {
-            $row = BlogView::where('blog_id',$this->id)->where('ip_address',$ip);
-        }
-        if(!$row->exists()){
-            BlogView::create([
-                'blog_id' => $this->id,
-                'user_id' => $user_id,
-                'ip_address' => $ip,
-                'country' => Location::get($ip)->countryName ?? 'Unknown'
-            ]);
-        }
-    }
-
     public function countView(){
         // format: 1,000
         return number_format($this->traffic()->count());
+    }
+
+    public function _countViewShort(){
+        $satuan = ['', 'K', 'M', 'B', 'T'];
+        $angka = $this->traffic()->count();
+        $satuan_index = 0;
+        while ($angka >= 1000) {
+            $angka /= 1000;
+            $satuan_index++;
+        }
+        return round($angka, 2) . ' ' . $satuan[$satuan_index];
     }
 }
