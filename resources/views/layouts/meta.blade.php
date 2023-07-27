@@ -22,7 +22,7 @@
 
 {{-- favicon --}}
 <!-- Favicon untuk browser -->
-<link rel="icon" href="{!! asset('storage/web/favicon/favicon.ico') !!}" type="image/x-icon">
+<link rel="icon" href="{!! $ws->favicon !!}" type="image/png">
 <!-- Favicon untuk iOS (iPhone, iPad) -->
 <link rel="apple-touch-icon" sizes="180x180" href="{!! asset('storage/web/favicon/apple-touch-icon.png') !!}">
 <!-- Favicon untuk Android -->

@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [MainController::class, 'index'])->name('main');
 Route::get('/contact', [MainController::class, 'contact'])->name('contact');
 Route::get('/search', [MainController::class, 'search'])->name('search.axios');
-Route::get('/sitemap.xml', [MainController::class, 'sitemap'])->name('sitemap');
+Route::get('/sitemap.xml', [MainController::class, 'sitemap'])->name('sitemap')->withoutMiddleware('web');
 
 Route::get('/terms-of-service', [MainController::class, 'tos'])->name('tos');
 Route::get('/privacy-policy', [MainController::class, 'privacy'])->name('privacy');
