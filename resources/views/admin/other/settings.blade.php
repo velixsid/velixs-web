@@ -90,6 +90,7 @@
                                 </div>
                             </div>
                             <div class="text-end">
+                                <button class="btn btn-label-success btn-generate-sitemap" type="button">Generate SiteMap</button>
                                 <button class="btn btn-label-primary" type="submit">Update</button>
                             </div>
                         </form>

@@ -434,8 +434,6 @@
                         </svg>
                         <input type="text" class="h-12 w-full border-0 bg-transparent pl-11 pr-4 text-gray-900 dark:text-slate-100 placeholder-gray-500 focus:ring-0 sm:text-sm" placeholder="Search...">
                     </div>
-
-                    <!-- Default state, show/hide based on command palette state. -->
                     <div id="result"></div>
                     <div class="py-14 px-6 text-center sm:px-14 hidden animate-popup-in" id="empty">
                         <svg class="mx-auto h-6 w-6 text-gray-900 dark:text-gray-300 text-opacity-40" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">

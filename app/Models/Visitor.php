@@ -32,4 +32,27 @@ class Visitor extends Model
             return null;
         }
     }
+
+    public static function countBrowser(){
+        return self::selectRaw('CASE WHEN browser IN ("Chrome", "Mozilla", "Edge", "Safari", "Opera") THEN browser ELSE "Unknown" END AS browser_group, COUNT(*) as total_views , ROUND(COUNT(*) * 100 / (SELECT COUNT(*) FROM visitors), 2) AS percentage')
+            ->groupBy('browser_group')
+            ->orderBy('total_views','DESC')
+            ->get();
+    }
+
+    public static function countCountry(){
+        return self::selectRaw('country, count(*) as total, ROUND(COUNT(*) * 100 / (SELECT COUNT(*) FROM visitors), 2) AS percentage')
+            ->groupBy('country')
+            ->orderBy('total','DESC')
+            ->limit(7)
+            ->get();
+    }
+
+    public static function countPageView(){
+        return self::selectRaw('referral, count(*) as total, ROUND(COUNT(*) * 100 / (SELECT COUNT(*) FROM visitors), 2) AS percentage')
+            ->groupBy('referral')
+            ->orderBy('total','DESC')
+            ->limit(7)
+            ->get();
+    }
 }

@@ -51,8 +51,8 @@
                                     <a class="line-clamp-1 font-semibold text-sm text-gray-800 dark:text-gray-100" href="{!! route('product.detail',$product->slug) !!}">
                                         {{ $product->title }}
                                     </a>
-                                    <div class="flex items-center -mt-1 justify-between text-base font-medium text-gray-900">
-                                        <a href="{!! route('profile',$product->_author->username) !!}" class="mt-1 text-xs text-gray-500">{{ $product->_author->name }}</a>
+                                    <div class="flex items-center justify-between text-base font-medium text-gray-900">
+                                        <a href="{!! route('profile',$product->_author->username) !!}" class="text-xs text-gray-500">{{ $product->_author->name }}</a>
                                         @isset($product->price['usd'])
                                             <span data-display-currency="USD" class="rounded-2xl bg-gray-200/40 dark:bg-gray-800 font-semibold text-green-600 px-2 text-[0.7rem]">{{ $product->_display_price('usd') }}</span>
                                         @endisset

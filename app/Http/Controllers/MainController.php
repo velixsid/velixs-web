@@ -10,6 +10,7 @@ use App\Models\User;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class MainController extends Controller
@@ -17,9 +18,10 @@ class MainController extends Controller
     use DispatchesJobs;
     public function index(Request $request){
         $data['seo'] = (object)[
-            'title'=> 'Landing Page',
+            'title'=> 'VELIXS',
         ];
-        return Layouts::view('main/landing');
+        $data['blog_latest'] = Blog::orderBy('id', 'desc')->limit(3)->get();
+        return Layouts::view('main/landing',$data);
     }
 
     public function sus(Request $request){
@@ -102,5 +104,10 @@ class MainController extends Controller
             ],
             'user' => $getuser,
         ]);
+    }
+
+    public function sitemap(){
+        $xml = Storage::disk('public')->get('sitemap.xml');
+        return response($xml, 200)->header('Content-Type', 'text/xml');
     }
 }

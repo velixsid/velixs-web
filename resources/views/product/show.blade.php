@@ -3,8 +3,7 @@
 @section('content')
 
 <main>
-
-    <div class="relative">
+    <div class="relative isolate overflow-hidden">
         <div class="pt-20 mx-auto lg:max-w-screen-2xl">
             <div class="py-3 lg:px-8 mx-4 lg:mx-0">
                 <div class="mb-6">
@@ -129,7 +128,7 @@
                             <img class="object-cover object-center w-full h-full" src="{!! $item->_image() !!}" alt="">
                         </div>
                         <div class="lg:px-0 px-2 py-10">
-                            <div class="lg:bg-white dark:lg:bg-gray-900 lg:shadow lg:p-10 rounded-xl overflow-hidden">
+                            <div class="lg:p-10 rounded-xl overflow-hidden">
                                 <article class="prose max-w-none dark:prose-invert prose-img:rounded-xl prose-pre:m-0 prose-pre:rounded-none">{!! $item->content !!}</article>
                             </div>
                         </div>

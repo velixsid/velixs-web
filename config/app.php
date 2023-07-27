@@ -171,6 +171,7 @@ return [
         Stevebauman\Location\LocationServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Jenssegers\Agent\AgentServiceProvider::class,
+        Spatie\Sitemap\SitemapServiceProvider::class,
     ])->toArray(),
 
     /*

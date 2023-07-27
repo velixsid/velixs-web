@@ -242,6 +242,16 @@
                           <small class="text-muted mb-0">Go to dashboard user.</small>
                         </div>
                       </div>
+                    <div class="dropdown-shortcuts-list scrollable-container">
+                      <div class="row row-bordered overflow-visible g-0">
+                        <div class="dropdown-shortcuts-item col">
+                          <span class="dropdown-shortcuts-icon rounded-circle mb-2">
+                            <i class="ti ti-code fs-4"></i>
+                          </span>
+                          <a href="javascript:void(0)" class="stretched-link btn-generate-sitemap">Generate Sitemap</a>
+                          <small class="text-muted mb-0">Update Sitemp</small>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </li>
@@ -257,7 +267,7 @@
                     aria-expanded="false"
                   >
                     <i class="ti ti-bell ti-md"></i>
-                    <span class="badge bg-danger rounded-pill badge-notifications">5</span>
+                    <span class="badge bg-danger rounded-pill badge-notifications">0</span>
                   </a>
                   <ul class="dropdown-menu dropdown-menu-end py-0">
                     <li class="dropdown-menu-header border-bottom">
@@ -440,6 +450,33 @@
                 });
             @endforeach
         @endif
+
+        $(document).on('click', '.btn-generate-sitemap', function(e){
+            e.preventDefault();
+            $(this).attr('disabled', true).text('Loading...');
+            $.ajax({
+                url: "{!! route('admin.settings.generate.sitemap') !!}",
+                type: "GET",
+                success: function(response) {
+                    Swal.fire({
+                        icon: "success",
+                        text: response.message ?? "Sitemap generated successfully",
+                        showConfirmButton: false,
+                        timer: 1500,
+                    });
+                    $(".btn-generate-sitemap").removeAttr("disabled").text("Generate SiteMap");
+                },
+                error: function(xhr) {
+                    Swal.fire({
+                        icon: "error",
+                        text: xhr.responseJSON.message ?? "Something went wrong",
+                        showConfirmButton: false,
+                        timer: 1500,
+                    });
+                    $(".btn-generate-sitemap").removeAttr("disabled").text("Generate SiteMap");
+                },
+            });
+        })
     </script>
     @stack('js')
   </body>

@@ -97,6 +97,7 @@ Route::group([
     Route::post('/settings/update/meta', [OtherController::class, 'settings_meta'])->name('admin.settings.update.meta');
     Route::post('/settings/update/social', [OtherController::class, 'settings_social'])->name('admin.settings.update.social');
     Route::post('/settings/update/contact', [OtherController::class, 'settings_contact'])->name('admin.settings.update.contact');
+    Route::get('/settings/genereate/sitemap', [OtherController::class, 'settings_sitemap'])->name('admin.settings.generate.sitemap');
 
     Route::prefix('files')->group(function(){
         Route::get('/',[FilesController::class, 'index'])->name('admin.files.index');

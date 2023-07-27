@@ -4,9 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use App\Helpers\Layouts;
 use App\Http\Controllers\Controller;
+use App\Models\Blog;
+use App\Models\Product;
 use App\Models\Websettings;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Storage;
+use Spatie\Sitemap\Sitemap;
 
 class OtherController extends Controller
 {
@@ -84,5 +88,32 @@ class OtherController extends Controller
             'status' => 'success',
             'message' => 'Contact settings updated successfully',
         ]);
+    }
+
+    public function settings_sitemap(Request $request){
+        if(!$request->ajax()) return redirect()->route('admin.settings');
+
+        $sitemap = Sitemap::create()
+            ->add(route('main'))
+            ->add(route('contact'))
+            ->add(route('product'))
+            ->add(route('tos'))
+            ->add(route('privacy'))
+            ->add(route('blog'));
+
+        foreach(Product::where('is_published','!=',0)->get() as $product){
+            $sitemap->add(route('product.detail',$product->slug));
+        }
+
+        foreach(Blog::where('is_published','!=',0)->get() as $blog){
+            $sitemap->add(route('blog.detail',$blog->slug));
+        }
+
+        $sitemap->writeToFile(Storage::path('sitemap.xml'));
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Sitemap settings updated successfully',
+        ],);
     }
 }
