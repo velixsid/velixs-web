@@ -124,6 +124,7 @@ class AProductController extends Controller
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'tags' => 'required',
             'is_published' => 'required',
+            'content' => 'required',
         ]);
 
         if($request->product_type == 'pay'){
@@ -197,6 +198,7 @@ class AProductController extends Controller
             'tags' => 'required',
             'is_published' => 'required',
             'meta_description' => 'nullable|string|max:160',
+            'content' => 'required',
         ]);
 
 

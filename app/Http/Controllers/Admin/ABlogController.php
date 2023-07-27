@@ -126,6 +126,7 @@ class ABlogController extends Controller
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'tags' => 'required',
             'is_published' => 'required',
+            'content' => 'required',
         ]);
 
         $table = new Blog();
@@ -187,6 +188,7 @@ class ABlogController extends Controller
             'tags' => 'required',
             'is_published' => 'required',
             'meta_description' => 'nullable|string|max:160',
+            'content' => 'required',
         ]);
 
         $table->title = $request->title;
