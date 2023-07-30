@@ -47,6 +47,8 @@ Route::group([
     Route::get('/',[BlogController::class, 'index'])->name('blog');
     Route::get('/t/{sort}',[BlogController::class, 'index'])->name('blog.sort');
     Route::get('/{slug}',[BlogController::class, 'show'])->name('blog.detail');
+
+    Route::post('/react',[BlogController::class, 'react'])->name('blog.react.axios');
 });
 
 

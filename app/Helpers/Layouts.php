@@ -35,4 +35,16 @@ class Layouts
             return false;
         }
     }
+
+    // short number
+    public static function shortNumber($number){
+        if($number >= 1000000000){
+            $number = round($number/1000000000, 1).'B';
+        }else if($number >= 1000000){
+            $number = round($number/1000000, 1).'M';
+        }else if($number >= 1000){
+            $number = round($number/1000, 1).'K';
+        }
+        return $number;
+    }
 }

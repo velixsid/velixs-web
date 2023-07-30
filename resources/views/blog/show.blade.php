@@ -44,7 +44,7 @@
                 <div class="font-mono tracking-tighter text-xs sm:text-sm mt-4">
                     <span class="h-px mt-6 mb-5 w-full hidden md:inline-block bg-gradient-to-r from-slate-300 dark:from-slate-700 via-transparent to-transparent"></span>
                     <div class="text-slate-500 dark:text-slate-400">
-                        <div class="flex items-center mb-2">
+                        {{-- <div class="flex items-center mb-2">
                             <svg xmlns="http://www.w3.org/2000/svg" class="mr-2" width="22" height="22" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                 <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
@@ -52,7 +52,7 @@
                                 <path d="M12 7v5"></path>
                             </svg>
                             1 min read
-                        </div>
+                        </div> --}}
                         <div class="flex items-center mb-2">
                             <svg xmlns="http://www.w3.org/2000/svg" class="mr-2" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z"></path>
@@ -67,7 +67,7 @@
                             <svg xmlns="http://www.w3.org/2000/svg" class="mr-2" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4"></path>
                                 <path d="M13.5 6.5l4 4"></path>
-                            </svg>Ditulis oleh {{ $row->_author->name }}
+                            </svg>Ditulis oleh <a class="ml-1.5 font-semibold" href="{!! route('profile',$row->_author->username) !!}">{{ $row->_author->name }}</a>
                         </div>
                         <div class="flex items-center mb-2">
                             <svg xmlns="http://www.w3.org/2000/svg" class="mr-2" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -140,36 +140,36 @@
 
                                                     <!-- emot react -->
                                                     <div class="flex items-center gap-4">
-                                                        <div class="flex flex-col items-center gap-2" x-data="{ imgSrc: '{!! asset('assets/img/emojis/clapping-hands.png') !!}', count: 0 }">
-                                                            <button class="relative cursor-pointer select-none group" x-on:click="count++" x-on:mouseenter="imgSrc = '{!! asset('assets/img/emojis/clapping-hands-animated.png') !!}'" x-on:mouseleave="imgSrc = '{!! asset('assets/img/emojis/clapping-hands.png') !!}'">
-                                                                <div class="h-10 w-10 group-hover:scale-125 transition-transform duration-200 ease-in-out">
+                                                        <div class="flex flex-col items-center gap-2" x-data="{ imgSrc: '{!! asset('assets/img/emojis/clapping-hands.png') !!}' }">
+                                                            <button class="btn-react relative cursor-pointer select-none group" x-on:mouseenter="imgSrc = '{!! asset('assets/img/emojis/clapping-hands-animated.png') !!}'" x-on:mouseleave="imgSrc = '{!! asset('assets/img/emojis/clapping-hands.png') !!}'">
+                                                                <div data-react="clap" class="h-10 w-10 group-hover:scale-125 transition-transform duration-200 ease-in-out">
                                                                     <img alt="Clap" x-bind:src="imgSrc" class="pointer-events-none h-full w-full">
                                                                 </div>
                                                             </button>
                                                             <div class="relative flex h-6 items-center rounded-full bg-slate-200 py-1 px-2 dark:bg-[#1d263a]">
-                                                                <span class="flex text-sm font-bold text-slate-600 dark:text-slate-300 h-5 items-center" x-text="count"></span>
+                                                                <span class="flex text-sm font-bold text-slate-600 dark:text-slate-300 h-5 items-center" id="count-clap">{{ $react_count['clap'] ?? 0 }}</span>
                                                             </div>
                                                         </div>
 
-                                                        <div class="flex flex-col items-center gap-2" x-data="{ imgSrc: '{!! asset('assets/img/emojis/astonished-face.png') !!}', count: 0 }">
-                                                            <button class="relative cursor-pointer select-none group" x-on:click="count++" x-on:mouseenter="imgSrc = '{!! asset('assets/img/emojis/astonished-face-animated.png') !!}'" x-on:mouseleave="imgSrc = '{!! asset('assets/img/emojis/astonished-face.png') !!}'">
-                                                                <div class="h-10 w-10 group-hover:scale-125 transition-transform duration-200 ease-in-out">
+                                                        <div class="flex flex-col items-center gap-2" x-data="{ imgSrc: '{!! asset('assets/img/emojis/astonished-face.png') !!}' }">
+                                                            <button class="btn-react relative cursor-pointer select-none group" x-on:mouseenter="imgSrc = '{!! asset('assets/img/emojis/astonished-face-animated.png') !!}'" x-on:mouseleave="imgSrc = '{!! asset('assets/img/emojis/astonished-face.png') !!}'">
+                                                                <div data-react="wow" class="h-10 w-10 group-hover:scale-125 transition-transform duration-200 ease-in-out">
                                                                     <img alt="Wow" x-bind:src="imgSrc" class="pointer-events-none h-full w-full">
                                                                 </div>
                                                             </button>
                                                             <div class="relative flex h-6 items-center rounded-full bg-slate-200 py-1 px-2 dark:bg-[#1d263a]">
-                                                                <span class="flex text-sm font-bold text-slate-600 dark:text-slate-300 h-5 items-center" x-text="count"></span>
+                                                                <span class="flex text-sm font-bold text-slate-600 dark:text-slate-300 h-5 items-center" id="count-wow">{{ $react_count['wow'] ?? 0 }}</span>
                                                             </div>
                                                         </div>
 
-                                                        <div class="flex flex-col items-center gap-2" x-data="{ imgSrc: '{!! asset('assets/img/emojis/face-with-monocle.png') !!}', count: 0 }">
-                                                            <button class="relative cursor-pointer select-none group" x-on:click="count++" x-on:mouseenter="imgSrc = '{!! asset('assets/img/emojis/face-with-monocle-animated.png') !!}'" x-on:mouseleave="imgSrc = '{!! asset('assets/img/emojis/face-with-monocle.png') !!}'">
-                                                                <div class="h-10 w-10 group-hover:scale-125 transition-transform duration-200 ease-in-out">
+                                                        <div class="flex flex-col items-center gap-2" x-data="{ imgSrc: '{!! asset('assets/img/emojis/face-with-monocle.png') !!}' }">
+                                                            <button class="btn-react relative cursor-pointer select-none group" x-on:mouseenter="imgSrc = '{!! asset('assets/img/emojis/face-with-monocle-animated.png') !!}'" x-on:mouseleave="imgSrc = '{!! asset('assets/img/emojis/face-with-monocle.png') !!}'">
+                                                                <div data-react="hmm" class="h-10 w-10 group-hover:scale-125 transition-transform duration-200 ease-in-out">
                                                                     <img alt="Hmm" x-bind:src="imgSrc" class="pointer-events-none h-full w-full">
                                                                 </div>
                                                             </button>
                                                             <div class="relative flex h-6 items-center rounded-full bg-slate-200 py-1 px-2 dark:bg-[#1d263a]">
-                                                                <span class="flex text-sm font-bold text-slate-600 dark:text-slate-300 h-5 items-center" x-text="count"></span>
+                                                                <span class="flex text-sm font-bold text-slate-600 dark:text-slate-300 h-5 items-center" id="count-hmm">{{ $react_count['hmm'] ?? 0 }}</span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -318,5 +318,29 @@
         clipboard.on('error', function(e) {
             console.log(e);
         });
+
+        var toasterror = 0;
+        document.querySelectorAll('.btn-react').forEach(btn => {
+            btn.addEventListener('click', (react) => {
+                let reactType = react.target.dataset.react;
+                axios.post("{!! route('blog.react.axios') !!}", {
+                    react: reactType,
+                    blog_id: "{!! $row->id !!}",
+                }).then((res) => {
+                    let count = document.querySelector(`#count-${reactType}`);
+                    count.innerHTML = parseInt(count.innerHTML) + 1;
+                }).catch((err) => {
+                    if(err.response.data.type=='limit'){
+                        if(toasterror >= 5) return;
+                        toasterror++;
+                        toast.toast({
+                            style: `info`,
+                            title: 'Limit Reached.',
+                            msg: 'You have reached the maximum limit of reactions for this article.',
+                        })
+                    }
+                })
+            })
+        })
     </script>
 @endpush

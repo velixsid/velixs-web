@@ -54,6 +54,10 @@ class ProductController extends Controller
             'description' => $item->meta_description,
             'image' => $item->_image(),
         ];
+        $data['sales'] = Layouts::shortNumber(OwnedLicense::where([
+            'item' => 'digital-product',
+            'item_id' => $item->id,
+        ])->count());
         return Layouts::view('product.show', $data);
     }
 

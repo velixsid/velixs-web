@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\Layouts;
+use App\Jobs\InsertReactBlogJob;
 use App\Jobs\InsertVisitorBlogJob;
 use App\Models\Blog;
+use App\Models\BlogReact;
 use App\Models\BlogView;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\RateLimiter;
 
 class BlogController extends Controller
 {
@@ -46,13 +49,75 @@ class BlogController extends Controller
             ]));
         }
 
+        // group by react clap, wow, hmm
+        $react_count = BlogReact::selectRaw('react, count(*) as total')
+            ->where('blog_id', $row->id)
+            ->groupBy('react')
+            ->get();
+
+        $data['react_count'] = $react_count->mapWithKeys(function($item){
+            return [$item->react => $item->total];
+        });
 
         $data['seo'] = (object)[
             'title' => $row->title,
             'description' => $row->meta_description,
             'image' => $row->_image(),
-            'type' => 'article'
+            'type' => 'article',
         ];
         return Layouts::view('blog.show',$data);
+    }
+
+    public function react(Request $request){
+        if(!$request->ajax()) return abort(404);
+        $request->validate([
+            'blog_id' => 'required',
+            'react' => 'required'
+        ]);
+
+        $blog_id = $request->blog_id;
+        $react = $request->react;
+        $authorip = auth()->check() ? auth()->id() : $request->ip();
+
+        if(RateLimiter::tooManyAttempts('react-blog-'.$blog_id.'-'.$authorip, 5)){
+            return response()->json([
+                'type' => 'limit',
+                'message' => 'You have reached the maximum limit of reactions for this article.'
+            ], 500);
+        }
+
+        if(auth()->check()){
+            $react = BlogReact::where('blog_id',$blog_id)->where('user_id', auth()->id());
+        } else {
+            $react = BlogReact::where('blog_id',$blog_id)->where('ip_address', $request->ip());
+        }
+
+        if($react->count() >= 5){
+            for($i=0;$i<5;$i++){
+                RateLimiter::hit('react-blog-'.$blog_id.'-'.$authorip);
+            }
+            return response()->json([
+                'type' => 'limit',
+                'message' => 'You have reached the maximum limit of reactions for this article.'
+            ], 500);
+        }
+
+        RateLimiter::hit('react-blog-'.$blog_id.'-'.$authorip);
+
+        try {
+            BlogReact::create([
+                'blog_id' => $blog_id,
+                'user_id' => auth()->check() ? auth()->id() : null,
+                'ip_address' => $request->ip(),
+                'react' => $request->react
+            ]);
+            return response()->json([
+                'message' => 'Thank you for your reaction.'
+            ]);
+        } catch (\Exception $e){
+            return response()->json([
+                'message' => 'Failed to react.'
+            ], 500);
+        }
     }
 }
