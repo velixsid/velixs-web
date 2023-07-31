@@ -3,11 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\Layouts;
+use App\Mail\ResetPasswordMail;
 use Illuminate\Support\Str;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Password;
 
 class AuthController extends Controller
@@ -82,11 +86,30 @@ class AuthController extends Controller
                 'email' => 'required|email',
             ]);
 
-            $status = Password::sendResetLink(
-                $request->only('email')
-            );
+            $user = User::where('email', $request->email)->first();
+            if(!$user) return back()->with('error', ['title' => 'Email Not Found', 'message' => 'Email not registered in any account.']);
 
-            return $status === Password::RESET_LINK_SENT ? back()->with('success', ['title'=> 'Email Sent.', 'message' => 'We have sent a password reset link to your email address. Please check your email inbox and follow the instructions inside to reset your password']) : back()->withErrors(['email' => __($status)]);
+            try{
+                $token = Str::random(60);
+                DB::table('password_resets')->updateOrInsert(
+                    ['username' => $user->username],
+                    [
+                        'username' => $user->username,
+                        'token' => $token,
+                        'created_at' => Carbon::now()
+                    ]
+                );
+                Mail::to($user->email)->send(new ResetPasswordMail([
+                    'name' => $user->name,
+                    'username' => $user->username,
+                    'token' => $token,
+                    'url' => route('password.reset', ['token' => $token, 'username' => $user->username]),
+                ]));
+
+                return back()->with('success', ['title' => 'Email Sent', 'message' => 'Please check your email inbox and follow the instructions inside to reset your password']);
+            } catch(\Exception $e){
+                return back()->with('error', ['title' => 'Email Not Sent', 'message' => $e->getMessage()]);
+            }
         } else {
             $data['seo'] = (object)[
                 'title' => 'Forgot Password',
@@ -96,40 +119,44 @@ class AuthController extends Controller
     }
 
     public function reset($token){
-        $email = request()->get('email');
-        if(!$email || !$token) return redirect()->route('login')->with('info', ['title' => 'Reset Password', 'message' => 'Please check your email inbox and follow the instructions inside to reset your password']);
-        return Layouts::view('auth.reset', ['token' => $token, 'email' => $email]);
+        $username = request()->get('username');
+        if(!$username || !$token) return redirect()->route('login')->with('info', ['title' => 'Reset Password', 'message' => 'Please check your email inbox and follow the instructions inside to reset your password']);
+        return Layouts::view('auth.reset', ['token' => $token, 'username' => $username]);
     }
 
     public function resetpost(Request $request){
         if($request->method() == 'POST' && $request->ajax()){
             $request->validate([
                 'token' => 'required',
-                'email' => 'required|email',
+                'username' => 'required',
                 'password' => 'required|min:8',
                 'password_confirmation' => 'required|same:password',
             ]);
 
-            $status = Password::reset(
-                $request->only('email', 'password', 'password_confirmation', 'token'),
-                function (User $user, string $password) {
-                    $user->forceFill([
-                        'password' => bcrypt($password),
-                    ])->setRememberToken(Str::random(60));
+            $user = User::where('username', $request->username)->first();
+            if(!$user) return response()->json(['message' => "We could not find the username."], 422);
 
-                    $user->save();
+            $tokenData = DB::table('password_resets')->where([
+                ['username', $request->username],
+                ['token', $request->token]
+            ])->first();
 
-                    event(new PasswordReset($user));
-                }
-            );
+            if(!$tokenData) return response()->json(['message' => "Token is invalid."], 422);
 
-            return $status === Password::PASSWORD_RESET
-                        ? response()->json([
-                            'message' => 'Password reset success. Redirecting...',
-                        ])
-                        : response()->json([
-                            'message' => __($status),
-                        ], 422);
+            $user->forceFill([
+                'password' => bcrypt($request->password),
+            ])->setRememberToken(null);
+            $user->save();
+            event(new PasswordReset($user));
+            DB::table('password_resets')->where([
+                ['username', $request->username],
+                ['token', $request->token]
+            ])->delete();
+
+            return response()->json([
+                'message' => 'Password reset success. Redirecting...',
+                'redirect' => route('login'),
+            ]);
         }
     }
 

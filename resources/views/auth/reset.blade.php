@@ -59,7 +59,7 @@
                     <div class="mt-6">
                         <form id="form" action="{!! route('password.update') !!}" method="POST" class="space-y-6">
                             <input type="hidden" value="{!! $token !!}" name="token">
-                            <input type="hidden" value="{!! $email !!}" name="email">
+                            <input type="hidden" value="{!! $username !!}" name="username">
                             <div>
                                 <label class="block text-sm font-medium text-gray-700 dark:text-gray-100">New Password</label>
                                 <div class="mt-1">
