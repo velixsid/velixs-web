@@ -14,6 +14,7 @@ class ResetPasswordMail extends Mailable
      * Create a new message instance.
      */
     public $data;
+    public $subject = 'Reset Password';
     public function __construct($data)
     {
         $this->data = (object)$data;
@@ -23,6 +24,6 @@ class ResetPasswordMail extends Mailable
      * Build the message.
      */
     public function build(){
-        return $this->view('mail.resetpassword',['data' => $this->data]);
+        return $this->subject('Reset Password')->view('mail.resetpassword',['data' => $this->data]);
     }
 }
