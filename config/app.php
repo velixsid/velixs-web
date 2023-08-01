@@ -18,6 +18,7 @@ return [
 
     'name' => env('APP_NAME', 'Laravel'),
 
+    'secret_key_api' => env('SECRET_KEY_API', ""),
     /*
     |--------------------------------------------------------------------------
     | Application Environment

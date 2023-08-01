@@ -103,7 +103,7 @@ class AuthController extends Controller
                     'name' => $user->name,
                     'username' => $user->username,
                     'token' => $token,
-                    'url' => route('password.reset', ['token' => $token, 'username' => $user->username]),
+                    'url' => route('password.reset', ['token' => $token, 'u' => $user->username]),
                 ]));
 
                 return back()->with('success', ['title' => 'Email Sent', 'message' => 'Please check your email inbox and follow the instructions inside to reset your password']);
@@ -119,7 +119,7 @@ class AuthController extends Controller
     }
 
     public function reset($token){
-        $username = request()->get('username');
+        $username = request()->get('u');
         if(!$username || !$token) return redirect()->route('login')->with('info', ['title' => 'Reset Password', 'message' => 'Please check your email inbox and follow the instructions inside to reset your password']);
         return Layouts::view('auth.reset', ['token' => $token, 'username' => $username]);
     }
