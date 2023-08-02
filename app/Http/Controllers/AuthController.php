@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Facades\RateLimiter;
 
 class AuthController extends Controller
 {
@@ -24,10 +25,19 @@ class AuthController extends Controller
                 'password' => 'required',
             ]);
 
+            if(RateLimiter::tooManyAttempts('login-attemp-lol:'.$request->ip(), 5)){
+                return response()->json([
+                    'message' => 'Too many login attempts. Please try again later.'
+                ], 429);
+            } else {
+                RateLimiter::hit('login-attemp-lol:'.$request->ip());
+            }
+
             $user = User::where('username', $request->username)->orWhere('email', $request->username)->first();
             if($user){
                 if(password_verify($request->password, $user->password)){
                     Auth::login($user, (bool)$request->remember);
+                    RateLimiter::clear('login-attemp-lol:'.$request->ip());
                     return response()->json([
                         'message' => 'Login success. Redirecting...',
                         'redirect' => $request->session()->get('url.intended', route('main')),
