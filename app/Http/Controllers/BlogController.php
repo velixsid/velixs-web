@@ -92,17 +92,12 @@ class BlogController extends Controller
             $react = BlogReact::where('blog_id',$blog_id)->where('ip_address', $request->ip());
         }
 
-        if($react->count() >= 5){
-            for($i=0;$i<5;$i++){
-                RateLimiter::hit('react-blog-'.$blog_id.'-'.$authorip);
-            }
-            return response()->json([
-                'type' => 'limit',
-                'message' => 'You have reached the maximum limit of reactions for this article.'
-            ], 500);
-        }
-
         RateLimiter::hit('react-blog-'.$blog_id.'-'.$authorip);
+
+        if($react->count() >= 5) return response()->json([
+            'type' => 'limit',
+            'message' => 'You have reached the maximum limit of reactions for this article.'
+        ], 500);
 
         try {
             BlogReact::create([

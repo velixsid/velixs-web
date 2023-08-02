@@ -331,7 +331,7 @@
                     count.innerHTML = parseInt(count.innerHTML) + 1;
                 }).catch((err) => {
                     if(err.response.data.type=='limit'){
-                        if(toasterror >= 5) return;
+                        if(toasterror >= 2) return;
                         toasterror++;
                         toast.toast({
                             style: `info`,
