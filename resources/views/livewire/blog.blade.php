@@ -30,7 +30,7 @@
                         <div class="font-mono tracking-tighter text-xs sm:text-sm mt-4">
                             <span class="h-px mt-6 mb-5 w-full hidden md:inline-block bg-gradient-to-r from-slate-300 dark:from-slate-700 via-transparent to-transparent"></span>
                             <div class="text-slate-500 dark:text-slate-400">
-                                <div class="flex items-center mb-2">
+                                {{-- <div class="flex items-center mb-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="mr-2" width="22" height="22" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                         <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
@@ -38,7 +38,7 @@
                                         <path d="M12 7v5"></path>
                                     </svg>
                                     1 min read
-                                </div>
+                                </div> --}}
                                 <div class="flex items-center mb-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="mr-2" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                         <path d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z"></path>

@@ -46,7 +46,7 @@
                         <nav class="text-sm leading-6 font-semibold text-slate-700 dark:text-slate-200">
                             <ul class="flex space-x-8">
                                 <li><a class="hover:text-primary-500 dark:hover:text-primary-400" href="{!! route('main') !!}">Home</a></li>
-                                <li><a class="hover:text-primary-500 dark:hover:text-primary-400" href="{!! route('product') !!}">Products</a></li>
+                                <li><a class="hover:text-primary-500 dark:hover:text-primary-400" href="{!! route('product') !!}">Projects</a></li>
                                 <li class="relative" x-data="{ dropdown: false }">
                                     <a href="javascript:void(0)" @click="dropdown =! dropdown" class="group inline-flex items-center hover:text-primary-500 dark:hover:text-primary-400">
                                         <span>Blog</span>
