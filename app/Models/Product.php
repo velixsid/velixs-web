@@ -119,10 +119,29 @@ class Product extends Model
         return false;
     }
 
-    //
+    public function traffic() {
+        return $this->hasMany(ProductVisitor::class, 'product_id');
+    }
+
     public static function paidOnly(){
         return self::where("is_published", '!=', 0)
             ->whereJsonDoesntContain('price->usd', 0)
             ->whereJsonDoesntContain('price->idr', 0);
+    }
+
+    public function countView(){
+        // format: 1,000
+        return number_format($this->traffic()->count());
+    }
+
+    public function _countViewShort(){
+        $satuan = ['', 'K', 'M', 'B', 'T'];
+        $angka = $this->traffic()->count();
+        $satuan_index = 0;
+        while ($angka >= 1000) {
+            $angka /= 1000;
+            $satuan_index++;
+        }
+        return round($angka, 2) . ' ' . $satuan[$satuan_index];
     }
 }

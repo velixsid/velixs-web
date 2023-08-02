@@ -14,6 +14,7 @@
             <th>Name</th>
             <th>Price</th>
             <th>Published</th>
+            <th>views</th>
             <th>Updated</th>
             <th></th>
           </tr>
@@ -39,6 +40,7 @@
                     { data: 'title' },
                     { data: 'price' },
                     { data: 'is_published' },
+                    { data: 'views' },
                     { data: 'updated_at' },
                     { data: '' }
                 ],

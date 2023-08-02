@@ -43,6 +43,9 @@ class AProductController extends Controller
             ->editColumn('title', function($product){
                 return '<div class="d-flex justify-content-start align-items-center user-name"><div class="avatar-wrapper"><div class="avatar me-2" style="width: 3rem;"><img src="'.$product->_image().'" alt class="rounded" style="object-fit: cover;object-position: center;"></div></div><div class="d-flex flex-column"><span class="emp_name text-truncate">'.$product->title.'</span><small class="emp_post text-truncate text-muted">Latest Version '.$product->_latestRelease().'</small></div></div>';
             })
+            ->addColumn('views', function($product){
+                return $product->_countViewShort();
+            })
             ->editColumn('is_published', function($product){
                 // return $product->is_published  ? '<span class="badge bg-label-primary">Published</span>' : '<span class="badge bg-label-secondary">Draft</span>';
                 switch($product->is_published){
