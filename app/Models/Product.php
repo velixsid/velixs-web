@@ -81,20 +81,21 @@ class Product extends Model
 
     public function _display_price($currency = 'usd'){
         $price = $this->price;
+        if($this->github) return '<div class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" style="margin-right: 1px" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5"></path></svg> <span>GitHub</span></div>';
+        if($this->_isFree()) return 'FREE';
         if($currency == 'idr') {
             if(isset($price['idr'])){
-                if($price['idr'] == 0) return 'FREE';
                 return 'Rp. '.number_format($price['idr'], 0, ',', '.');
             }
         }else if($currency == 'usd'){
             if(isset($price['usd'])){
-                if($price['usd'] == 0) return 'FREE';
                 return '$'.number_format($price['usd'], 2, ',', '.');
             }
         }
+        return 0;
     }
 
-    public function _price($currency){
+    public function _price($currency = 'usd'){
         $price = $this->price;
         if($currency == 'idr') {
             if(isset($price['idr'])){
@@ -109,14 +110,7 @@ class Product extends Model
     }
 
     public function _isFree(){
-        $price = $this->price;
-        if(isset($price['idr'])){
-            if($price['idr'] == 0) return true;
-        }
-        if(isset($price['usd'])){
-            if($price['usd'] == 0) return true;
-        }
-        return false;
+        return (bool) $this->is_free;
     }
 
     public function traffic() {
@@ -124,9 +118,7 @@ class Product extends Model
     }
 
     public static function paidOnly(){
-        return self::where("is_published", '!=', 0)
-            ->whereJsonDoesntContain('price->usd', 0)
-            ->whereJsonDoesntContain('price->idr', 0);
+        return self::where("is_published", '!=', 0)->where("is_free", 0);
     }
 
     public function countView(){

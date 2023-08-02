@@ -128,6 +128,7 @@ class AProductController extends Controller
             'tags' => 'required',
             'is_published' => 'required',
             'content' => 'required',
+            'product_type' => 'required',
         ]);
 
         if($request->product_type == 'pay'){
@@ -135,6 +136,7 @@ class AProductController extends Controller
                 'price_usd' => 'required',
                 'price_idr' => 'required',
             ]);
+            $request->github = null;
         }
 
         $product = new Product();
@@ -153,6 +155,8 @@ class AProductController extends Controller
             ])->id;
             $tags[] = $producttag;
         }
+        $product->github = $request->github;
+        $product->is_free = $request->product_type == 'free' ? true : false;
         $product->tags = $tags;
         $product->is_published = $request->is_published;
         $product->author = auth()->id();
@@ -202,6 +206,7 @@ class AProductController extends Controller
             'is_published' => 'required',
             'meta_description' => 'nullable|string|max:160',
             'content' => 'required',
+            'product_type' => 'required',
         ]);
 
 
@@ -210,6 +215,7 @@ class AProductController extends Controller
                 'price_usd' => 'required',
                 'price_idr' => 'required',
             ]);
+            $request->github = null;
         }
 
         $product->title = $request->title;
@@ -230,6 +236,8 @@ class AProductController extends Controller
             ])->id;
             $tags[] = $producttag;
         }
+        $product->github = $request->github;
+        $product->is_free = $request->product_type == 'free' ? true : false;
         $product->tags = $tags;
         $product->is_published = $request->is_published;
         // $product->author = auth()->id();

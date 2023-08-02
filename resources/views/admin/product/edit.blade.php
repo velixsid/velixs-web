@@ -104,6 +104,26 @@
                                     </div>
                                 </div>
                             </div>
+                            <div id="area_github" style="display: none">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="mb-1">
+                                            <label>GitHub Repository</label>
+                                            <div class="input-group input-group-merge">
+                                                <span class="input-group-text">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                        <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5"></path>
+                                                     </svg>
+                                                </span>
+                                                <input type="text" name="github" class="form-control" placeholder="//github.com/sya/repo" value="{!! $product->github !!}" autocomplete="off">
+                                            </div>
+                                            <small class="text-muted">Fill in this input if the 'Add Library' button should redirect to the GitHub repository. Leave it blank if you don't want to use GitHub.</small>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
                             <div id="area_price" style="">
                                 <div class="row">
                                     <div class="col-12 col-xl-6 col-lg-6">
@@ -189,9 +209,8 @@
         });
 
         @if ($product->_isFree())
-            $('input[name=price_usd]').val();
-            $('input[name=price_idr]').val();
             $('#area_price').hide();
+            $('#area_github').show();
         @endif
 
         // radio change name product_type
@@ -199,10 +218,10 @@
             $(".content-product-type").removeClass("checked");
             this.closest(".content-product-type").classList.add("checked");
             if (this.value == 'free') {
-                $('input[name=price_usd]').val();
-                $('input[name=price_idr]').val();
                 $('#area_price').hide();
+                $('#area_github').show();
             } else {
+                $('#area_github').hide();
                 $('#area_price').show();
             }
         });

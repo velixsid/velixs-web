@@ -75,7 +75,7 @@ class ProductController extends Controller
             ], 429);
         }
         if(!request()->ajax()) return abort(404);
-        $product = Product::where('slug', $slug);
+        $product = Product::where('slug', $slug)->where('is_published', '!=', 0);
         if(!$product->exists()) return response()->json([
             'style' => 'error',
             'message' => 'Product not found.'
@@ -116,7 +116,7 @@ class ProductController extends Controller
                 'message' => 'please slow down the request'
             ], 429);
         }
-        RateLimiter:: hit('claim-digital-product:'.auth()->id());
+        RateLimiter::hit('claim-digital-product:'.auth()->id());
         $product = Product::where([
             'slug' => $slug,
             ['is_published', '!=', 0],
