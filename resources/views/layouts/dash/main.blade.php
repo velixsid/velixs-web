@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     @include('layouts.meta')
     @vite('resources/css/app.css')
-    <script src="{!! asset('assets/theme.js?v=12') !!}"></script>
+    <script>document.querySelector('html').setAttribute('data-theme', localStorage.getItem('theme-ilsya') ?? 'light');</script>
     @stack('css')
 </head>
 

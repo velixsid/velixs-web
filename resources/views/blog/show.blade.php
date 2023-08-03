@@ -130,7 +130,7 @@
                                     </article>
 
                                     <!-- card react statistic -->
-                                    <div class="sticky bottom-8 z-[902] mt-16 lg:bottom-8 lg:mt-24">
+                                    <div class="sticky bottom-8 z-10 mt-16 lg:bottom-8 lg:mt-24">
 
                                         <div class="min-w-0 flex-1">
                                             <div class="mx-auto max-w-[360px] px-4 sm:max-w-[420px] sm:px-0">

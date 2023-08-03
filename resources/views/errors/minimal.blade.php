@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     @vite('resources/css/app.css')
     <meta name="robots" content="noindex, nofollow">
-    <script src="{!! asset('assets/theme.js') !!}"></script>
+    <script>document.querySelector('html').setAttribute('data-theme', localStorage.getItem('theme-ilsya') ?? 'light');</script>
 </head>
 
 <body class="h-full dark:bg-gray-950">

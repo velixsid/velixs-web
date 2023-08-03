@@ -78,13 +78,34 @@ import './bootstrap';
         });
     });
 
+    if (localStorage.getItem(theme_key) == 'dark') {
+        document.querySelectorAll("[data-active-theme='dark']").forEach((el) => {
+            el.classList.remove('hidden');
+        });
+        document.querySelectorAll("[data-active-theme='light']").forEach((el) => {
+            el.classList.add('hidden');
+        });
+    }
+
     function toggleTheme() {
         if (html.getAttribute('data-theme') == 'dark') {
             localStorage.setItem(theme_key, 'light');
             html.setAttribute('data-theme', 'light');
+            document.querySelectorAll("[data-active-theme='dark']").forEach((el) => {
+                el.classList.add('hidden');
+            });
+            document.querySelectorAll("[data-active-theme='light']").forEach((el) => {
+                el.classList.remove('hidden');
+            });
         } else {
             localStorage.setItem(theme_key, 'dark');
             html.setAttribute('data-theme', 'dark');
+            document.querySelectorAll("[data-active-theme='dark']").forEach((el) => {
+                el.classList.remove('hidden');
+            });
+            document.querySelectorAll("[data-active-theme='light']").forEach((el) => {
+                el.classList.add('hidden');
+            });
         }
     }
     // theme mode ---------------end
