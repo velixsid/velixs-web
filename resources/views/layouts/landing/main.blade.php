@@ -180,7 +180,7 @@
 
     <!-- mobile footer buy -->
     <div x-data>
-        <div x-bind:class="$store.navbarMobile ? 'duration-300 translate-y-0' : 'duration-500 translate-y-10'" class="fixed z-20 w-full border-t dark:border-t-0 bottom-0 lg:hidden block backdrop-blur bg-white/90 dark:bg-gray-900/90 rounded-tr-xl rounded-tl-xl p-3 transition-transform transform animate-footer-product">
+        <div x-bind:class="$store.navbarMobile ? 'duration-300 translate-y-0' : 'duration-300 translate-y-10'" class="fixed z-20 w-full border-t dark:border-t-0 bottom-0 lg:hidden block backdrop-blur bg-white/90 dark:bg-gray-900/90 rounded-tr-xl rounded-tl-xl p-3 transition-transform transform animate-footer-product">
             <div class="flex justify-center -mt-1">
                 <div @click="$store.navbarMobile = !$store.navbarMobile" class="cursor-pointer animate-pulse bg-gray-300 dark:bg-gray-600 py-[0.140rem] px-5 rounded-full"></div>
             </div>
@@ -413,7 +413,25 @@
     @vite('resources/js/app.js')
     @include('layouts.toast')
     @stack('js')
-    <script>document.addEventListener('alpine:init', () => { Alpine.store('navbarMobile', true); let lastScrollTop = 0; window.addEventListener('scroll', () => { const scrollY = window.scrollY; if (scrollY > lastScrollTop) { lastScrollTop = scrollY; Alpine.store('navbarMobile', false); } else if (scrollY < lastScrollTop) { lastScrollTop = scrollY; Alpine.store('navbarMobile', true); } }) })</script>
+    <script>
+        document.addEventListener('alpine:init', () => {
+            Alpine.store('navbarMobile', true);
+            let lastScrollTop = 0;
+            window.addEventListener('scroll', () => {
+                const scrollY = window.scrollY;
+                if (scrollY >= lastScrollTop) {
+                    lastScrollTop = scrollY;
+                    Alpine.store('navbarMobile', false);
+                } else if (scrollY <= lastScrollTop) {
+                    lastScrollTop = scrollY;
+                    Alpine.store('navbarMobile', true);
+                }
+                if (scrollY + window.innerHeight >= document.body.offsetHeight) {
+                    Alpine.store('navbarMobile', false);
+                }
+            })
+        })
+    </script>
 </body>
 
 </html>
