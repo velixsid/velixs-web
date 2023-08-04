@@ -41,7 +41,7 @@
             <div class="mx-auto w-full max-w-sm lg:w-96">
                 <div>
                     <img class="h-12 w-auto" src="{!! asset('assets/img/logo.svg') !!}" alt="Your Company">
-                    <h2 class="mt-6 text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-200">Get started</h2>
+                    <h2 class="mt-6 text-3xl font-bold tracking-tight text-gray-900 dark:text-white">Get started</h2>
                     <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
                         Already have an account?
                         <a href="{!! route('login') !!}" class="font-medium text-primary-600 hover:text-primary-500">Sign in.</a>
@@ -97,7 +97,7 @@
                             <div>
                                 <button type="submit" class="bg-gray-800 disabled:bg-gray-700 hover:bg-gray-700 hover:-translate-y-1 duration-300 ease-in-out transition-transform px-2 py-3 rounded-full text-gray-50 w-full">Create Account</button>
                                 <br><br>
-                                <a class="text-sm hover:text-primary-500 flex justify-center items-center" href="{!! route('main') !!}">
+                                <a class="text-sm dark:text-slate-200 hover:text-primary-500 flex justify-center items-center" href="{!! route('main') !!}">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-1.5" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                         <path d="M5 12l14 0"></path>
