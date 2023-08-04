@@ -347,20 +347,22 @@ import './bootstrap';
 
 
     // quick access start
-    const click_quick_access = document.querySelector('[data-quick-access="click"]')
+    const click_quick_access = document.querySelectorAll('[data-quick-access="click"]')
     const quick_access = document.getElementById('quick-access');
-    if(click_quick_access){
+    click_quick_access.forEach(btn =>{
         if (quick_access) {
-            click_quick_access.addEventListener('click', () => {
+            btn.addEventListener('click', () => {
                 toggleQuickAccess(true)
             })
-
-            quick_access.querySelectorAll('[data-quick-access="close"]').forEach((el) => {
-                el.addEventListener('click', () => {
-                    toggleQuickAccess(false)
-                })
-            })
         }
+    })
+
+    if (quick_access) {
+        quick_access.querySelectorAll('[data-quick-access="close"]').forEach((el) => {
+            el.addEventListener('click', () => {
+                toggleQuickAccess(false)
+            })
+        })
     }
 
     function toggleQuickAccess(event) {
@@ -405,9 +407,6 @@ import './bootstrap';
             }
         }
     }
-
-
-
 
     var clock = document.getElementById("clock"); // Mendapatkan elemen dengan ID "clock"
     if (clock) {

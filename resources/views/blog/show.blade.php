@@ -3,7 +3,7 @@
 @section('content')
 
 <main>
-    <div class="relative border-t dark:border-slate-900 isolate overflow-hidden bg-white dark:bg-slate-950">
+    <div class="relative lg:border-t dark:border-slate-900 isolate overflow-hidden bg-white dark:bg-slate-950">
         <svg class="inline dark:hidden absolute inset-0 -z-10 h-full w-full stroke-slate-200 [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)]" aria-hidden="true">
             <defs>
                 <pattern id="0787a7c5-978c-4f66-83c7-11c213f99cb7" width="200" height="200" x="50%" y="-1" patternUnits="userSpaceOnUse">
@@ -32,7 +32,7 @@
                 </linearGradient>
             </defs>
         </svg>
-        <div class="mx-auto max-w-7xl px-6 pt-10 pb-10 sm:pb-32 lg:flex lg:py-40 lg:px-8">
+        <div class="mx-auto max-w-7xl px-6 pb-10 sm:pb-32 lg:flex lg:py-40 lg:px-8">
             <div class="mx-auto max-w-2xl flex-shrink-0 lg:mx-0 lg:max-w-xl lg:pt-8 pt-16">
                 <div class="max-w-full min-w-full lg:w-[35rem] aspect-w-4 aspect-h-[2.7] mb-4 overflow-hidden rounded-lg bg-gray-300 dark:bg-gray-700 animate-popup-in" wire:loading.remove>
                     <img class="w-full object-cover object-center rounded-lg sm:max-w-full h-full lg:h-96 transform transition-all duration-150" src="{!! $row->_image() !!}" alt="{{ $row->title }}">

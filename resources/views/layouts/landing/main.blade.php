@@ -26,7 +26,7 @@
                         <span class="sr-only">Ilsya Home page</span>
                         <img src="{!! $ws->_logo() !!}" class="h-9" alt="">
                     </a>
-                    <button class="ml-3 text-xs leading-5 font-medium text-primary-600 dark:text-primary-400 bg-primary-400/10 rounded-full py-1 px-3 flex items-center hover:bg-primary-400/20">
+                    <button data-quick-access="click" class="ml-3 text-xs leading-5 font-medium text-primary-600 dark:text-primary-400 bg-primary-400/10 rounded-full py-1 px-3 flex items-center hover:bg-primary-400/20">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                             <path d="M4 4m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z"></path>
@@ -176,7 +176,6 @@
         </div>
     </header>
     <!-- navbar section end -->
-
     @yield('content')
 
     <!-- mobile footer buy -->

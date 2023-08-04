@@ -4,7 +4,7 @@
 
 <main>
     <div class="relative isolate overflow-hidden">
-        <div class="pt-20 mx-auto lg:max-w-screen-2xl">
+        <div class="lg:pt-20 pt-5 mx-auto lg:max-w-screen-2xl">
             <div class="py-3 lg:px-8 mx-4 lg:mx-0">
                 <div class="mb-6">
                     <h1 class="mb-4 font-semibold tracking-tight leading-[1.1] text-slate-900 dark:text-white lg:text-3xl text-2xl transition-all animate-fade-in-left-bounce">

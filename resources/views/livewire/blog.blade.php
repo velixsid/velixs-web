@@ -12,7 +12,7 @@
                     </linearGradient>
                 </defs>
             </svg>
-            <div class="mx-auto max-w-7xl px-6 pt-10 pb-10 sm:pb-32 lg:flex lg:py-40 lg:px-8">
+            <div class="mx-auto max-w-7xl px-6 pb-10 sm:pb-32 lg:flex lg:py-40 lg:px-8">
                 @foreach ($blogs as $blog)
                     <div class="mx-auto max-w-2xl flex-shrink-0 lg:mx-0 lg:max-w-xl lg:pt-8 pt-16">
                         <a href="{!! route('blog.detail',$blog->slug) !!}" class="max-w-3xl sm:max-w-5xl lg:max-w-none">
