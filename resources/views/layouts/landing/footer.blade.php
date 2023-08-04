@@ -1,5 +1,5 @@
 <!-- footer start -->
-<footer class="bg-gray-50 dark:bg-slate-950/75">
+<footer class="bg-gray-50 dark:bg-slate-950/75 lg:mb-0 mb-5">
     <div class="mx-auto max-w-7xl overflow-hidden py-4 px-6 lg:px-8">
         <div class="mt-4 flex justify-center space-x-10">
             @foreach ($ws->_social_links() as $sl)

@@ -179,10 +179,10 @@
     @yield('content')
 
     <!-- mobile footer buy -->
-    <div x-data="{ footer: true }">
-        <div x-bind:class="footer ? 'duration-300 translate-y-0' : 'duration-500 translate-y-10'" class="fixed z-20 w-full border-t dark:border-t-0 bottom-0 lg:hidden block backdrop-blur bg-white/90 dark:bg-gray-900/90 rounded-tr-xl rounded-tl-xl p-3 transition-transform transform animate-footer-product">
-            <div @click="footer =! footer" class="cursor-pointer flex justify-center">
-                <div class="animate-pulse bg-gray-300 dark:bg-gray-600 py-0.5 px-5 rounded-full"></div>
+    <div x-data>
+        <div x-bind:class="$store.navbarMobile ? 'duration-300 translate-y-0' : 'duration-500 translate-y-10'" class="fixed z-20 w-full border-t dark:border-t-0 bottom-0 lg:hidden block backdrop-blur bg-white/90 dark:bg-gray-900/90 rounded-tr-xl rounded-tl-xl p-3 transition-transform transform animate-footer-product">
+            <div class="flex justify-center -mt-1">
+                <div @click="$store.navbarMobile = !$store.navbarMobile" class="cursor-pointer animate-pulse bg-gray-300 dark:bg-gray-600 py-[0.140rem] px-5 rounded-full"></div>
             </div>
             <div class="mt-3 px-3">
                 <div class="text-slate-600 dark:text-slate-200 grid h-full max-w-lg grid-cols-5 mx-auto">
@@ -210,16 +210,15 @@
                             <path d="M8 10v4.5l4 2.5"></path>
                         </svg>
                     </a>
-                    <button data-quick-access="click" class="inline-flex flex-col items-center justify-center px-5">
-                        <div class="sr-only">Menu Center</div>
+                    <a href="{!! route('blog') !!}" class="inline-flex flex-col items-center justify-center px-5">
+                        <div class="sr-only">Blog</div>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                            <path d="M4 4m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z"></path>
-                            <path d="M14 4m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z"></path>
-                            <path d="M4 14m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z"></path>
-                            <path d="M14 17h6m-3 -3v6"></path>
-                        </svg>
-                    </button>
+                            <path d="M8 21h8a5 5 0 0 0 5 -5v-3a3 3 0 0 0 -3 -3h-1v-2a5 5 0 0 0 -5 -5h-4a5 5 0 0 0 -5 5v8a5 5 0 0 0 5 5z"></path>
+                            <path d="M7 7m0 1.5a1.5 1.5 0 0 1 1.5 -1.5h3a1.5 1.5 0 0 1 1.5 1.5v0a1.5 1.5 0 0 1 -1.5 1.5h-3a1.5 1.5 0 0 1 -1.5 -1.5z"></path>
+                            <path d="M7 14m0 1.5a1.5 1.5 0 0 1 1.5 -1.5h7a1.5 1.5 0 0 1 1.5 1.5v0a1.5 1.5 0 0 1 -1.5 1.5h-7a1.5 1.5 0 0 1 -1.5 -1.5z"></path>
+                         </svg>
+                    </a>
                     <a href="{!! route('dash') !!}" class="inline-flex flex-col items-center justify-center px-5">
                         <div class="sr-only">Profile</div>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -414,6 +413,7 @@
     @vite('resources/js/app.js')
     @include('layouts.toast')
     @stack('js')
+    <script>document.addEventListener('alpine:init', () => { Alpine.store('navbarMobile', true); let lastScrollTop = 0; window.addEventListener('scroll', () => { const scrollY = window.scrollY; if (scrollY > lastScrollTop) { lastScrollTop = scrollY; Alpine.store('navbarMobile', false); } else if (scrollY < lastScrollTop) { lastScrollTop = scrollY; Alpine.store('navbarMobile', true); } }) })</script>
 </body>
 
 </html>
