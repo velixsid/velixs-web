@@ -327,7 +327,12 @@
     </div>
 
 </main>
-
+<div class="fixed bottom-16 right-4 lg:bottom-[3rem] lg:right-[4rem] z-50">
+    <button data-toggle-currency="" class="animate-bounce btn-gradient-3 lg:w-12 lg:h-12 w-11 h-11 rounded-full flex items-center justify-center">
+        <div data-display-currency="USD" class="text-white text-sm font-semibold">USD</div>
+        <div data-display-currency="IDR" class="text-white text-sm font-semibold hidden">IDR</div>
+    </button>
+</div>
 @include('layouts.landing.footer')
 @endsection
 
