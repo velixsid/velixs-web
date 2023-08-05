@@ -274,7 +274,7 @@
             </div>
             <div class="mt-3 px-3">
                 @if ($item->github)
-                    <h1 class="text-2xl font-bold dark:text-white text-gray-700 mb-3">Repository</h1>
+                    <h1 class="text-2xl font-bold dark:text-white text-gray-700 mb-3">GitHub</h1>
                 @else
                     @isset($item->price['usd'])
                         <h1 data-display-currency="USD" class="text-2xl font-bold dark:text-white text-gray-700 mb-3">{!! $item->_display_price('usd') !!}</h1>
@@ -291,34 +291,43 @@
                             <path d="M8 7l9 0l0 9"></path>
                         </svg>
                     </a>
-                    @if ($item->_hasOwned($auth))
-                    <a href="{!! route('dash.purchases') !!}" class="btn-gradient text-white rounded-xl font-semibold py-2 px-3 w-full flex items-center justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1.5" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    @if ($item->github)
+                    <a href="{!! $item->github !!}" target="_blank" class="btn-gradient text-white rounded-xl font-semibold py-2 px-3 w-full flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1.5" viewBox="0 0 24 24" stroke-width="1.25" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                            <path d="M13 19h-8a2 2 0 0 1 -2 -2v-11a2 2 0 0 1 2 -2h4l3 3h7a2 2 0 0 1 2 2v3.5"></path>
-                            <path d="M19 16l-2 3h4l-2 3"></path>
-                         </svg> My Library
+                            <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5"></path>
+                         </svg> Git Repository
                     </a>
                     @else
-                        @if ($item->_isFree())
-                        <button class="btn-gradient jsclick-claim-license text-white rounded-xl font-semibold py-2 px-3 w-full flex items-center justify-center">
+                        @if ($item->_hasOwned($auth))
+                        <a href="{!! route('dash.purchases') !!}" class="btn-gradient text-white rounded-xl font-semibold py-2 px-3 w-full flex items-center justify-center">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1.5" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                <path d="M12 19h-7a2 2 0 0 1 -2 -2v-11a2 2 0 0 1 2 -2h4l3 3h7a2 2 0 0 1 2 2v3.5"></path>
-                                <path d="M16 19h6"></path>
-                                <path d="M19 16v6"></path>
-                             </svg> Add Library
-                        </button>
-                        @else
-                        <a target="_blank" href="{!! $ws->_payment_whatsapp(url()->current()) !!}" class="btn-gradient text-white rounded-xl font-semibold py-2 px-3 w-full flex items-center justify-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1.5" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                <path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
-                                <path d="M17 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
-                                <path d="M17 17h-11v-14h-2"></path>
-                                <path d="M6 5l14 1l-1 7h-13"></path>
-                            </svg> Buy Now!
+                                <path d="M13 19h-8a2 2 0 0 1 -2 -2v-11a2 2 0 0 1 2 -2h4l3 3h7a2 2 0 0 1 2 2v3.5"></path>
+                                <path d="M19 16l-2 3h4l-2 3"></path>
+                            </svg> My Library
                         </a>
+                        @else
+                            @if ($item->_isFree())
+                            <button class="btn-gradient jsclick-claim-license text-white rounded-xl font-semibold py-2 px-3 w-full flex items-center justify-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1.5" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                    <path d="M12 19h-7a2 2 0 0 1 -2 -2v-11a2 2 0 0 1 2 -2h4l3 3h7a2 2 0 0 1 2 2v3.5"></path>
+                                    <path d="M16 19h6"></path>
+                                    <path d="M19 16v6"></path>
+                                </svg> Add Library
+                            </button>
+                            @else
+                            <a target="_blank" href="{!! $ws->_payment_whatsapp(url()->current()) !!}" class="btn-gradient text-white rounded-xl font-semibold py-2 px-3 w-full flex items-center justify-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1.5" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                    <path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
+                                    <path d="M17 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
+                                    <path d="M17 17h-11v-14h-2"></path>
+                                    <path d="M6 5l14 1l-1 7h-13"></path>
+                                </svg> Buy Now!
+                            </a>
+                            @endif
                         @endif
                     @endif
                 </div>
