@@ -28,8 +28,8 @@ class DatabaseSeeder extends Seeder
             'meta_title' => 'VELIXS - Web Development',
             'meta_description' => 'Velixs adalah sebuah perusahaan yang bergerak di bidang pengembangan website dan aplikasi berbasis web.',
             'meta_keywords' => 'velixs, web development, web developer, web developer indonesia, web developer bandung, web developer jakarta, web developer surabaya, web developer semarang, web developer yogyakarta, web developer malang, web developer bali, web developer medan, web developer palembang, web developer makassar, web developer aceh, web developer kalimantan, web developer sumatera, web developer sulawesi, web developer papua, web developer jawa, web developer sumatera, web developer indonesia, web developer terbaik, web developer terpercaya, web developer murah, web developer profesional, web developer berkualitas, web developer handal, web developer terbaik indonesia, web developer terpercaya indonesia, web developer murah indonesia, web developer profesional indonesia, web developer berkualitas indonesia, web developer handal indonesia, web developer terbaik bandung, web developer terpercaya bandung, web developer murah bandung, web developer profesional bandung, web developer berkualitas bandung, web developer handal bandung',
-            'meta_thumbnail' => '//storage/web/thumbnail.jpg',
-            'logo' => '//storage/web/logo.svg',
+            'meta_thumbnail' => 'http://127.0.0.1:8000/storage/web/thumbnail.jpg',
+            'logo' => 'http://127.0.0.1:8000/storage/web/logo.svg',
             'payment_whatsapp' => '6281234567890',
             'bot_whatsapp' => '6281234567890',
             'contact_whatsapp' => json_encode([

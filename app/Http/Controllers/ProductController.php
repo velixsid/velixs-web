@@ -58,6 +58,7 @@ class ProductController extends Controller
             'item' => 'digital-product',
             'item_id' => $item->id,
         ])->count());
+        $data['page_product_detail'] = true;
         return Layouts::view('product.show', $data);
     }
 

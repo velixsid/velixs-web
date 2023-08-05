@@ -18,14 +18,29 @@
     <div id="loading-bar" class="z-20 h-[2px] rounded-xl btn-gradient fixed top-0 left-0" style="width: 0%"></div>
     <!-- navbar section start -->
     <!-- option on-scroll-static -->
-    <header id="navbar" class="lg:fixed top-0 z-10 w-full backdrop-blur flex-none transition-colors duration-500 lg:z-10 lg:border-b lg:border-slate-900/10 dark:lg:border-slate-500/10 border-none">
+    <header id="navbar" class="lg:fixed top-0 z-10 w-full backdrop-blur flex-none transition-colors duration-500 lg:z-10 lg:border-b lg:border-slate-900/10 dark:lg:border-slate-500/10 border-none @if (isset($page_product_detail)) fixed @endif">
         <div class="mx-auto lg:max-w-screen-2xl">
             <div class="py-3 border-b border-slate-900/10 lg:px-8 lg:border-0 dark:border-slate-300/10 mx-4 lg:mx-0">
                 <div class="relative flex items-center">
-                    <a class="mr-3 flex-none w-[2.0625rem] overflow-hidden md:w-auto" href="{!! route('main') !!}">
-                        <span class="sr-only">Ilsya Home page</span>
-                        <img src="{!! $ws->_logo() !!}" class="h-9" alt="">
-                    </a>
+                    @if (isset($page_product_detail))
+                        <a href="{!! route('product') !!}" class="p-1 rounded-xl text-slate-600 dark:text-slate-400 lg:hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <path d="M5 12l14 0"></path>
+                                <path d="M5 12l6 6"></path>
+                                <path d="M5 12l6 -6"></path>
+                             </svg>
+                        </a>
+                        <a class="mr-3 flex-none w-[2.0625rem] overflow-hidden md:w-auto lg:block hidden" href="{!! route('main') !!}">
+                            <span class="sr-only">Ilsya Home page</span>
+                            <img src="{!! $ws->_logo() !!}" class="h-9" alt="">
+                        </a>
+                    @else
+                        <a class="mr-3 flex-none w-[2.0625rem] overflow-hidden md:w-auto" href="{!! route('main') !!}">
+                            <span class="sr-only">Ilsya Home page</span>
+                            <img src="{!! $ws->_logo() !!}" class="h-9" alt="">
+                        </a>
+                    @endif
                     <button data-quick-access="click" class="ml-3 text-xs leading-5 font-medium text-primary-600 dark:text-primary-400 bg-primary-400/10 rounded-full py-1 px-3 flex items-center hover:bg-primary-400/20">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -178,80 +193,80 @@
     <!-- navbar section end -->
     @yield('content')
 
-    <!-- mobile footer buy -->
-    <div x-data>
-        <div x-bind:class="$store.navbarMobile ? 'duration-300 translate-y-0' : 'duration-300 translate-y-10'" class="fixed z-20 w-full border-t dark:border-t-0 bottom-0 lg:hidden block backdrop-blur bg-white/90 dark:bg-gray-900/90 rounded-tr-xl rounded-tl-xl p-3 transition-transform transform animate-footer-product">
-            <div class="flex justify-center -mt-1">
-                <div @click="$store.navbarMobile = !$store.navbarMobile" class="cursor-pointer animate-pulse bg-gray-300 dark:bg-gray-600 py-[0.140rem] px-5 rounded-full"></div>
-            </div>
-            <div class="mt-3 px-3">
-                <div class="text-slate-600 dark:text-slate-200 grid h-full max-w-lg grid-cols-5 mx-auto">
-                    <a href="{!! route('main') !!}" class="inline-flex flex-col items-center justify-center px-5">
-                        <div class="sr-only">Home</div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                            <path d="M19.072 21h-14.144a1.928 1.928 0 0 1 -1.928 -1.928v-6.857c0 -.512 .203 -1 .566 -1.365l7.07 -7.063a1.928 1.928 0 0 1 2.727 0l7.071 7.063c.363 .362 .566 .853 .566 1.365v6.857a1.928 1.928 0 0 1 -1.928 1.928z"></path>
-                            <path d="M7 13v4h10v-4l-5 -5"></path>
-                            <path d="M14.8 5.2l-11.8 11.8"></path>
-                            <path d="M7 17v4"></path>
-                            <path d="M17 17v4"></path>
-                         </svg>
-                    </a>
-                    <a href="{!! route('product') !!}" class="inline-flex flex-col items-center justify-center px-5">
-                        <div class="sr-only">Projects</div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                            <path d="M4 8v-2a2 2 0 0 1 2 -2h2"></path>
-                            <path d="M4 16v2a2 2 0 0 0 2 2h2"></path>
-                            <path d="M16 4h2a2 2 0 0 1 2 2v2"></path>
-                            <path d="M16 20h2a2 2 0 0 0 2 -2v-2"></path>
-                            <path d="M12 12.5l4 -2.5"></path>
-                            <path d="M8 10l4 2.5v4.5l4 -2.5v-4.5l-4 -2.5z"></path>
-                            <path d="M8 10v4.5l4 2.5"></path>
-                        </svg>
-                    </a>
-                    <a href="{!! route('blog') !!}" class="inline-flex flex-col items-center justify-center px-5">
-                        <div class="sr-only">Blog</div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                            <path d="M8 21h8a5 5 0 0 0 5 -5v-3a3 3 0 0 0 -3 -3h-1v-2a5 5 0 0 0 -5 -5h-4a5 5 0 0 0 -5 5v8a5 5 0 0 0 5 5z"></path>
-                            <path d="M7 7m0 1.5a1.5 1.5 0 0 1 1.5 -1.5h3a1.5 1.5 0 0 1 1.5 1.5v0a1.5 1.5 0 0 1 -1.5 1.5h-3a1.5 1.5 0 0 1 -1.5 -1.5z"></path>
-                            <path d="M7 14m0 1.5a1.5 1.5 0 0 1 1.5 -1.5h7a1.5 1.5 0 0 1 1.5 1.5v0a1.5 1.5 0 0 1 -1.5 1.5h-7a1.5 1.5 0 0 1 -1.5 -1.5z"></path>
-                         </svg>
-                    </a>
-                    <a href="{!! route('dash') !!}" class="inline-flex flex-col items-center justify-center px-5">
-                        <div class="sr-only">Profile</div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                            <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
-                            <path d="M12 10m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"></path>
-                            <path d="M6.168 18.849a4 4 0 0 1 3.832 -2.849h4a4 4 0 0 1 3.834 2.855"></path>
-                        </svg>
-                    </a>
-                    <button data-switch-theme="" class="inline-flex flex-col items-center justify-center px-5">
-                        <div class="sr-only">darklight</div>
-                        <svg data-active-theme="dark" xmlns="http://www.w3.org/2000/svg" class="hidden" width="24" height="24" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                            <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"></path>
-                        </svg>
-                        <svg data-active-theme="light" xmlns="http://www.w3.org/2000/svg" class="" width="24" height="24" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                            <path d="M14.828 14.828a4 4 0 1 0 -5.656 -5.656a4 4 0 0 0 5.656 5.656z"></path>
-                            <path d="M6.343 17.657l-1.414 1.414"></path>
-                            <path d="M6.343 6.343l-1.414 -1.414"></path>
-                            <path d="M17.657 6.343l1.414 -1.414"></path>
-                            <path d="M17.657 17.657l1.414 1.414"></path>
-                            <path d="M4 12h-2"></path>
-                            <path d="M12 4v-2"></path>
-                            <path d="M20 12h2"></path>
-                            <path d="M12 20v2"></path>
-                        </svg>
-                    </button>
+    @if(!isset($page_product_detail))
+        <div x-data>
+            <div x-bind:class="$store.navbarMobile ? 'duration-300 translate-y-0' : 'duration-300 translate-y-10'" class="fixed z-20 w-full border-t dark:border-t-0 bottom-0 lg:hidden block backdrop-blur bg-white/90 dark:bg-gray-900/90 rounded-tr-xl rounded-tl-xl p-3 transition-transform transform animate-footer-product">
+                <div class="flex justify-center -mt-1">
+                    <div @click="$store.navbarMobile = !$store.navbarMobile" class="cursor-pointer animate-pulse bg-gray-300 dark:bg-gray-600 py-[0.140rem] px-5 rounded-full"></div>
+                </div>
+                <div class="mt-3 px-3">
+                    <div class="text-slate-600 dark:text-slate-200 grid h-full max-w-lg grid-cols-5 mx-auto">
+                        <a href="{!! route('main') !!}" class="inline-flex flex-col items-center justify-center px-5">
+                            <div class="sr-only">Home</div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <path d="M19.072 21h-14.144a1.928 1.928 0 0 1 -1.928 -1.928v-6.857c0 -.512 .203 -1 .566 -1.365l7.07 -7.063a1.928 1.928 0 0 1 2.727 0l7.071 7.063c.363 .362 .566 .853 .566 1.365v6.857a1.928 1.928 0 0 1 -1.928 1.928z"></path>
+                                <path d="M7 13v4h10v-4l-5 -5"></path>
+                                <path d="M14.8 5.2l-11.8 11.8"></path>
+                                <path d="M7 17v4"></path>
+                                <path d="M17 17v4"></path>
+                            </svg>
+                        </a>
+                        <a href="{!! route('product') !!}" class="inline-flex flex-col items-center justify-center px-5">
+                            <div class="sr-only">Projects</div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <path d="M4 8v-2a2 2 0 0 1 2 -2h2"></path>
+                                <path d="M4 16v2a2 2 0 0 0 2 2h2"></path>
+                                <path d="M16 4h2a2 2 0 0 1 2 2v2"></path>
+                                <path d="M16 20h2a2 2 0 0 0 2 -2v-2"></path>
+                                <path d="M12 12.5l4 -2.5"></path>
+                                <path d="M8 10l4 2.5v4.5l4 -2.5v-4.5l-4 -2.5z"></path>
+                                <path d="M8 10v4.5l4 2.5"></path>
+                            </svg>
+                        </a>
+                        <a href="{!! route('blog') !!}" class="inline-flex flex-col items-center justify-center px-5">
+                            <div class="sr-only">Blog</div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <path d="M8 21h8a5 5 0 0 0 5 -5v-3a3 3 0 0 0 -3 -3h-1v-2a5 5 0 0 0 -5 -5h-4a5 5 0 0 0 -5 5v8a5 5 0 0 0 5 5z"></path>
+                                <path d="M7 7m0 1.5a1.5 1.5 0 0 1 1.5 -1.5h3a1.5 1.5 0 0 1 1.5 1.5v0a1.5 1.5 0 0 1 -1.5 1.5h-3a1.5 1.5 0 0 1 -1.5 -1.5z"></path>
+                                <path d="M7 14m0 1.5a1.5 1.5 0 0 1 1.5 -1.5h7a1.5 1.5 0 0 1 1.5 1.5v0a1.5 1.5 0 0 1 -1.5 1.5h-7a1.5 1.5 0 0 1 -1.5 -1.5z"></path>
+                            </svg>
+                        </a>
+                        <a href="{!! route('dash') !!}" class="inline-flex flex-col items-center justify-center px-5">
+                            <div class="sr-only">Profile</div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
+                                <path d="M12 10m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"></path>
+                                <path d="M6.168 18.849a4 4 0 0 1 3.832 -2.849h4a4 4 0 0 1 3.834 2.855"></path>
+                            </svg>
+                        </a>
+                        <button data-switch-theme="" class="inline-flex flex-col items-center justify-center px-5">
+                            <div class="sr-only">darklight</div>
+                            <svg data-active-theme="dark" xmlns="http://www.w3.org/2000/svg" class="hidden" width="24" height="24" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"></path>
+                            </svg>
+                            <svg data-active-theme="light" xmlns="http://www.w3.org/2000/svg" class="" width="24" height="24" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <path d="M14.828 14.828a4 4 0 1 0 -5.656 -5.656a4 4 0 0 0 5.656 5.656z"></path>
+                                <path d="M6.343 17.657l-1.414 1.414"></path>
+                                <path d="M6.343 6.343l-1.414 -1.414"></path>
+                                <path d="M17.657 6.343l1.414 -1.414"></path>
+                                <path d="M17.657 17.657l1.414 1.414"></path>
+                                <path d="M4 12h-2"></path>
+                                <path d="M12 4v-2"></path>
+                                <path d="M20 12h2"></path>
+                                <path d="M12 20v2"></path>
+                            </svg>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-
+    @endisset
     <div id="quick-access" class="hidden transition-opacity opacity-0 duration-100 ease-in-out">
         <div data-headlessui-portal="">
             <div>

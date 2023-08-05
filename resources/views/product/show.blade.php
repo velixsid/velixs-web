@@ -4,7 +4,7 @@
 
 <main>
     <div class="relative isolate overflow-hidden">
-        <div class="lg:pt-20 pt-5 mx-auto lg:max-w-screen-2xl">
+        <div class="pt-20 mx-auto lg:max-w-screen-2xl">
             <div class="py-3 lg:px-8 mx-4 lg:mx-0">
                 <div class="mb-6">
                     <h1 class="mb-4 font-semibold tracking-tight leading-[1.1] text-slate-900 dark:text-white lg:text-3xl text-2xl transition-all animate-fade-in-left-bounce">
@@ -136,7 +136,7 @@
                     <div class="col-span-4">
                         <div class="lg:sticky lg:top-20">
                             <div class="bg-white text-sm dark:bg-gray-900 shadow w-100 p-5 rounded-xl mb-3 dark:text-gray-200 text-gray-800 animate-fade-in-left-bounce-2">
-                                <div class="w-100 p-5 rounded-xl mb-5 bg-violet-500 animate-idleY">
+                                <div class="w-100 p-5 rounded-xl mb-5 btn-gradient animate-idleY">
                                     @if ($item->github)
                                         <h1 class="text-2xl font-bold text-white mb-3">GitHub</h1>
                                     @else
@@ -149,7 +149,7 @@
                                     @endif
                                     <div class="flex">
                                         @if ($item->github)
-                                            <a href="{!! $item->github !!}" target="_blank" class="bg-white dark:bg-slate-600 dark:hover:bg-slate-700 text-violet-500 dark:text-white font-bold rounded-full py-2 px-3 w-full mr-2 flex items-center justify-center">
+                                            <a href="{!! $item->github !!}" target="_blank" class="bg-white dark:bg-slate-600 dark:hover:bg-slate-700 text-violet-500 dark:text-white font-bold rounded-xl py-2 px-3 w-full mr-2 flex items-center justify-center">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1.5" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                                     <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5"></path>
@@ -157,7 +157,7 @@
                                             </a>
                                         @else
                                             @if ($item->_hasOwned($auth))
-                                                <a href="{!! route('dash.purchases') !!}" class="bg-white dark:bg-slate-600 dark:hover:bg-slate-700 text-violet-500 dark:text-white font-bold rounded-full py-2 px-3 w-full mr-2 flex items-center justify-center">
+                                                <a href="{!! route('dash.purchases') !!}" class="bg-white dark:bg-slate-600 dark:hover:bg-slate-700 text-violet-500 dark:text-white font-bold rounded-xl py-2 px-3 w-full mr-2 flex items-center justify-center">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1.5" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                                         <path d="M13 19h-8a2 2 0 0 1 -2 -2v-11a2 2 0 0 1 2 -2h4l3 3h7a2 2 0 0 1 2 2v3.5"></path>
@@ -166,7 +166,7 @@
                                                 </a>
                                             @else
                                                 @if ($item->_isFree())
-                                                    <button class="bg-white jsclick-claim-license dark:bg-slate-600 dark:hover:bg-slate-700 text-violet-500 dark:text-white font-bold rounded-full py-2 px-3 w-full mr-2 flex items-center justify-center">
+                                                    <button class="bg-white jsclick-claim-license dark:bg-slate-600 dark:hover:bg-slate-700 text-violet-500 dark:text-white font-bold rounded-xl py-2 px-3 w-full mr-2 flex items-center justify-center">
                                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1.5" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                                             <path d="M12 19h-7a2 2 0 0 1 -2 -2v-11a2 2 0 0 1 2 -2h4l3 3h7a2 2 0 0 1 2 2v3.5"></path>
@@ -175,7 +175,7 @@
                                                         </svg> Add Library
                                                     </button>
                                                 @else
-                                                    <a target="_blank" href="{!! $ws->_payment_whatsapp(url()->current()) !!}" class="bg-white dark:bg-slate-600 dark:hover:bg-slate-700 text-violet-500 dark:text-white font-bold rounded-full py-2 px-3 w-full mr-2 flex items-center justify-center">
+                                                    <a target="_blank" href="{!! $ws->_payment_whatsapp(url()->current()) !!}" class="bg-white dark:bg-slate-600 dark:hover:bg-slate-700 text-violet-500 dark:text-white font-bold rounded-xl py-2 px-3 w-full mr-2 flex items-center justify-center">
                                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1.5" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                                             <path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
@@ -187,7 +187,7 @@
                                                 @endif
                                             @endif
                                         @endif
-                                        <a href="{!! $item->preview !!}" target="_blank" class="bg-white dark:bg-slate-600 dark:hover:bg-slate-700 text-violet-500 dark:text-white rounded-full py-3 px-3">
+                                        <a href="{!! $item->preview !!}" target="_blank" class="bg-white dark:bg-slate-600 dark:hover:bg-slate-700 text-violet-500 dark:text-white rounded-xl py-3 px-3">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 " viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                                 <path d="M17 7l-10 10"></path>
@@ -267,10 +267,10 @@
 
 
     <!-- mobile footer buy -->
-    <div x-data="{ footer: true }">
-        <div x-bind:class="footer ? 'duration-300 translate-y-0' : 'duration-500 translate-y-24'" class="fixed w-full bottom-0 lg:hidden block bg-white dark:bg-gray-900 shadow rounded-tr-xl rounded-tl-xl p-3 transition-transform transform animate-footer-product">
-            <div @click="footer =! footer" class="cursor-pointer flex justify-center">
-                <div class="animate-pulse bg-gray-300 dark:bg-gray-600 py-0.5 px-5 rounded-full"></div>
+    <div x-data>
+        <div x-bind:class="$store.navbarMobile ? 'duration-300 translate-y-0' : 'duration-500 translate-y-24'" class="fixed w-full bottom-0 lg:hidden block bg-white dark:bg-gray-900 shadow rounded p-3 transition-transform transform animate-footer-product">
+            <div class="flex justify-center -mt-1">
+                <div @click="$store.navbarMobile = !$store.navbarMobile" class="cursor-pointer animate-pulse bg-gray-300 dark:bg-gray-600 py-[0.140rem] px-5 rounded-full"></div>
             </div>
             <div class="mt-3 px-3">
                 @if ($item->github)
@@ -327,13 +327,6 @@
     </div>
 
 </main>
-
-<div class="fixed bottom-16 right-4 lg:bottom-[3rem] lg:right-[4rem] z-50">
-    <button data-toggle-currency="" class="animate-bounce btn-gradient-3 lg:w-12 lg:h-12 w-11 h-11 ring-1 ring-slate-900/5 dark:ring-slate-200/20 shadow rounded-full flex items-center justify-center">
-        <div data-display-currency="USD" class="text-white text-sm font-semibold">USD</div>
-        <div data-display-currency="IDR" class="text-white text-sm font-semibold hidden">IDR</div>
-    </button>
-</div>
 
 @include('layouts.landing.footer')
 @endsection
