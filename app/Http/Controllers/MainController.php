@@ -179,6 +179,7 @@ class MainController extends Controller
             return Layouts::view('main.waprogrammer',[
                 'seo' => (object)[
                     'title'=> 'Kumpulan Group Whatsapp Programmer Indonesia',
+                    'image'=> asset('assets/img/waprogrammer.jpg'),
                     'description'=> '60+ Groups',
                 ],
                 'groups' => waGroup::where('status', 'published')->orderBy('id', 'desc')->get(),
