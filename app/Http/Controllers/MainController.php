@@ -182,7 +182,7 @@ class MainController extends Controller
                     'image'=> asset('assets/img/waprogrammer.jpg'),
                     'description'=> '60+ Groups',
                 ],
-                'groups' => waGroup::where('status', 'published')->orderBy('id', 'desc')->get(),
+                'groups' => waGroup::where('status', 'published')->get(),
             ]);
         }
     }
