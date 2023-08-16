@@ -148,6 +148,12 @@
                 <div data-i18n="Manage Users">Manage Users</div>
               </a>
             </li>
+            <li class="menu-item {{ Route::is('admin.wagroup.index') ? 'active' : '' }}">
+              <a href="{!! route('admin.wagroup.index') !!}" class="menu-link">
+                <i class="menu-icon tf-icons ti ti-brand-whatsapp"></i>
+                <div data-i18n="Manage Users">Manage WAGroup</div>
+              </a>
+            </li>
             <li class="menu-header small text-uppercase">
                 <span class="menu-header-text">Other</span>
             </li>
