@@ -20,7 +20,7 @@ class UsersController extends Controller
         $table = User::all();
         return datatables()->of($table)
             ->addColumn('profile', function($row){
-                return '<div class="d-flex justify-content-start align-items-center user-name"><div class="avatar-wrapper"><div class="avatar me-2"><img src="'.$row->_avatar().'" alt="Avatar" class="rounded-circle"></div></div><div class="d-flex flex-column"><a href="'.route('profile',$row->username).'" class="emp_name text-truncate">'.$row->name.'</a><small class="emp_post text-truncate text-muted">'.$row->username.'</small></div></div>';
+                return '<div class="d-flex justify-content-start align-items-center user-name"><div class="avatar-wrapper"><div class="avatar me-2"><img src="'.$row->_avatar().'" alt="Avatar" class="rounded-circle"></div></div><div class="d-flex flex-column"><a href="'.route('profile',$row->username).'" class="emp_name text-truncate">'.htmlspecialchars($row->name).'</a><small class="emp_post text-truncate text-muted">'.htmlspecialchars($row->username).'</small></div></div>';
             })
             ->editColumn('role',function($row){
                 return $row->role == 'admin' ? '<span class="badge bg-label-danger">⚡ Admin</span>' : '<span class="badge bg-label-primary">User</span>';
