@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\LicenseController;
 use App\Http\Controllers\Admin\MainController;
 use App\Http\Controllers\Admin\OtherController;
 use App\Http\Controllers\Admin\UsersController;
+use App\Http\Controllers\Admin\WAProgrammerController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -83,6 +84,13 @@ Route::group([
         Route::get('/purchases',[LicenseController::class, 'purchases'])->name('admin.license.purchases');
         Route::get('/purchases/json',[LicenseController::class, 'purchases_json'])->name('admin.license.purchases.json');
         Route::post('/purchases/destroy',[LicenseController::class, 'purchases_destroy'])->name('admin.license.purchases.destroy');
+    });
+
+    Route::prefix('wagroup')->group(function(){
+        Route::get('/',[WAProgrammerController::class, 'index'])->name('admin.wagroup.index');
+        Route::get('/json',[WAProgrammerController::class, 'json'])->name('admin.wagroup.json');
+        Route::post('/toggle-status',[WAProgrammerController::class, 'toggle_status'])->name('admin.wagroup.toggle.status')->withoutMiddleware(['csrf']);
+        Route::post('/destroy',[WAProgrammerController::class, 'destroy'])->name('admin.wagroup.destroy');
     });
 
     Route::prefix('users')->group(function(){
