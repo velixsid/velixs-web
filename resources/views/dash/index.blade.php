@@ -9,7 +9,7 @@
                     <div class="w-full lg:w-1/2">
                         <div class="flex flex-col items-center h-full gap-x-6 text-center lg:flex-row lg:items-start lg:text-left">
                             <div class="flex-shrink-0">
-                                <img src="{!! $auth->_avatar() !!}" alt="{{ $auth->username }}" class="h-14 w-14 rounded-full lg:h-16 lg:w-16">
+                                <img src="{{ $auth->_avatar() }}" alt="{{ $auth->username }}" class="h-14 w-14 rounded-full lg:h-16 lg:w-16">
                             </div>
                             <div class="flex flex-col h-full">
                                 <div class="flex-1">

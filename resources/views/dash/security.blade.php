@@ -27,7 +27,7 @@
                                         <input name="avatar" accept="image/*" type="file" tabindex="-1" style="display: none;">
                                         <div class="group cursor-pointer relative border border-dashed p-2 rounded-full border-gray-400 dark:border-gray-600">
                                             <div class="w-32 h-32 aspect-w-1 rounded-full overflow-hidden bg-gray-200 dark:bg-gray-700">
-                                                <img class="object-cover object-center w-full h-full" src="{!! $auth->_avatar() !!}" alt="avatar">
+                                                <img class="object-cover object-center w-full h-full" src="{{ $auth->_avatar() }}" alt="avatar">
                                                 <div data-label-loading="" class="animate-pulse text-center mt-[38%] text-gray-400 hidden">....</div>
                                             </div>
                                             <div class="absolute transition-opacity text-center bg-gray-800/30 rounded-full w-32 h-32 top-2 opacity-0 group-hover:opacity-100 duration-300 ease-in-out">
