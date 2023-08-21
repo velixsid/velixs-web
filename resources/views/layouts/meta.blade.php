@@ -1,10 +1,10 @@
 @isset($seo->prefix)
-<title>{!! $seo->title ? "$seo->title - $ws->meta_title" : $ws->meta_title !!}</title>
+<title>{{ $seo->title ? "$seo->title - $ws->meta_title" : $ws->meta_title }}</title>
 @else
 <title>{{ $seo->title ?? $ws->meta_title }}</title>
 @endisset
-<meta name='description' itemprop='description' content='{!! $seo->description ?? $ws->meta_description !!}'>
-<link rel="canonical" href="{{ url()->current() }}">
+<meta name='description' itemprop='description' content='{{ $seo->description ?? $ws->meta_description }}'>
+<link rel="canonical" href="{!! url()->current() !!}">
 
 <meta property="og:title" content="{{ $seo->title ?? $ws->meta_title }}">
 <meta property="og:description" content="{{ $seo->description ?? $ws->meta_description }}">
