@@ -59,12 +59,11 @@ class AuthController extends Controller
             return Layouts::view('auth.login', $data);
         }
     }
-
     public function register(Request $request){
         if($request->method() == 'POST' && $request->ajax()) {
             $request->validate([
                 'fullname' => 'required',
-                'username' => 'required|regex:/^[a-z0-9]+$/|unique:users,username',
+                'username' => 'required|max:12|regex:/^[a-z0-9]+$/|unique:users,username',
                 'email' => 'required|email|unique:users,email',
                 'password' => 'required|min:8',
             ],[

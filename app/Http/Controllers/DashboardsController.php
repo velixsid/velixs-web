@@ -30,7 +30,7 @@ class DashboardsController extends Controller
             $request->validate([
                 'name' => 'required|string|max:50',
                 'email' => 'required|email|unique:users,email,'.auth()->id(),
-                'username' => 'required|regex:/^[a-z0-9]+$/|max:255|unique:users,username,'.auth()->id(),
+                'username' => 'required|max:12|regex:/^[a-z0-9]+$/|unique:users,username,'.auth()->id(),
                 'whatsapp' => 'max:30|unique:users,whatsapp,'.auth()->id().'|nullable',
                 'about' => 'max:255|nullable',
             ],[
