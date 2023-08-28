@@ -130,7 +130,7 @@
                                     </article>
 
                                     <!-- card react statistic -->
-                                    <div x-data x-bind:class="$store.navbarMobile ? 'duration-300 translate-y-0' : 'duration-500 translate-y-12'" class="sticky bottom-20 transition-transform transform z-10 mt-16 lg:bottom-8 lg:mt-24">
+                                    <div x-data x-bind:class="$store.navbarMobile ? 'duration-300 lg:translate-y-0' : 'duration-500 lg:translate-y-12'" class="sticky bottom-20 transition-transform transform z-10 mt-16 lg:bottom-8 lg:mt-24">
 
                                         <div class="min-w-0 flex-1">
                                             <div class="mx-auto max-w-[360px] px-4 sm:max-w-[420px] sm:px-0">

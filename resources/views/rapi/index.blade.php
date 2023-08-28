@@ -13,8 +13,8 @@
     </svg>
     <div class="max-w-7xl px-6 lg:flex lg:gap-x-10 lg:px-8">
         <div class="mx-auto max-w-2xl lg:flex-auto md:my-20 my-16">
-            <h1 class="mt-10 animate-fade-in-left-bounce text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-5xl ">
-                Welcome to the<span class="text-outline"> API Hub</span>
+            <h1 class="mt-10 animate-fade-in-left-bounce text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-5xl">
+                Welcome to the <span class="bg-slate-50 dark:bg-slate-800/40 inline-block -rotate-3 shadow py-1 px-3 rounded-xl"><span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-500 to-violet-600"> API Hub</span></span>
             </h1>
             <p class="mt-6 leading-8 animate-fade-in-left-bounce-2 text-slate-600 dark:text-slate-300">
                 Browse Public <span class="text-slate-800 dark:text-slate-300 font-semibold">Rest APIs</span> in the Velixs API Hub - API directory. <span class="text-slate-800 dark:text-slate-300 font-semibold">Register today Free!</span>
@@ -25,6 +25,17 @@
         <div class="flex -mb-px h-[2px] w-[29rem] -scale-x-100">
             <div class="w-full flex-none blur-sm [background-image:linear-gradient(90deg,rgba(56,189,248,0)_0%,#0EA5E9_32.29%,rgba(236,72,153,0.3)_67.19%,rgba(236,72,153,0)_100%)]"></div>
             <div class="-ml-[100%] w-full flex-none blur-[1px] [background-image:linear-gradient(90deg,rgba(56,189,248,0)_0%,#0EA5E9_32.29%,rgba(236,72,153,0.3)_67.19%,rgba(236,72,153,0)_100%)]"></div>
+        </div>
+    </div>
+</div>
+<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mt-6 ">
+    <div class="block md:flex items-center justify-between space-x-4">
+        <div class="flex items-start overflow-hidden lg:max-w-screen-2xl p-1">
+            <div class="-mb-7 flex w-full gap-3 overflow-x-auto scroll-smooth pb-7">
+                <template x-data="{ items: ['All','Free','Wordpress','PHP','Template','React','Vue','NodeJs','UI Template','Landing','Javascript'] }" x-for="item in items">
+                    <button x-text="item" class="h-[30px] shrink-0 !rounded-full py-1.5 px-3.5 text-xs font-medium dark:text-white outline-none bg-white hover:bg-gray-100 dark:bg-slate-900 shadow-sm">-</button>
+                </template>
+            </div>
         </div>
     </div>
 </div>
@@ -186,29 +197,34 @@
         <span class="text-xs">More APIs ready to use.</span>
     </div>
     <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 gap-y-6 lg:grid-cols-4">
-        <a href="" class="relative transform transition-all animate-popup-in">
-            <div class="bg-white shadow dark:bg-gray-900 p-3 rounded-xl overflow-hidden min-h-[9rem]">
-                <div class="flex items-center justify-between">
-                    <div class="flex h-8 w-8 lg:w-9 lg:h-9 flex-shrink-0 overflow-hidden mr-2 rounded-full shadow-xl">
-                        <img alt="" class="object-cover w-full h-full" src="{!! asset('storage/apis/1.png') !!}">
+        <template x-data="{ items: 12 }" x-for="item in items">
+            <a href="" class="relative transform transition-all animate-popup-in">
+                <div class="bg-white shadow dark:bg-gray-900 p-3 rounded-xl overflow-hidden min-h-[9rem]">
+                    <div class="flex items-center justify-between">
+                        <div class="flex h-8 w-8 lg:w-9 lg:h-9 flex-shrink-0 overflow-hidden mr-2 rounded-full shadow-xl">
+                            <img alt="" class="object-cover w-full h-full" src="{!! asset('storage/apis/1.png') !!}">
+                        </div>
+                        <div class="text-base font-medium text-gray-900">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="dark:text-slate-500 text-slate-500" width="19" height="19" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <path d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"></path>
+                            </svg>
+                        </div>
                     </div>
-                    <div class="text-base font-medium text-gray-900">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="dark:text-slate-500 text-slate-500" width="19" height="19" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                            <path d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"></path>
-                        </svg>
+                    <div class="mt-2 dark:text-white line-clamp-1">
+                        Google Translate sdsadas das asdas dasd asd as
+                    </div>
+                    <div class="mt-1 text-xs text-slate-600 dark:text-slate-400 line-clamp-3">
+                        Translate text to 100+ languages ​. Fast processing, cost saving. Free up to 100,000 characters per month
                     </div>
                 </div>
-                <div class="mt-2 dark:text-white line-clamp-1">
-                    Google Translate sdsadas das asdas dasd asd as
-                </div>
-                <div class="mt-1 text-xs text-slate-600 dark:text-slate-400 line-clamp-3">
-                    Translate text to 100+ languages ​. Fast processing, cost saving. Free up to 100,000 characters per month
-                </div>
-            </div>
-        </a>
+            </a>
+        </template>
     </div>
+    <div class="mt-6 flex lg:justify-center justify-center"><a class="inline-flex items-center gap-x-1 justify-center rounded-full text-sm font-medium btn-gradient px-4 py-1.5 text-slate-50 group relative" href="{!! route('blog') !!}">View More</a></div>
 </div>
+
+@include('layouts.landing.footer')
 @endsection
 
 @push('css')

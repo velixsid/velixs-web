@@ -12,20 +12,20 @@
             </defs>
         </svg>
         <div class="mx-auto max-w-7xl px-6 lg:flex lg:items-center lg:gap-x-10 lg:px-8">
-            <div class="mx-auto max-w-2xl lg:flex-auto mt-40">
+            <div class="mx-auto max-w-2xl lg:flex-auto mt-32"> {{-- lg:mt-40 without mascot--}}
                 <div class="animate-fade-in-left-bounce">
-                    <a href="#" class="inline-flex space-x-6">
+                    <a href="{!! route('rapi') !!}" class="inline-flex space-x-6">
                         <span class="rounded-full bg-primary-600/10 px-3 py-1 text-sm font-semibold leading-6 text-primary-600 ring-1 ring-inset ring-primary-600/10">What's new</span>
                         <span class="inline-flex items-center space-x-2 text-sm font-semibold leading-6 text-gray-600 dark:text-gray-300">
-                            <span>WALazy</span>
-                            <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                            <span>API Hub</span>
+                            <svg class="h-5 w-5 text-gray-400 animate-idleX" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                 <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
                             </svg>
                         </span>
                     </a>
                 </div>
                 <h1 class="mt-10 max-w-lg animate-fade-in-left-bounce text-5xl font-bold tracking-tight text-gray-900 dark:text-gray-50 sm:text-6xl ">
-                    VELIXS<span class="text-outline"> Technology</span>
+                    <span class="bg-slate-50 animate-idleY dark:bg-slate-800/40 inline-block rotate-2 shadow py-1 px-3 rounded-xl"><span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-500 to-violet-600">VELIXS</span></span> IT
                 </h1>
                 <p class="mt-6 leading-8 animate-fade-in-left-bounce-2 text-slate-600 dark:text-slate-400">
                     We offer specialized <span class="text-slate-800 dark:text-slate-300 font-semibold">website development</span> services for web developers. With various categories, we also provide complete <span class="text-slate-800 dark:text-slate-500 font-semibold">resources to develop your web projects</span>.
@@ -37,7 +37,7 @@
                             <path d="M4 13a8 8 0 0 1 7 7a6 6 0 0 0 3 -5a9 9 0 0 0 6 -8a3 3 0 0 0 -3 -3a9 9 0 0 0 -8 6a6 6 0 0 0 -5 3"></path>
                             <path d="M7 14a6 6 0 0 0 -3 6a6 6 0 0 0 6 -3"></path>
                             <path d="M15 9m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"></path>
-                        </svg> Explore
+                        </svg> Projects
                     </a>
                     <button type="button" class="btn-search hidden sm:flex w-72 items-center xl:w-72 lg:w-72 mt-3 xl:mt-0 lg:mt-0 text-left space-x-3 px-4 h-12 bg-white ring-1 ring-slate-900/10 hover:ring-slate-300 shadow-sm rounded-full text-slate-400 dark:bg-slate-800 dark:ring-0 dark:text-slate-300 dark:highlight-white/5 dark:hover:bg-slate-700 transition-all animate-fade-in-left-bounce-4">
                         <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="flex-none text-slate-300 dark:text-slate-400" aria-hidden="true">
