@@ -10,7 +10,7 @@
 <meta property="og:description" content="{{ $seo->description ?? $ws->meta_description }}">
 <meta property="og:url" content="{!! url()->current() !!}">
 <meta property="og:type" content="{!! $seo->type ?? 'website' !!}">
-<meta property="og:image" content="{!! $seo->image ?? $ws->meta_thumbnail !!}">
+<meta property="og:image" content="{{ $seo->image ?? $ws->meta_thumbnail }}">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="627">
 

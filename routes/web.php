@@ -5,6 +5,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\DashboardsController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\RapiController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -87,6 +88,11 @@ Route::group([
     Route::get('/license/{license}', [DashboardsController::class, 'claimLicense'])->name('dash.license');
 });
 
+Route::group([
+    'prefix' => 'rapi',
+], function(){
+    Route::get('/', [RapiController::class, 'index'])->name('rapi');
+});
 
 Route::get('/@{username}', [MainController::class, 'profile'])->name('profile');
 

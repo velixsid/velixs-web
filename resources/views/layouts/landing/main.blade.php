@@ -19,7 +19,7 @@
     <!-- navbar section start -->
     <!-- option on-scroll-static -->
     <header id="navbar" class="lg:fixed top-0 z-10 w-full backdrop-blur flex-none transition-colors duration-500 lg:z-10 lg:border-b lg:border-slate-900/10 dark:lg:border-slate-500/10 border-none @if (isset($page_product_detail)) fixed @endif">
-        <div class="mx-auto lg:max-w-screen-2xl">
+        <div class="mx-auto"> {{-- lg:max-w-screen-2xl --}}
             <div class="py-3 border-b border-slate-900/10 lg:px-8 lg:border-0 dark:border-slate-300/10 mx-4 lg:mx-0">
                 <div class="relative flex items-center">
                     @if (isset($page_product_detail))
@@ -131,7 +131,7 @@
                                         </div>
                                     </div>
                                 </li>
-                                <li><a class="hover:text-primary-500 dark:hover:text-primary-400" href=#">Rest API</a></li>
+                                <li><a class="hover:text-primary-500 dark:hover:text-primary-400" href="{!! route('rapi') !!}">Rest API</a></li>
                                 <li><a class="hover:text-primary-500 dark:hover:text-primary-400" href="{!! route('contact') !!}">Contact</a></li>
                             </ul>
                         </nav>

@@ -29,10 +29,10 @@
                                           <div class="w-full border-t border-gray-300 dark:border-gray-800"></div>
                                         </div>
                                         <div class="relative flex lg:justify-start justify-center">
-                                          <span class="dark:bg-slate-950 bg-slate-50 pr-0 lg:pr-3 text-sm text-gray-900 dark:text-gray-500">About</span>
+                                          <span class="dark:bg-slate-900 bg-slate-50 pr-0 lg:pr-3 text-sm text-gray-900 dark:text-gray-500">About</span>
                                         </div>
                                       </div>
-                                    <div class="text-xs leading-relaxed text-invert md:text-base md:leading-8 dark:text-gray-200" id="typed-about" data-value="{{ $auth->about ?? 'This profile has not been filled with information about me yet.' }}"></div>
+                                    <div class="text-xs leading-relaxed text-invert md:text-base md:leading-8 dark:text-gray-200" id="typed-about" data-value="">{{ $auth->about ?? 'This profile has not been filled with information about me yet.' }}</div>
                                 </div>
                             </div>
                         </div>
@@ -72,19 +72,3 @@
     </div>
 </div>
 @endsection
-
-@push('js')
-    <script>
-        const text = document.getElementById("typed-about").getAttribute("data-value");
-        let index = 0;
-        function typeAbout(){
-            if (index < text.length) {
-                document.getElementById("typed-about").innerHTML += text.charAt(index);
-                index++;
-                setTimeout(typeAbout, 15);
-            }
-        }
-
-        typeAbout();
-    </script>
-@endpush

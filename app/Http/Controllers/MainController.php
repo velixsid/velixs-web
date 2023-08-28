@@ -186,4 +186,12 @@ class MainController extends Controller
             ]);
         }
     }
+
+    public function privacy(){
+        return 'privacy';
+    }
+
+    public function tos(){
+        return 'tos';
+    }
 }

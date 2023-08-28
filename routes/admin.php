@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\FilesController;
 use App\Http\Controllers\Admin\LicenseController;
 use App\Http\Controllers\Admin\MainController;
 use App\Http\Controllers\Admin\OtherController;
+use App\Http\Controllers\Admin\RestApiController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Admin\WAProgrammerController;
 use Illuminate\Support\Facades\Route;
@@ -91,6 +92,13 @@ Route::group([
         Route::get('/json',[WAProgrammerController::class, 'json'])->name('admin.wagroup.json');
         Route::post('/toggle-status',[WAProgrammerController::class, 'toggle_status'])->name('admin.wagroup.toggle.status')->withoutMiddleware(['csrf']);
         Route::post('/destroy',[WAProgrammerController::class, 'destroy'])->name('admin.wagroup.destroy');
+    });
+
+    Route::prefix('rapi')->group(function(){
+        Route::get('/',[RestApiController::class, 'index'])->name('admin.rapi.index');
+        // Route::get('/json',[RestApiController::class, 'json'])->name('admin.wagroup.json');
+        // Route::post('/toggle-status',[RestApiController::class, 'toggle_status'])->name('admin.wagroup.toggle.status')->withoutMiddleware(['csrf']);
+        // Route::post('/destroy',[RestApiController::class, 'destroy'])->name('admin.wagroup.destroy');
     });
 
     Route::prefix('users')->group(function(){
