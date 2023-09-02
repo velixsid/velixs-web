@@ -36,6 +36,18 @@ class Layouts
         }
     }
 
+    public static function generateUniqueSlug($length = 10) {
+        $characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
+        $slug = '';
+
+        for ($i = 0; $i < $length; $i++) {
+            $randomIndex = rand(0, strlen($characters) - 1);
+            $slug .= $characters[$randomIndex];
+        }
+
+        return $slug;
+    }
+
     // short number
     public static function shortNumber($number){
         if($number >= 1000000000){

@@ -86,12 +86,20 @@ Route::group([
     Route::get('/wishlist', [DashboardsController::class, 'wishlist'])->name('dash.wishlist');
 
     Route::get('/license/{license}', [DashboardsController::class, 'claimLicense'])->name('dash.license');
+
+
+    Route::get('/apihub', [DashboardsController::class, 'apihub'])->name('dash.apihub');
+    Route::get('/apihub/generate-apikey', [DashboardsController::class, 'apihub_generateapikey'])->name('dash.apihub.generateapikey.ajax');
+    Route::get('/apihub/plan-info', [DashboardsController::class, 'apihub_planinfo'])->name('dash.apihub.planinfo.ajax');
 });
 
 Route::group([
     'prefix' => 'rapi',
 ], function(){
     Route::get('/', [RapiController::class, 'index'])->name('rapi');
+    Route::get('/tag/{tag}', [RapiController::class, 'explore'])->name('rapi.tag');
+    Route::get('/{slug}', [RapiController::class, 'detail'])->name('rapi.detail');
+    Route::get('/{slug}/lab', [RapiController::class, 'detail'])->name('rapi.lab');
 });
 
 Route::get('/@{username}', [MainController::class, 'profile'])->name('profile');

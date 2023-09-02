@@ -49,7 +49,7 @@
                             </a>
                             <div class="py-4 px-3 text-xs font-semibold text-gray-600 dark:text-gray-400">GENERAL</div>
                             <a href="{!! route('dash.purchases') !!}" class="{{ Route::is('dash.purchases') ? 'active-menu-dash' : '' }} text-gray-900 dark:text-gray-300 group flex items-center px-3 py-3 text-sm font-medium rounded-md hover:bg-primary-50 dark:hover:bg-gray-800">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="text-gray-500 mr-2 flex-shrink-0 h-6 w-6" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="text-gray-500 mr-2 flex-shrink-0 h-6 w-6" viewBox="0 0 24 24" stroke-width="1.6" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                     <path d="M6.331 8h11.339a2 2 0 0 1 1.977 2.304l-1.255 8.152a3 3 0 0 1 -2.966 2.544h-6.852a3 3 0 0 1 -2.965 -2.544l-1.255 -8.152a2 2 0 0 1 1.977 -2.304z"></path>
                                     <path d="M9 11v-5a3 3 0 0 1 6 0v5"></path>
@@ -60,7 +60,7 @@
                                 </div>
                             </a>
                             <a href="{!! route('dash.wishlist') !!}" class="{{ Route::is('dash.wishlist') ? 'active-menu-dash' : '' }} text-gray-900 dark:text-gray-300 group flex items-center px-3 py-3 text-sm font-medium rounded-md hover:bg-primary-50 dark:hover:bg-gray-800">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="text-gray-500 mr-2 flex-shrink-0 h-6 w-6" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="text-gray-500 mr-2 flex-shrink-0 h-6 w-6" viewBox="0 0 24 24" stroke-width="1.6" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                     <path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572"></path>
                                 </svg>
@@ -68,8 +68,17 @@
                                     <div class="line-clamp-1">My Wishlist</div>
                                 </div>
                             </a>
+                            <a href="{!! route('dash.apihub') !!}" class="{{ Route::is('dash.apihub') ? 'active-menu-dash' : '' }} text-gray-900 dark:text-gray-300 group flex items-center px-3 py-3 text-sm font-medium rounded-md hover:bg-primary-50 dark:hover:bg-gray-800">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="text-gray-500 mr-2 flex-shrink-0 h-6 w-6" viewBox="0 0 24 24" stroke-width="1.6" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                    <path d="M12 12c2 -2.96 0 -7 -1 -8c0 3.038 -1.773 4.741 -3 6c-1.226 1.26 -2 3.24 -2 5a6 6 0 1 0 12 0c0 -1.532 -1.056 -3.94 -2 -5c-1.786 3 -2.791 3 -4 2z"></path>
+                                </svg>
+                                <div>
+                                    <div class="line-clamp-1">API Hub <span class="bg-primary-500/80 animate-pulse ml-1 rounded-xl text-white text-[11px] py-[2px] px-2">New</span></div>
+                                </div>
+                            </a>
                             <a href="{!! route('dash.reports') !!}" class="{{ Route::is('dash.reports') ? 'active-menu-dash' : '' }} text-gray-900 dark:text-gray-300 group flex items-center px-3 py-3 text-sm font-medium rounded-md hover:bg-primary-50 dark:hover:bg-gray-800">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="text-gray-500 mr-2 flex-shrink-0 h-6 w-6" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="text-gray-500 mr-2 flex-shrink-0 h-6 w-6" viewBox="0 0 24 24" stroke-width="1.6" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                     <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"></path>
                                     <path d="M12 8v4"></path>
@@ -81,7 +90,7 @@
                             </a>
                             <div class="py-4 px-3 text-xs font-semibold text-gray-600 dark:text-gray-400">PROFILE</div>
                             <a href="{!! route('dash.personal') !!}" class="{{ Route::is('dash.personal') ? 'active-menu-dash' : '' }} text-gray-900 dark:text-gray-300 group flex items-center px-3 py-3 text-sm font-medium rounded-md hover:bg-primary-50 dark:hover:bg-gray-800">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="text-gray-500 mr-2 flex-shrink-0 h-6 w-6" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="text-gray-500 mr-2 flex-shrink-0 h-6 w-6" viewBox="0 0 24 24" stroke-width="1.6" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                     <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
                                     <path d="M12 10m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"></path>
@@ -92,7 +101,7 @@
                                 </div>
                             </a>
                             <a href="{!! route('dash.security') !!}" class="{{ Route::is('dash.security') ? 'active-menu-dash' : '' }} text-gray-900 dark:text-gray-300 group flex items-center px-3 py-3 text-sm font-medium rounded-md hover:bg-primary-50 dark:hover:bg-gray-800">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="text-gray-500 mr-2 flex-shrink-0 h-6 w-6" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="text-gray-500 mr-2 flex-shrink-0 h-6 w-6" viewBox="0 0 24 24" stroke-width="1.6" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                     <path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3"></path>
                                     <path d="M12 11m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"></path>
@@ -104,7 +113,7 @@
                             </a>
                             <div class="py-4 px-3 text-xs font-semibold text-gray-600 dark:text-gray-400">OTHER</div>
                             <a href="{!! route('main') !!}" class="text-gray-900 dark:text-gray-300 group flex items-center px-3 py-3 text-sm font-medium rounded-md hover:bg-primary-50 dark:hover:bg-gray-800">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="text-gray-500 mr-2 flex-shrink-0 h-6 `w-6" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="text-gray-500 mr-2 flex-shrink-0 h-6 `w-6" viewBox="0 0 24 24" stroke-width="1.6" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                     <path d="M5 12l14 0"></path>
                                     <path d="M5 12l6 6"></path>
@@ -115,7 +124,7 @@
                                 </div>
                             </a>
                             <a href="{!! route('logout') !!}" class="text-gray-900 dark:text-gray-300 group flex items-center px-3 py-3 text-sm font-medium rounded-md hover:bg-primary-50 dark:hover:bg-gray-800">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="text-gray-500 mr-2 flex-shrink-0 h-6 w-6" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="text-gray-500 mr-2 flex-shrink-0 h-6 w-6" viewBox="0 0 24 24" stroke-width="1.6" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                     <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2"></path>
                                     <path d="M9 12h12l-3 -3"></path>

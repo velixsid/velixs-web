@@ -242,12 +242,12 @@ import './bootstrap';
         }
 
         // if focus on input,textarea, select radio checkbox nothing happen
-        if (document.activeElement.tagName == 'INPUT' || document.activeElement.tagName == 'TEXTAREA' || document.activeElement.tagName == 'SELECT' || document.activeElement.tagName == 'RADIO' || document.activeElement.tagName == 'CHECKBOX') {
-            return
-        }
+        // if (document.activeElement.tagName == 'INPUT' || document.activeElement.tagName == 'TEXTAREA' || document.activeElement.tagName == 'SELECT' || document.activeElement.tagName == 'RADIO' || document.activeElement.tagName == 'CHECKBOX') {
+        //     return
+        // }
 
         // key f
-        if (evt.keyCode == 70) {
+        if (evt.keyCode == 70 && evt.ctrlKey) {
             evt.preventDefault()
             if (document.body.classList.contains('modal-search-active')) {
                 toggleModalSearch(false)
@@ -257,7 +257,7 @@ import './bootstrap';
         }
 
         // key q
-        if (evt.keyCode == 81) {
+        if (evt.keyCode == 81 && evt.ctrlKey) {
             evt.preventDefault()
             if (document.body.classList.contains('quick-access-active')) {
                 toggleQuickAccess(false)
@@ -273,7 +273,7 @@ import './bootstrap';
         }
 
         // key d
-        if (evt.keyCode == 68) {
+        if (evt.keyCode == 68 && evt.ctrlKey) {
             evt.preventDefault()
             toggleTheme()
         }

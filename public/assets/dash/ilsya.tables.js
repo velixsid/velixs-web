@@ -22,6 +22,8 @@ class itables {
         ];
         this.customDefs = ilsya.customDefs ?? [];
         this.url_delete = ilsya.url_delete ?? null;
+        this.responsive = ilsya.responsive ?? true;
+        this.scrollX = ilsya.scrollX ?? false;
         return this.init();
     }
     init(){
@@ -67,18 +69,8 @@ class itables {
                 columnDefs = columnDefs.concat(this.customDefs);
             }
 
-            this.table_result = this.table.DataTable({
-                ajax: this.url,
-                columns: this.columns,
-                processing: true,
-                serverSide: true,
-                columnDefs: columnDefs,
-                order: [[2, 'desc']],
-                dom: '<"card-header flex-column flex-md-row"<"head-label text-center"><"dt-action-buttons text-end pt-3 pt-md-0"B>><"row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6 d-flex justify-content-center justify-content-md-end"f>>t<"row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>>',
-                displayLength: 10,
-                lengthMenu: [10, 25, 50, 75, 100],
-                buttons: this.buttons,
-                responsive: {
+            if (this.responsive) {
+                this.responsive = {
                     details: {
                         display: $.fn.dataTable.Responsive.display.modal({
                             header: function (row) {
@@ -110,6 +102,21 @@ class itables {
                         }
                     }
                 }
+            }
+
+            this.table_result = this.table.DataTable({
+                ajax: this.url,
+                columns: this.columns,
+                processing: true,
+                serverSide: true,
+                columnDefs: columnDefs,
+                order: [[2, 'desc']],
+                dom: '<"card-header flex-column flex-md-row"<"head-label text-center"><"dt-action-buttons text-end pt-3 pt-md-0"B>><"row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6 d-flex justify-content-center justify-content-md-end"f>>t<"row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>>',
+                displayLength: 10,
+                lengthMenu: [10, 25, 50, 75, 100],
+                buttons: this.buttons,
+                responsive: this.responsive,
+                scrollX: this.scrollX
             });
             $('div.head-label').html('<h5 class="card-title mb-0">' + this.header + '</h5>');
 

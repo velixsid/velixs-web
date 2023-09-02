@@ -125,12 +125,12 @@
                             </div>
                             <div class="lg:col-span-9">
                                 <div class="lg:bg-white dark:lg:bg-black/20 lg:border-l lg:border-r dark:border-slate-800/40 lg:p-20 py-12">
-                                    <article class="prose dark:prose-invert prose-img:rounded-xl">
+                                    <article class="prose dark:prose-invert prose-img:rounded-xl prose-pre:p-0 prose-pre:m-0 prose-pre:bg-transparent prose-pre:rounded-none">
                                         {!! $row->content !!}
                                     </article>
 
                                     <!-- card react statistic -->
-                                    <div x-data x-bind:class="$store.navbarMobile ? 'duration-300 lg:translate-y-0' : 'duration-500 lg:translate-y-12'" class="sticky bottom-20 transition-transform transform z-10 mt-16 lg:bottom-8 lg:mt-24">
+                                    <div x-data x-bind:class="$store.navbarMobile ? 'duration-300 translate-y-0' : 'duration-500 lg:translate-y-0 translate-y-12'" class="sticky bottom-20 transition-transform transform z-10 mt-16 lg:bottom-8 lg:mt-24">
 
                                         <div class="min-w-0 flex-1">
                                             <div class="mx-auto max-w-[360px] px-4 sm:max-w-[420px] sm:px-0">
@@ -306,6 +306,7 @@
 
 @push('js')
     <script src="{!! asset('assets/clipboard.min.js') !!}"></script>
+    <script src="{{ asset('assets/highlight/highlight.min.js?v=1') }}"></script>
     <script>
         var clipboard = new ClipboardJS('.copy-link');
         clipboard.on('success', function(e) {
@@ -342,5 +343,21 @@
                 })
             })
         })
+
+        hljs.highlightAll();
+        document.querySelectorAll('pre').forEach((preElement) => {
+            const firstDivElement = document.createElement('div');
+            firstDivElement.className = 'overflow-hidden rounded-md shadow-2xl mb-3 border dark:border-none';
+            preElement.parentElement.insertBefore(firstDivElement, preElement);
+            const additionalCodeDiv = document.createElement('div');
+            additionalCodeDiv.className = 'bg-slate-100 dark:bg-slate-700 flex items-center py-3 px-3 gap-x-1';
+            additionalCodeDiv.innerHTML = '<div class="p-[5px] bg-red-600 inline-block rounded-full"></div><div class="p-[5px] bg-yellow-600 inline-block rounded-full"></div><div class="p-[5px] bg-green-600 inline-block rounded-full"></div>';
+            firstDivElement.appendChild(additionalCodeDiv);
+            firstDivElement.appendChild(preElement);
+        });
     </script>
+@endpush
+
+@push('css')
+<link rel="stylesheet" href="{{ asset('assets/highlight/tokyo-night-dark.min.css?v=1') }}">
 @endpush

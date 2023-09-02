@@ -1,12 +1,12 @@
 <?php
 
 use App\Http\Controllers\Admin\ABlogController;
+use App\Http\Controllers\Admin\ApihubController;
 use App\Http\Controllers\Admin\AProductController;
 use App\Http\Controllers\Admin\FilesController;
 use App\Http\Controllers\Admin\LicenseController;
 use App\Http\Controllers\Admin\MainController;
 use App\Http\Controllers\Admin\OtherController;
-use App\Http\Controllers\Admin\RestApiController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Admin\WAProgrammerController;
 use Illuminate\Support\Facades\Route;
@@ -95,10 +95,22 @@ Route::group([
     });
 
     Route::prefix('rapi')->group(function(){
-        Route::get('/',[RestApiController::class, 'index'])->name('admin.rapi.index');
-        // Route::get('/json',[RestApiController::class, 'json'])->name('admin.wagroup.json');
-        // Route::post('/toggle-status',[RestApiController::class, 'toggle_status'])->name('admin.wagroup.toggle.status')->withoutMiddleware(['csrf']);
-        // Route::post('/destroy',[RestApiController::class, 'destroy'])->name('admin.wagroup.destroy');
+        Route::get('/',[ApihubController::class, 'index'])->name('admin.rapi.index');
+        Route::get('/json',[ApihubController::class, 'json'])->name('admin.rapi.json');
+        Route::get('/generate-slug/ajax',[ApihubController::class, 'ajax_gslug_unique'])->name('admin.rapi.gslug.ajax');
+        Route::get('/create',[ApihubController::class, 'create'])->name('admin.rapi.create');
+        Route::post('/store',[ApihubController::class, 'store'])->name('admin.rapi.store');
+        Route::get('/edit/{id}',[ApihubController::class, 'edit'])->name('admin.rapi.edit');
+        Route::post('/update/{id}',[ApihubController::class, 'update'])->name('admin.rapi.update');
+        Route::post('/destroy',[ApihubController::class, 'destroy'])->name('admin.rapi.destroy');
+
+        Route::get('/{id}/endpoint',[ApihubController::class, 'ep'])->name('admin.rapi.endpoint');
+        Route::get('/{id}/endpoint/json',[ApihubController::class, 'ep_json'])->name('admin.rapi.endpoint.json');
+        Route::get('/{id}/endpoint/create',[ApihubController::class, 'ep_create'])->name('admin.rapi.endpoint.create');
+        Route::post('/{id}/endpoint/store',[ApihubController::class, 'ep_store'])->name('admin.rapi.endpoint.store');
+        Route::get('/{id}/endpoint/edit/{epid}',[ApihubController::class, 'ep_edit'])->name('admin.rapi.endpoint.edit');
+        Route::post('/{id}/endpoint/update/{epid}',[ApihubController::class, 'ep_update'])->name('admin.rapi.endpoint.update');
+        Route::post('/{id}/endpoint/destroy',[ApihubController::class, 'ep_destroy'])->name('admin.rapi.endpoint.destroy');
     });
 
     Route::prefix('users')->group(function(){

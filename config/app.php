@@ -18,8 +18,8 @@ return [
 
     'name' => env('APP_NAME', 'Laravel'),
 
-    'secret_key_api' => env('SECRET_KEY_API', ""),
-
+    'api_velixs_secret' => env('API_VELIXS_SECRET', ""),
+    'api_velixs_wow' => env('API_VELIXS_WOW', ""),
     'api_velixs_endpoint' => env('API_VELIXS_ENDPOINT', false),
     /*
     |--------------------------------------------------------------------------

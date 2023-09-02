@@ -6,10 +6,14 @@ use App\Helpers\Layouts;
 use App\Models\License;
 use App\Models\OwnedLicense;
 use App\Models\Product;
+use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\RequestException;
 
 class DashboardsController extends Controller
 {
@@ -152,6 +156,8 @@ class DashboardsController extends Controller
 
     }
 
+    // items --------------------------------------------------
+
     public function purchases(Request $request){
         $data['seo'] = (object)[
             'title' => 'Purchases',
@@ -200,8 +206,6 @@ class DashboardsController extends Controller
         return Layouts::view('dash.wishlist',$data);
     }
 
-    // profile settings --------------------------------------------------
-
     public function claimLicense($license){
         if(RateLimiter::tooManyAttempts('claim-license:'.auth()->id(), 3)){
             return redirect()->route('dash')->with('bug','You are too fast, slow down');
@@ -235,5 +239,78 @@ class DashboardsController extends Controller
             'title' => 'Reports',
         ];
         return Layouts::view('dash.reports',$data);
+    }
+
+    // apihub -------------------------------------------------
+    public function apihub(){
+        $data['seo'] = (object)[
+            'title' => 'API Hub',
+        ];
+        return Layouts::view('dash.apihub',$data);
+    }
+
+    public function apihub_planinfo(Request $request){
+        if(!$request->ajax()) return abort(404);
+        if(RateLimiter::tooManyAttempts('apihub-planinfo:'.auth()->id(), 10)){
+            return response()->json([
+                'type' => 'bug',
+                'message' => 'You are too fast, slow down'
+            ], 429);
+        }
+        RateLimiter::hit('apihub-planinfo:'.auth()->id());
+        if(auth()->user()->api_key){
+            $client = new Client();
+            $response = $client->get(rtrim(config('app.api_velixs_endpoint'), '/').'/velixs/apikey/user/'.auth()->id(),[
+                'headers' => [
+                    'Content-Type' => 'application/json',
+                    'X-Secret-Key' => config('app.api_velixs_secret'),
+                    'X-Wow' => config('app.api_velixs_wow')
+                ]
+            ]);
+            $api_plan = json_decode($response->getBody()->getContents(), true);
+            $api = $api_plan['data'];
+            $expired = Carbon::now()->diffInDays(Carbon::parse($api_plan['data']['expired_at'] ?? date('Y-m-d H:i:s')));
+
+            return response()->json([
+                'plan' => $api['spec']['plan']['name'] ?? 'FREE',
+                'max_request' => $api['spec']['plan']['max_request'] ?? '-',
+                'current_request' => $api['spec']['current_request'] ?? '-',
+                'expired' => $api['expired_at'] ? $expired.' Days' : '-'
+            ]);
+        }
+    }
+
+    public function apihub_generateapikey(Request $request){
+        if(!$request->ajax()) return abort(404);
+        if(RateLimiter::tooManyAttempts('apihub-generateapikey:'.auth()->id(), 3)){
+            return response()->json([
+                'type' => 'bug',
+                'message' => 'You are too fast, slow down'
+            ], 429);
+        }
+        RateLimiter::hit('apihub-generateapikey:'.auth()->id());
+        try {
+            $client = new Client();
+            $response = $client->get(rtrim(config('app.api_velixs_endpoint'), '/').'/velixs/client/apikey/generate/'.auth()->id(),[
+                'headers' => [
+                    'Content-Type' => 'application/json',
+                    'X-Secret-Key' => config('app.api_velixs_secret'),
+                    'X-Wow' => config('app.api_velixs_wow')
+                ]
+            ]);
+            $response = json_decode($response->getBody()->getContents(), true);
+            $user = User::find(auth()->id());
+            $user->api_key = $response['api_key'];
+            $user->save();
+            return response()->json([
+                'message' => ($response['user_status']=='update') ? 'API Key updated successfully' : 'API Key generated successfully',
+                'api_key' => $response['api_key']
+            ]);
+        } catch(e) {
+            return response()->json([
+                'type' => 'bug',
+                'message' => 'Something went wrong, please try again later',
+            ], 422);
+        }
     }
 }

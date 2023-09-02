@@ -280,5 +280,125 @@ class DevSeeder extends Seeder
             'item' => 'digital-product',
             'item_id' => \App\Models\Product::find(2)->id,
         ]);
+
+        \App\Models\ApihubTags::insert([
+            [
+                'title' => 'Media Social',
+                'slug' => 'media-social',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'title' => 'Downloader',
+                'slug' => 'downloader',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'title' => 'Scrape',
+                'slug' => 'scrape',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'title' => 'Anime',
+                'slug' => 'anime',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'title' => 'Tools',
+                'slug' => 'tools',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'title' => 'Game',
+                'slug' => 'game',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'title' => 'Random',
+                'slug' => 'random',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'title' => 'Other',
+                'slug' => 'other',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+        ]);
+
+        for($i=0; $i <=20; $i++) {
+            // random number range
+            $rand = rand(1, 4);
+            // random slug
+            $random = substr(md5(mt_rand()), 0, 7);
+            $created_At = now()->subDays($i);
+            \App\Models\Apihub::insert([
+                'title' => 'Google Scrape v'.$i,
+                'slug' => $random,
+                'image' => 'apis/'.$rand.'.png',
+                'author' => $admin->id,
+                'tags' => json_encode(array(1, 2)),
+                'is_published' => true,
+                'meta_description' => 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Rem libero possimus illo sit voluptas ex!',
+                'created_at' => $created_At,
+                'updated_at' => now()
+            ]);
+        }
+
+        $mapih = \App\Models\Apihub::create([
+            'title' => 'Mediafire Scrape',
+            'slug' => substr(md5(mt_rand()), 0, 7),
+            'image' => 'apis/1.png',
+            'author' => $admin->id,
+            'tags' => json_encode(array(1, 5, 3)),
+            'is_published' => true,
+            'meta_description' => 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Rem libero possimus illo sit voluptas ex!',
+            'readme' => 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Rem libero possimus illo sit voluptas ex! Lorem ipsum dolor sit, amet consectetur adipisicing elit. Rem libero possimus illo sit voluptas ex!',
+        ]);
+
+        // make endpoint
+
+        \App\Models\ApihubEndpoint::create([
+            'apihub_id' => $mapih->id,
+            'title' => 'Using GET',
+            'url' => 'http://localhost:3000/mediafire?url=<url>&apikey=<apikey>',
+            'method' => 'GET',
+            'data' => null,
+            'response' => json_encode(array(
+                "status"=> true,
+                "message"=> "success get data",
+                "data"=>array(
+                    "title"=> "Filename.ext",
+                    "size" => "size files",
+                    "link"=>"https://download1507.mediafire.com/xj320qih9nvlno0/file.ext"
+                )
+            )),
+        ]);
+
+        \App\Models\ApihubEndpoint::create([
+            'apihub_id' => $mapih->id,
+            'title' => 'Using POST',
+            'url' => 'http://localhost:3000/mediafire',
+            'method' => 'POST',
+            'data' => json_encode(array(
+                'apikey' => '{apikey}',
+                'url' => 'https://www.mediafire.com/file/xj320qih9nvlno0/dokumen_rahasia.pdf/file'
+            )),
+            'response' => json_encode(array(
+                "status"=> true,
+                "message"=> "success get data",
+                "data"=>array(
+                    "title"=> "Filename.ext",
+                    "size" => "size files",
+                    "link"=>"https://download1507.mediafire.com/xj320qih9nvlno0/file.ext"
+                )
+            )),
+        ]);
     }
 }

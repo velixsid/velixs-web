@@ -154,15 +154,20 @@
                 <div data-i18n="Manage Users">Manage WAGroup</div>
               </a>
             </li>
-            <li class="menu-item {{ Route::is('admin.blog*') ? 'active open' : '' }}">
+            <li class="menu-item {{ Route::is('admin.rapi*') ? 'active open' : '' }}">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                    <svg xmlns="http://www.w3.org/2000/svg" class="menu-icon tf-icons" viewBox="0 0 24 24" stroke-width="1.25" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                         <path d="M12 12c2 -2.96 0 -7 -1 -8c0 3.038 -1.773 4.741 -3 6c-1.226 1.26 -2 3.24 -2 5a6 6 0 1 0 12 0c0 -1.532 -1.056 -3.94 -2 -5c-1.786 3 -2.791 3 -4 2z"></path>
                     </svg>
-                  <div data-i18n="Manage Rest APi">Manage Rest APi</div>
+                  <div data-i18n="Manage Rest APi">API HUB</div>
                 </a>
                 <ul class="menu-sub">
+                  <li class="menu-item {{ Route::is('admin.rapi.index') ? 'active' : '' }}">
+                    <a href="{!! route('admin.rapi.index') !!}" class="menu-link">
+                      <div data-i18n="Manage APIs">Manage APIs</div>
+                    </a>
+                  </li>
                   <li class="menu-item {{ Route::is('admin.blog.index') ? 'active' : '' }}">
                     <a href="{!! route('admin.blog.index') !!}" class="menu-link">
                       <div data-i18n="Manage Blog">License & Apikey</div>

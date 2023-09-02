@@ -5,6 +5,7 @@
 /* width */
 ::-webkit-scrollbar {
     width: 3px;
+    height: 3px;
 }
 
 /* Track */
@@ -34,6 +35,10 @@
 
     .active-menu-dash svg{
       @apply !text-primary-500;
+    }
+
+    .active-endpoint-list svg{
+      @apply !text-primary-500 dark:!text-primary-300;
     }
 
     .bg-grid {
@@ -115,5 +120,9 @@
 
   .ilsya-scale-105 {
     @apply hover:scale-105 transition-transform duration-300 ease-out;
+  }
+
+  .active-endpoint-list {
+    @apply !bg-primary-50 dark:!bg-primary-950 !border-primary-500 !text-primary-700 dark:!text-primary-300;
   }
 }
