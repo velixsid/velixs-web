@@ -29,7 +29,7 @@
     <script src="{!! asset('assets/dash') !!}/vendor/libs/bootstrap-select/bootstrap-select.js"></script>
     <script src="{!! asset('assets/dash') !!}/js/forms-selects.js"></script>
     <script src="{!! asset('assets/dash') !!}/vendor/libs/datatables-bs5/datatables-bootstrap5.js"></script>
-    <script src="{!! asset('assets/dash/ilsya.tables.js?v=1') !!}"></script>
+    <script src="{!! asset('assets/dash/ilsya.tables.js?v=12') !!}"></script>
     <script>
         $(function () {
             const table = new itables({

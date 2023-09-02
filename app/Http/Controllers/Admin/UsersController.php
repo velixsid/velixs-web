@@ -17,7 +17,7 @@ class UsersController extends Controller
 
     public function json(Request $request){
         if(!$request->ajax()) return redirect()->route('admin.users.index');
-        $table = User::all();
+        $table = User::orderBy('created_at','desc')->get();
         return datatables()->of($table)
             ->addColumn('profile', function($row){
                 return '<div class="d-flex justify-content-start align-items-center user-name"><div class="avatar-wrapper"><div class="avatar me-2"><img src="'.$row->_avatar().'" alt="Avatar" class="rounded-circle"></div></div><div class="d-flex flex-column"><a href="'.route('profile',$row->username).'" class="emp_name text-truncate">'.htmlspecialchars($row->name).'</a><small class="emp_post text-truncate text-muted">'.htmlspecialchars($row->username).'</small></div></div>';
