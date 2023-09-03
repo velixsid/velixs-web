@@ -47,7 +47,7 @@
                                         </svg>
                                     </button>
                                 </div>
-                                <form id="form" action="{!! route('forgot') !!}" method="POST">
+                                <form id="form" action="{{ route('forgot') }}" method="POST">
                                     @csrf
                                     <div class="">
                                         <div class="text-center my-5">
@@ -99,13 +99,12 @@
 
     <script defer src="{!! asset('assets/alpine.min.js') !!}"></script>
     @vite('resources/js/app.js')
-    <script src="{!! asset('assets/lazytoast.js') !!}"></script>
     @include('layouts.toast')
     <script>
         document.getElementById('form').addEventListener('submit', function(e){
             button = this.querySelector('button[type="submit"]');
             button.disabled = true;
-            button.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading...';
+            button.setHTML('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading...');
         });
     </script>
 </body>

@@ -123,14 +123,14 @@
     <script>
         // regex input username only a-z0-9+
         document.querySelector('input[name="username"]').addEventListener('keyup', function(){
-            // lowercase
-            this.value = this.value.replace(/[^a-z0-9+]/gi, '').toLowerCase();
+            this.value = encodeURIComponent(this.value.replace(/[^a-z0-9+]/gi, '').toLowerCase());
         })
+
         document.getElementById('form-register').addEventListener('submit', function(e){
             e.preventDefault();
             button = this.querySelector('button[type="submit"]');
             button.disabled = true;
-            button.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading...';
+            button.setHTML('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading...');
             var formData = new FormData(this);
             axios.post(this.action, formData,{
                 headers: {
@@ -150,7 +150,7 @@
                 }, 2000);
             }).catch(function(error){
                 button.disabled = false;
-                button.innerHTML = 'Create Account';
+                button.setHTML('Create Account');
                 playN();
                 toast.toast({
                     title: error.response.status,

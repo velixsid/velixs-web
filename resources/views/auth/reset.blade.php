@@ -58,8 +58,8 @@
 
                     <div class="mt-6">
                         <form id="form" action="{!! route('password.update') !!}" method="POST" class="space-y-6">
-                            <input type="hidden" value="{!! $token !!}" name="token">
-                            <input type="hidden" value="{!! $username !!}" name="username">
+                            <input type="hidden" value="{{ $token }}" name="token">
+                            <input type="hidden" value="{{ $username }}" name="username">
                             <div>
                                 <label class="block text-sm font-medium text-gray-700 dark:text-gray-100">New Password</label>
                                 <div class="mt-1">
@@ -83,7 +83,7 @@
             </div>
         </div>
         <div class="relative hidden min-h-full flex-1 lg:flex items-center justify-center animate-bounce-in">
-            <img class="inset-0 object-cover" src="../assets/img/illustration_dashboard.png" alt="">
+            <img class="inset-0 object-cover" src="{{ asset('assets/img/illustration_dashboard.png') }}" alt="">
         </div>
     </div>
 
@@ -95,7 +95,7 @@
             e.preventDefault();
             button = this.querySelector('button[type="submit"]');
             button.disabled = true;
-            button.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading...';
+            button.setHTML('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading...');
             var formData = new FormData(this);
             axios.post(this.action, formData,{
                 headers: {
@@ -116,7 +116,7 @@
             }).catch(function(error){
                 playN();
                 button.disabled = false;
-                button.innerHTML = 'Reset Password';
+                button.setHTML('Reset Password');
                 toast.toast({
                     title: error.response.status,
                     msg: error.response.data.message ?? 'Reset password failed.',

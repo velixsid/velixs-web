@@ -58,6 +58,25 @@
                             </div>
                         </div>
 
+                        <div class="rounded-lg mt-3 -mb-1 bg-primary-600/90 dark:bg-primary-800 p-2 shadow-lg sm:p-3">
+                            <div class="flex flex-wrap items-center justify-between">
+                                <div class="flex w-0 flex-1 items-center">
+                                    <span class="flex rounded-lg bg-primary-800 dark:bg-primary-600 p-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                            <path d="M12 12c2 -2.96 0 -7 -1 -8c0 3.038 -1.773 4.741 -3 6c-1.226 1.26 -2 3.24 -2 5a6 6 0 1 0 12 0c0 -1.532 -1.056 -3.94 -2 -5c-1.786 3 -2.791 3 -4 2z"></path>
+                                        </svg>
+                                    </span>
+                                    <p class="ml-3 font-medium text-white">
+                                        Temukan berbagai API yang tersedia di velixs. ->
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="mt-2 w-full flex-shrink-0 sm:order-2 sm:w-auto">
+                                <a href="{{ route('rapi') }}" class="flex items-center justify-center rounded-md border border-transparent bg-white px-4 py-2 text-sm font-medium text-indigo-600 shadow-sm hover:bg-indigo-50">Explore API's!</a>
+                            </div>
+                        </div>
+
                         <div class="overflow-hidden bg-white dark:bg-slate-800 shadow sm:rounded-lg mt-5">
                             <div class="px-4 py-5 sm:px-6">
                                 <h3 class="text-lg font-medium leading-6 text-slate-900 dark:text-slate-100">Plan Information</h3>
@@ -104,12 +123,15 @@
                                 </dl>
                             </div>
                         </div>
+
+
                     @endif
                 </div>
             </main>
         </div>
     </div>
 </main>
+
 @endsection
 
 @push('js')

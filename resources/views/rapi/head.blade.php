@@ -35,6 +35,9 @@
                 <a href="{{ route('rapi.lab',$api->slug) }}" class="{{ Route::is('rapi.lab') ? '!border-indigo-500 !text-indigo-500' : '' }} border-transparent text-slate-500 dark:text-slate-400 hover:text-gray-700 dark:hover:text-indigo-500 hover:border-slate-200 dark:hover:border-indigo-300/20 whitespace-nowrap flex py-4 px-1 border-b-2 font-medium text-sm">
                     Lab API
                 </a>
+                <a href="{{ route('dash.apihub') }}" class="border-transparent text-slate-500 dark:text-slate-400 hover:text-gray-700 dark:hover:text-indigo-500 hover:border-slate-200 dark:hover:border-indigo-300/20 whitespace-nowrap flex py-4 px-1 border-b-2 font-medium text-sm">
+                    Dashbaords
+                </a>
             </nav>
         </div>
     </div>
