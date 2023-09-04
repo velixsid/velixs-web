@@ -20,6 +20,7 @@ return new class extends Migration
             $table->text('readme')->nullable();
             $table->string('tags')->default('[]');
             $table->uuid('author');
+            $table->boolean('is_recommended')->default(false);
             $table->boolean('is_published')->default(false);
             $table->timestamps();
         });
