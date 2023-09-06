@@ -2,7 +2,7 @@
 
 
     <main>
-        <div class="relative isolate overflow-hidden">
+        <div class="relative isolate overflow-hidden lg:mt-0 mt-10">
             <svg viewBox="0 0 1108 632" aria-hidden="true" class="absolute top-10 left-[calc(50%-4rem)] -z-10 w-[69.25rem] max-w-none transform-gpu blur-3xl sm:left-[calc(50%-18rem)] lg:left-48 lg:top-[calc(50%-30rem)] xl:left-[calc(50%-24rem)]">
                 <path fill="url(#175c433f-44f6-4d59-93f0-c5c51ad5566d)" fill-opacity=".2" d="M235.233 402.609 57.541 321.573.83 631.05l234.404-228.441 320.018 145.945c-65.036-115.261-134.286-322.756 109.01-230.655C968.382 433.026 1031 651.247 1092.23 459.36c48.98-153.51-34.51-321.107-82.37-385.717L810.952 324.222 648.261.088 235.233 402.609Z" />
                 <defs>
@@ -24,21 +24,12 @@
                     </div>
                     <div class="mx-auto max-w-2xl sm:ml-10 lg:mr-0">
                         <a href="{!! route('blog.detail',$blog->slug) !!}">
-                            <h1 class="mt-10 font-bold tracking-tight leading-[1.1] text-slate-900 dark:text-white lg:text-3xl text-2xl transition-all animate-fade-in-left-bounce">{{ $blog->title }}</h1>
+                            <h1 class="mt-10 font-bold tracking-tight leading-[1.1] text-slate-900 dark:text-white lg:text-3xl md:text-2xl text-lg transition-all animate-fade-in-left-bounce">{{ $blog->title }}</h1>
                         </a>
-                        <p class="mt-1 lg:mt-6 leading-8 text-slate-600 dark:text-slate-300 transition-all animate-fade-in-left-bounce-2">{{ $blog->meta_description }}</p>
+                        <p class="mt-1 lg:mt-6 lg:leading-8 leading-7 text-slate-600 dark:text-slate-300 transition-all animate-fade-in-left-bounce-2 lg:text-base text-sm">{{ $blog->meta_description }}</p>
                         <div class="font-mono tracking-tighter text-xs sm:text-sm mt-4">
                             <span class="h-px mt-6 mb-5 w-full hidden md:inline-block bg-gradient-to-r from-slate-300 dark:from-slate-700 via-transparent to-transparent"></span>
                             <div class="text-slate-500 dark:text-slate-400">
-                                {{-- <div class="flex items-center mb-2">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="mr-2" width="22" height="22" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                        <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
-                                        <path d="M12 12h3.5"></path>
-                                        <path d="M12 7v5"></path>
-                                    </svg>
-                                    1 min read
-                                </div> --}}
                                 <div class="flex items-center mb-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="mr-2" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                         <path d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z"></path>
@@ -72,29 +63,6 @@
                 @endforeach
             </div>
         </div>
-
-        {{-- <div class="border-b border-t relative dark:bg-slate-950 dark:border-slate-800/50 bg-white py-3 md:py-4 text-sm dark:text-slate-50 text-slate-800">
-            <div class="grid grid-cols-12 max-w-screen-2xl mx-auto">
-                <section class="col-span-10 col-start-2">
-                    <div class="flex items-center gap-x-2">
-                        <a href="{!! route('main') !!}" class="font-semibold text-invert whitespace-nowrap gap-x-2 items-center sm:flex hidden" href="{!! route('main') !!}">
-                            <svg class="w-3.5 h-3.5 inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                <path fill-rule="evenodd" d="M9.293 2.293a1 1 0 011.414 0l7 7A1 1 0 0117 11h-1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-3a1 1 0 00-1-1H9a1 1 0 00-1 1v3a1 1 0 01-1 1H5a1 1 0 01-1-1v-6H3a1 1 0 01-.707-1.707l7-7z" clip-rule="evenodd" />
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 inline">
-                                <path d="M9 6l6 6l-6 6"></path>
-                            </svg>
-                        </a>
-                        <button type="button" wire:click="resetFilter" data-click="top" class="font-semibold inline-flex text-invert whitespace-nowrap gap-x-2 items-center" href="{!! route('blog') !!}">Blog
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 inline">
-                                <path d="M9 6l6 6l-6 6"></path>
-                            </svg>
-                        </button>
-                        <span class="line-clamp-1 font-semibold text-slate-500 dark:text-slate-400">{{ $navbar_active }}</span>
-                    </div>
-                </section>
-            </div>
-        </div> --}}
 
         <div class="relative px-6 pb-20 lg:px-10 lg:pb-28">
             <div class="relative mx-auto max-w-7xl">

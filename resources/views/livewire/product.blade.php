@@ -1,6 +1,6 @@
 <div>
 
-    <main class="-mt-10 lg:mt-0">
+    <main class="mt-5 lg:mt-0">
 
         <div class="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-screen-2xl lg:px-8">
             <div class="block md:flex items-center justify-between space-x-4">

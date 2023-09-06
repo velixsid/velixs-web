@@ -453,7 +453,7 @@ AJARIN DONG PUH SEPUH
 
     @if(!isset($page_product_detail))
     <div>
-        <div class="fixed z-20 w-full border-t dark:border-t-0 bottom-0 lg:hidden block backdrop-blur bg-white/90 dark:bg-gray-900/90 px-3 py-2 transition-transform transform animate-footer-product">
+        <div class="fixed z-20 w-full border-t dark:border-t-0 bottom-0 md:hidden block backdrop-blur bg-white/90 dark:bg-gray-900/90 px-3 py-2 transition-transform transform animate-footer-product">
             <div class=""> {{-- px-3 --}}
                 <div class="text-slate-600 dark:text-slate-200 grid h-full max-w-lg grid-cols-5 mx-auto">
                     <a href="{!! route('main') !!}" class="inline-flex flex-col items-center justify-center px-5">
@@ -480,8 +480,8 @@ AJARIN DONG PUH SEPUH
                             <path d="M8 10v4.5l4 2.5"></path>
                         </svg><span class="text-[10px]">Projects</span>
                     </a>
-                    <a href="{!! route('blog') !!}" class="inline-flex flex-col items-center justify-center px-5">
-                        <div class="sr-only">Blog</div>
+                    <a href="{!! route('rapi') !!}" class="inline-flex flex-col items-center justify-center px-5">
+                        <div class="sr-only">Apihub</div>
                         <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                             <path d="M12 12c2 -2.96 0 -7 -1 -8c0 3.038 -1.773 4.741 -3 6c-1.226 1.26 -2 3.24 -2 5a6 6 0 1 0 12 0c0 -1.532 -1.056 -3.94 -2 -5c-1.786 3 -2.791 3 -4 2z"></path>

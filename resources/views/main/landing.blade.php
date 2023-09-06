@@ -12,7 +12,7 @@
             </defs>
         </svg>
         <div class="mx-auto max-w-7xl px-6 lg:flex lg:items-center lg:gap-x-10 lg:px-8">
-            <div class="mx-auto max-w-2xl lg:flex-auto mt-32"> {{-- lg:mt-40 without mascot--}}
+            <div class="mx-auto max-w-2xl lg:flex-auto my-32"> {{-- mt-32 with mascot--}}
                 <div class="animate-fade-in-left-bounce">
                     <a href="{!! route('rapi') !!}" class="inline-flex space-x-6">
                         <span class="rounded-full bg-primary-600/10 px-3 py-1 text-sm font-semibold leading-6 text-primary-600 ring-1 ring-inset ring-primary-600/10">What's new</span>
@@ -24,8 +24,8 @@
                         </span>
                     </a>
                 </div>
-                <h1 class="mt-10 max-w-lg animate-fade-in-left-bounce text-5xl font-bold tracking-tight text-gray-900 dark:text-gray-50 sm:text-6xl ">
-                    <span class="bg-white animate-idleY dark:bg-slate-800/40 inline-block rotate-2 shadow py-1 px-3 rounded-xl"><span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-500 to-violet-600">VELIXS</span></span> IT
+                <h1 class="mt-10 max-w-lg animate-fade-in-left-bounce text-5xl font-bold tracking-tight text-gray-900 dark:text-gray-50 sm:text-6xl">
+                    <span class="bg-white dark:bg-slate-800/40 inline-block -rotate-1 shadow py-1 px-3 rounded-xl"><span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-500 to-violet-600">VELIXS</span></span><span class="text-4xl"> .com</span>
                 </h1>
                 <p class="mt-6 leading-8 animate-fade-in-left-bounce-2 text-slate-600 dark:text-slate-400">
                     We offer specialized <span class="text-slate-800 dark:text-slate-300 font-semibold">website development</span> services for web developers. With various categories, we also provide complete <span class="text-slate-800 dark:text-slate-500 font-semibold">resources to develop your web projects</span>.
@@ -45,20 +45,20 @@
                             <circle cx="11" cy="11" r="6"></circle>
                         </svg>
                         <span class="flex-auto font-sans font-semibold text-sm" data-btn-search="">Quick search...</span>
-                        <kbd class="font-sans font-semibold dark:text-slate-500">
-                            F
+                        <kbd class="font-sans font-semibold dark:text-slate-500 text-xs">
+                            CTRL + F
                         </kbd>
                     </button>
                 </div>
             </div>
 
-            <div class="lg:flex-shrink-0 lg:h-[50rem] sm:h-[45rem] lg:flex-grow animate-fade-in-left-bounce-2">
-                <div>
+            <div class="lg:flex-shrink-0 lg:flex-grow animate-fade-in-left-bounce-2">{{-- lg:h-[50rem] sm:h-[45rem] --}}
+                {{-- <div>
                     <img class="hidden dark:block" src="assets/img/nakiri-dark.png" alt="Nakiri">
                 </div>
                 <div>
                     <img class="dark:hidden block" src="assets/img/nakiri-light.png" alt="Nakiri">
-                </div>
+                </div> --}}
             </div>
         </div>
         <div class="absolute left-[5rem] bottom-0 flex h-8 items-end overflow-hidden">

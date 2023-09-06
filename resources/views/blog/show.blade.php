@@ -3,7 +3,7 @@
 @section('content')
 
 <main>
-    <div class="relative lg:border-t dark:border-slate-900 isolate overflow-hidden bg-white dark:bg-slate-950">
+    <div class="relative lg:border-t dark:border-slate-900 isolate overflow-hidden bg-white dark:bg-slate-950 lg:mt-0 mt-10">
         <svg class="inline dark:hidden absolute inset-0 -z-10 h-full w-full stroke-slate-200 [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)]" aria-hidden="true">
             <defs>
                 <pattern id="0787a7c5-978c-4f66-83c7-11c213f99cb7" width="200" height="200" x="50%" y="-1" patternUnits="userSpaceOnUse">
@@ -39,20 +39,11 @@
                 </div>
             </div>
             <div class="mx-auto max-w-2xl sm:ml-10 lg:mr-0">
-                <h1 class="mt-10 font-bold tracking-tight leading-[1.1] text-slate-900 dark:text-white lg:text-3xl text-2xl transition-all animate-fade-in-left-bounce">{{ $row->title }}</h1>
-                <p class="mt-1 lg:mt-6 leading-8 text-slate-600 dark:text-slate-300 transition-all animate-fade-in-left-bounce-2">{{ $row->meta_description }}</p>
+                <h1 class="mt-10 font-bold tracking-tight leading-[1.1] text-slate-900 dark:text-white lg:text-3xl md:text-2xl text-lg transition-all animate-fade-in-left-bounce">{{ $row->title }}</h1>
+                <p class="mt-1 lg:mt-6 leading-8 text-slate-600 dark:text-slate-300 transition-all animate-fade-in-left-bounce-2 lg:text-base text-sm">{{ $row->meta_description }}</p>
                 <div class="font-mono tracking-tighter text-xs sm:text-sm mt-4">
                     <span class="h-px mt-6 mb-5 w-full hidden md:inline-block bg-gradient-to-r from-slate-300 dark:from-slate-700 via-transparent to-transparent"></span>
                     <div class="text-slate-500 dark:text-slate-400">
-                        {{-- <div class="flex items-center mb-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-2" width="22" height="22" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
-                                <path d="M12 12h3.5"></path>
-                                <path d="M12 7v5"></path>
-                            </svg>
-                            1 min read
-                        </div> --}}
                         <div class="flex items-center mb-2">
                             <svg xmlns="http://www.w3.org/2000/svg" class="mr-2" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z"></path>
