@@ -12,7 +12,7 @@
         </defs>
     </svg>
     <div class="max-w-7xl px-6 lg:flex lg:gap-x-10 lg:px-8">
-        <div class="mx-auto max-w-2xl lg:flex-auto my-20">
+        <div class="mx-auto max-w-2xl lg:flex-auto lg:my-20 mb-10 mt-24">
             <h1 class="mt-10 animate-fade-in-left-bounce text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-5xl">
                 Welcome to the <span class="bg-slate-50 dark:bg-slate-800/40 inline-block md:-rotate-3 -rotate-3 md:mt-0 mt-3 shadow py-1 px-3 rounded-xl"><span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-500 to-violet-600"> API Hub</span></span>
             </h1>
@@ -32,7 +32,7 @@
     <div class="block md:flex items-center justify-between space-x-4">
         <div class="flex items-start overflow-hidden lg:max-w-screen-2xl p-1">
             <div class="-mb-7 flex w-full gap-3 overflow-x-auto scroll-smooth pb-7">
-                <button class="h-[30px] shrink-0 !rounded-full py-1.5 px-3.5 text-xs font-medium dark:text-white outline-none bg-white hover:bg-gray-100 dark:bg-slate-900 shadow-sm">All</button>
+                <a href="{{ route('rapi.hub') }}" class="h-[30px] shrink-0 !rounded-full py-1.5 px-3.5 text-xs font-medium dark:text-white outline-none bg-white hover:bg-gray-100 dark:bg-slate-900 shadow-sm">All</a>
                 @foreach ($tags as $tag)
                     <a href="{{ route('rapi.hub',['tag'=>$tag->slug]) }}" class="h-[30px] shrink-0 !rounded-full py-1.5 px-3.5 text-xs font-medium dark:text-white outline-none bg-white hover:bg-gray-100 dark:bg-slate-900 shadow-sm">{{ $tag->title }}</a>
                 @endforeach
