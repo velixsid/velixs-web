@@ -136,7 +136,7 @@ AJARIN DONG PUH SEPUH
                                     <div class="absolute left-0 z-10 mt-3 w-screen max-w-md -translate-x-1/2 transform px-2 sm:px-0">
                                         <div x-show="dropdown" @click.outside="dropdown = false" x-transition style="display: none" class="w-screen max-w-md flex-auto overflow-hidden rounded-3xl bg-white dark:bg-slate-900 text-sm leading-6 shadow-lg ring-1 ring-slate-900/5 dark:ring-slate-100/5">
                                             <div class="p-4">
-                                                <a href="{{ route('whatsapp.programmer') }}" class="group relative flex gap-x-6 rounded-lg p-4 hover:bg-slate-50 dark:hover:bg-slate-800">
+                                                <a href="{{ route('pricing') }}" class="group relative flex gap-x-6 rounded-lg p-4 hover:bg-slate-50 dark:hover:bg-slate-800">
                                                     <div class="mt-1 flex h-11 w-11 group-hover:shadow transition flex-none items-center justify-center rounded-lg bg-slate-50 dark:bg-slate-800 dark:group-hover:bg-slate-700 group-hover:bg-white">
                                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-slate-600 dark:text-slate-300 group-hover:text-primary-400 dark:group-hover:text-primary-400 stroke-[1.5]" viewBox="0 0 24 24" stroke-width="1.25" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -346,7 +346,7 @@ AJARIN DONG PUH SEPUH
                                             </svg>
                                         </div>
                                         <li class="-mx-2 text-xs">
-                                            <a class="group block w-full text-left focus:outline-none" href="#">
+                                            <a class="group block w-full text-left focus:outline-none" href="{{ route('pricing') }}">
                                                 <div class="inline-flex w-auto items-center justify-start rounded-xl py-2 pr-4 text-left font-medium duration-200 group-hover:bg-muted pl-3">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-3" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>

@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Cache;
 
 class MainController extends Controller
 {
@@ -185,6 +187,28 @@ class MainController extends Controller
                 'groups' => waGroup::where('status', 'published')->get(),
             ]);
         }
+    }
+
+    public function pricing(){
+        if(Cache::has('pricings')) {
+            $data['pricings'] = Cache::get('pricings');
+        } else {
+            try {
+                $client = new Client();
+                $response = $client->get(rtrim(config('app.api_velixs_endpoint'), '/').'/velixs/plan',[
+                    'headers' => [
+                        'Content-Type' => 'application/json',
+                        'X-Secret-Key' => config('app.api_velixs_secret'),
+                        'X-Wow' => config('app.api_velixs_wow')
+                    ]
+                ]);
+                $data['pricings'] = json_decode($response->getBody()->getContents(), true);
+                Cache::forever('pricings', $data['pricings']);
+            } catch(e) {
+                $data['pricings'] = [];
+            }
+        }
+        return Layouts::view('main.pricing', $data);
     }
 
     public function privacy(){

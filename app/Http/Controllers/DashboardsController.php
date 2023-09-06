@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 use GuzzleHttp\Client;
-use GuzzleHttp\Exception\RequestException;
 
 class DashboardsController extends Controller
 {
