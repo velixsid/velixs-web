@@ -28,9 +28,7 @@ class Product extends Component
         $product = $this->model::select('*');
         if($this->tags){
             $tags_id = ProductTags::where('slug', $this->tags)->first();
-            if($tags_id){
-                $product = $product->whereJsonContains('tags', $tags_id->id);
-            }
+            $product = $product->whereJsonContains('tags', $tags_id->id ?? 'invalid');
         }
         $product = $product->where('is_published','!=', 0);
         $product = $product->orderBy('created_at', 'desc');

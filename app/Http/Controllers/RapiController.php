@@ -20,6 +20,7 @@ class RapiController extends Controller
         }else{
             $data['latest'] = Apihub::where('is_published','!=', 0)->orderBy('id','desc')->limit(12)->get();
         }
+        $data['recommended'] = Apihub::where('is_published','!=', 0)->where('is_recommended','!=', 0)->orderBy('id','desc')->get();
         $data['tags'] = ApihubTags::all();
         return Layouts::view('rapi.index',$data);
     }
@@ -43,5 +44,13 @@ class RapiController extends Controller
         } else {
             return Layouts::view('rapi.detail',$data);
         }
+    }
+
+    public function explore(Request $request){
+        return Layouts::view('rapi.explore',[
+            'tag' => $request->tag,
+            'sort' => $request->sort,
+            'collection' => $request->collection
+        ]);
     }
 }

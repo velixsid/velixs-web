@@ -33,9 +33,7 @@ class Blog extends Component
         $blogs = $blogs->where('is_published', '!=', '0');
         if($this->tags){
             $tags_id = BlogTags::where('slug', $this->tags)->first();
-            if($tags_id){
-                $blogs = $blogs->whereJsonContains('tags', $tags_id->id);
-            }
+            $blogs = $blogs->whereJsonContains('tags', $tags_id->id ?? 'invalid');
         }
         if ($this->sort) {
             if($this->sort == 'popular'){

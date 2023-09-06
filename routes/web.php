@@ -97,7 +97,7 @@ Route::group([
     'prefix' => 'rapi',
 ], function(){
     Route::get('/', [RapiController::class, 'index'])->name('rapi');
-    Route::get('/tag/{tag}', [RapiController::class, 'explore'])->name('rapi.tag');
+    Route::get('/hub', [RapiController::class, 'explore'])->name('rapi.hub');
     Route::get('/{slug}', [RapiController::class, 'detail'])->name('rapi.detail');
     Route::get('/{slug}/lab', [RapiController::class, 'detail'])->name('rapi.lab');
 });
