@@ -128,6 +128,8 @@ Route::group([
         Route::post('/destroy', [UsersController::class, 'destroy'])->name('admin.users.destroy');
         Route::get('/edit/{id}', [UsersController::class, 'edit'])->name('admin.users.edit');
         Route::post('/update/{id}', [UsersController::class, 'update'])->name('admin.users.update');
+        Route::get('/plan/{id}', [UsersController::class, 'changePlan'])->name('admin.users.plan');
+        Route::post('/plan/{id}', [UsersController::class, 'changePlan'])->name('admin.users.plan');
     });
 
     Route::get('/settings', [OtherController::class, 'settings'])->name('admin.settings');

@@ -65,6 +65,7 @@
                                     '<a href="javascript:;" class="btn btn-sm btn-icon dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="text-primary ti ti-dots-vertical"></i></a>' +
                                     '<ul class="dropdown-menu dropdown-menu-end m-0">' +
                                         '<li><a href="{!! route('admin.license.purchases') !!}?user='+full.username+'" class="dropdown-item itable-btn-detail">License Owned</a></li>' +
+                                        '<li><a href="{!! route('admin.users.plan','') !!}/'+full.id+'" class="dropdown-item itable-btn-detail">API Plan</a></li>' +
                                     '</ul>' +
                                 '</div>' +
                                 '<a href="{!! route('admin.users.edit','') !!}/'+ full.id +'" class="btn btn-sm btn-icon item-edit itable-btn-edit"><i class="text-primary ti ti-pencil"></i></a>'

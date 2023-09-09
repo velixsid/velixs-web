@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Helpers\Layouts;
 use App\Http\Controllers\Controller;
+use App\Models\OwnedLicense;
 use App\Models\User;
+use Carbon\Carbon;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -42,7 +45,25 @@ class UsersController extends Controller
             'ids' => 'required|array',
         ]);
         $ids = $request->ids;
-        User::whereIn('id', $ids)->delete();
+        $users = User::whereIn('id', $ids)->get();
+        foreach($users as $user){
+            try{
+                $client = new Client();
+                $client->delete(rtrim(config('app.api_velixs_endpoint'), '/').'/velixs/apikey/userid/'.$user->id,[
+                    'headers' => [
+                        'Content-Type' => 'application/json',
+                        'X-Secret-Key' => config('app.api_velixs_secret'),
+                        'X-Wow' => config('app.api_velixs_wow')
+                    ]
+                ]);
+                if($user->avatar){
+                    Storage::delete($user->avatar);
+                }
+                OwnedLicense::where('user_id', $user->id)->delete();
+                $user->delete();
+            }catch(\Exception $e){}
+        }
+
         return response()->json([
             'status' => 'success',
             'message' => 'Users deleted successfully.'
@@ -108,4 +129,67 @@ class UsersController extends Controller
         ]);
     }
 
+    public function changePlan(Request $request, $id){
+        $user = User::find($id);
+        if(!$user) return redirect()->route('admin.users.index')->with('error','User not found.');
+        $client = new Client();
+        if($request->isMethod('POST') && $request->ajax()){
+            try{
+                $request->validate([
+                    'plan_new' => 'required'
+                ]);
+                $client->post(rtrim(config('app.api_velixs_endpoint'), '/').'/velixs/apikey/plan/'.$id,[
+                    'headers' => [
+                        'Content-Type' => 'application/json',
+                        'X-Secret-Key' => config('app.api_velixs_secret'),
+                        'X-Wow' => config('app.api_velixs_wow')
+                    ],
+                    'body' => json_encode(array(
+                        'plan_id' => $request->plan_new,
+                        'expired_at' => $request->expired_new==0 ? null : $request->expired_new
+                    ))
+                ]);
+                return response()->json([
+                    'status' => 'success',
+                    'message' => 'Plan updated successfully.',
+                ]);
+            }catch(\Exception $e){
+                return response()->json([
+                    'status' => 'error',
+                    'message' => $e->getMessage()
+                ], 500);
+            }
+        }else{
+            $response = $client->get(rtrim(config('app.api_velixs_endpoint'), '/').'/velixs/apikey/userid/'.$id,[
+                'headers' => [
+                    'Content-Type' => 'application/json',
+                    'X-Secret-Key' => config('app.api_velixs_secret'),
+                    'X-Wow' => config('app.api_velixs_wow')
+                ]
+            ]);
+            $api_plan = json_decode($response->getBody()->getContents(), true);
+            $api = $api_plan['data'];
+            $expired = Carbon::now()->diffInDays(Carbon::parse($api_plan['data']['expired_at'] ?? date('Y-m-d H:i:s')));
+            $plans = $client->get(rtrim(config('app.api_velixs_endpoint'), '/').'/velixs/plan/dbs/',[
+                'headers' => [
+                    'Content-Type' => 'application/json',
+                    'X-Secret-Key' => config('app.api_velixs_secret'),
+                    'X-Wow' => config('app.api_velixs_wow')
+                ]
+            ]);
+
+            $plans = json_decode($plans->getBody()->getContents(), true)['data'];
+
+            return Layouts::view('admin.users.plan',[
+                'user' => $user,
+                'current' => (object)[
+                    'plan' => $api['spec']['plan']['name'] ?? 'FREE',
+                    'max_request' => $api['spec']['plan']['max_request'] ?? '-',
+                    'current_request' => $api['spec']['current_request'] ?? '-',
+                    'expired' => $api['expired_at'] ? $expired.' Days' : '-'
+                ],
+                'plans' => $plans
+            ]);
+        }
+    }
 }

@@ -125,6 +125,10 @@ AJARIN DONG PUH SEPUH
                                         </div>
                                     </div>
                                 </li>
+                                <li class="relative">
+                                    <div class="absolute p-[3px] top-[0.3rem] right-[-2px] animate-ping dark:bg-primary-50 bg-primary-600 rounded-full inline-block"></div>
+                                    <a class="hover:text-primary-500 dark:hover:text-primary-400" href="{!! route('rapi') !!}">Rest API</a>
+                                </li>
                                 <li class="relative" x-data="{ dropdown: false }">
                                     <a x-on:click="dropdown =! dropdown" class="group inline-flex items-center hover:text-primary-500 dark:hover:text-primary-400" href="javascript:void(0)">
                                         Pages
@@ -190,10 +194,6 @@ AJARIN DONG PUH SEPUH
                                             </div>
                                         </div>
                                     </div>
-                                </li>
-                                <li class="relative">
-                                    <div class="absolute p-[3px] top-[0.3rem] right-[-2px] animate-ping dark:bg-primary-50 bg-primary-600 rounded-full inline-block"></div>
-                                    <a class="hover:text-primary-500 dark:hover:text-primary-400" href="{!! route('rapi') !!}">Rest API</a>
                                 </li>
                             </ul>
                         </nav>

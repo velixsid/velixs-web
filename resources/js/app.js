@@ -15,7 +15,7 @@ import './bootstrap';
 
     // currency
     const currency_toggle = document.querySelectorAll('[data-toggle-currency]')
-    let current_currency = localStorage.getItem('current_currency')
+    let current_currency = localStorage.getItem('current_currency_v1')
     const data_modal_currency = document.querySelector('[data-modal-currency]')
 
     if (currency_toggle) {
@@ -39,12 +39,14 @@ import './bootstrap';
         })
     }
 
-
+    if (localStorage.getItem('current_currency')) {
+        localStorage.removeItem('current_currency')
+    }
     toggleCurrency(current_currency)
 
     function toggleCurrency(cc) {
         if (cc == 'IDR') {
-            localStorage.setItem('current_currency', 'IDR')
+            localStorage.setItem('current_currency_v1', 'IDR')
             current_currency = 'IDR'
             document.querySelectorAll('[data-display-currency="USD"]').forEach((el) => {
                 el.classList.add('hidden')
@@ -52,14 +54,24 @@ import './bootstrap';
             document.querySelectorAll('[data-display-currency="IDR"]').forEach((el) => {
                 el.classList.remove('hidden')
             })
-        } else {
-            localStorage.setItem('current_currency', 'USD')
+        } else if(cc == "USD") {
+            localStorage.setItem('current_currency_v1', 'USD')
             current_currency = 'USD'
             document.querySelectorAll('[data-display-currency="USD"]').forEach((el) => {
                 el.classList.remove('hidden')
             })
             document.querySelectorAll('[data-display-currency="IDR"]').forEach((el) => {
                 el.classList.add('hidden')
+            })
+        }else {
+            // default IDR
+            localStorage.setItem('current_currency_v1', 'IDR')
+            current_currency = 'IDR'
+            document.querySelectorAll('[data-display-currency="USD"]').forEach((el) => {
+                el.classList.add('hidden')
+            })
+            document.querySelectorAll('[data-display-currency="IDR"]').forEach((el) => {
+                el.classList.remove('hidden')
             })
         }
     }
