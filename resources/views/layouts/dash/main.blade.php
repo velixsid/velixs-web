@@ -68,6 +68,7 @@
                                     <div class="line-clamp-1">My Wishlist</div>
                                 </div>
                             </a>
+                            @if (config('app.api_velixs_endpoint'))
                             <a href="{!! route('dash.apihub') !!}" class="{{ Route::is('dash.apihub') ? 'active-menu-dash' : '' }} text-gray-900 dark:text-gray-300 group flex items-center px-3 py-3 text-sm font-medium rounded-md hover:bg-primary-50 dark:hover:bg-gray-800">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="text-gray-500 mr-2 flex-shrink-0 h-6 w-6" viewBox="0 0 24 24" stroke-width="1.6" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -77,6 +78,7 @@
                                     <div class="line-clamp-1">API Hub <span class="bg-primary-500/80 animate-pulse ml-1 rounded-xl text-white text-[11px] py-[2px] px-2">New</span></div>
                                 </div>
                             </a>
+                            @endif
                             <a href="{!! route('dash.reports') !!}" class="{{ Route::is('dash.reports') ? 'active-menu-dash' : '' }} text-gray-900 dark:text-gray-300 group flex items-center px-3 py-3 text-sm font-medium rounded-md hover:bg-primary-50 dark:hover:bg-gray-800">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="text-gray-500 mr-2 flex-shrink-0 h-6 w-6" viewBox="0 0 24 24" stroke-width="1.6" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
