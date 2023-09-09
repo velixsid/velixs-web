@@ -9,6 +9,8 @@ use App\Models\ApihubEndpoint;
 use App\Models\ApihubTags;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Cache;
 
 class ApihubController extends Controller
 {
@@ -206,6 +208,7 @@ class ApihubController extends Controller
         ]);
     }
 
+    // endpoint controller
 
     public function ep($id){
         $api = Apihub::find($id);
@@ -308,5 +311,136 @@ class ApihubController extends Controller
             'status' => 'success',
             'message' => 'Api endpoints deleted successfully'
         ]);
+    }
+
+
+    // plan controller
+
+    public function plan_index(){
+        return Layouts::view('admin.rapi.plan.index');
+    }
+
+    public function plan_create(Request $request){
+        if($request->isMethod('POST') && $request->ajax()){
+            try{
+                $client = new Client();
+                $response = $client->post(rtrim(config('app.api_velixs_endpoint'), '/').'/velixs/plan',[
+                    'headers' => [
+                        'Content-Type' => 'application/json',
+                        'X-Secret-Key' => config('app.api_velixs_secret'),
+                        'X-Wow' => config('app.api_velixs_wow')
+                    ],
+                    'body' => json_encode(array(
+                        "plan" => $request->plan,
+                        "max_request" => $request->max_request,
+                        "price" => $request->price,
+                        "pricing" => array(
+                            "button" => array(
+                                "title" => $request->button_title,
+                                "url" => $request->button_url
+                            ),
+                            "list" => $request->listinclude
+                        )
+                    ))
+                ]);
+                $res = json_decode($response->getBody()->getContents());
+                Cache::forget('pricings');
+                return response()->json([
+                    'status' => 'success',
+                    'message' => $res->message ?? 'Plan created successfully',
+                    'redirect_edit' => route('admin.plan.edit',$res->data->id)
+                ]);
+            }catch(Exception $e){
+                return response()->json([
+                    'message' => $e->getMessage()
+                ], 500);
+            }
+        } else {
+            return Layouts::view('admin.rapi.plan.create');
+        }
+    }
+
+    public function plan_edit(Request $request, $id){
+        if($request->isMethod('POST') && $request->ajax()){
+            try{
+                $client = new Client();
+                $response = $client->put(rtrim(config('app.api_velixs_endpoint'), '/').'/velixs/plan/'.$id,[
+                    'headers' => [
+                        'Content-Type' => 'application/json',
+                        'X-Secret-Key' => config('app.api_velixs_secret'),
+                        'X-Wow' => config('app.api_velixs_wow')
+                    ],
+                    'body' => json_encode(array(
+                        "plan" => $request->plan,
+                        "max_request" => $request->max_request,
+                        "price" => $request->price,
+                        'default_plan'=> $request->default==1 ? true : false,
+                        "pricing" => array(
+                            "button" => array(
+                                "title" => $request->button_title,
+                                "url" => $request->button_url
+                            ),
+                            "list" => $request->listinclude
+                        )
+                    ))
+                ]);
+                $res = json_decode($response->getBody()->getContents());
+                Cache::forget('pricings');
+                return response()->json([
+                    'status' => 'success',
+                    'message' => $res->message ?? 'Plan updated successfully',
+                ]);
+            }catch(Exception $e){
+                return response()->json([
+                    'message' => $e->getMessage()
+                ], 500);
+            }
+        } else {
+            try{
+                $client = new Client();
+                $response = $client->get(rtrim(config('app.api_velixs_endpoint'), '/').'/velixs/plan/'.$id,[
+                    'headers' => [
+                        'Content-Type' => 'application/json',
+                        'X-Secret-Key' => config('app.api_velixs_secret'),
+                        'X-Wow' => config('app.api_velixs_wow')
+                    ]
+                ]);
+                $res = json_decode($response->getBody()->getContents());
+                $data['plan'] = $res[0];
+                return Layouts::view('admin.rapi.plan.edit', $data);
+            }catch(Exception $e){
+                return response()->json([
+                    'message' => $e->getMessage()
+                ], 500);
+            }
+        }
+    }
+
+    public function plan_delete(Request $request){
+        if($request->ajax()){
+            try{
+                $client = new Client();
+                $response = $client->delete(rtrim(config('app.api_velixs_endpoint'), '/').'/velixs/plan',[
+                    'headers' => [
+                        'Content-Type' => 'application/json',
+                        'X-Secret-Key' => config('app.api_velixs_secret'),
+                        'X-Wow' => config('app.api_velixs_wow')
+                    ],
+                    'body' => json_encode(array(
+                        "id" => $request->ids
+                    ))
+                ]);
+                $res = json_decode($response->getBody()->getContents());
+                Cache::forget('pricings');
+                return response()->json([
+                    'status' => 'success',
+                    'message' => $res->message ?? 'Plan deleted successfully',
+                ]);
+            }catch(Exception $e){
+                return response()->json([
+                    'message' => $e->getMessage()
+                ], 500);
+            }
+        }
     }
 }

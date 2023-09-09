@@ -154,7 +154,7 @@
                 <div data-i18n="Manage Users">Manage WAGroup</div>
               </a>
             </li>
-            <li class="menu-item {{ Route::is('admin.rapi*') ? 'active open' : '' }}">
+            <li class="menu-item {{ Route::is('admin.rapi*') ? 'active open' : '' }} {{ Route::is('admin.plan*') ? 'active open' : '' }}">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                    <svg xmlns="http://www.w3.org/2000/svg" class="menu-icon tf-icons" viewBox="0 0 24 24" stroke-width="1.25" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -173,8 +173,8 @@
                       <div data-i18n="Manage Blog">License & Apikey</div>
                     </a>
                   </li>
-                  <li class="menu-item {{ Route::is('admin.blog.create') ? 'active' : '' }}">
-                    <a href="{!! route('admin.blog.create') !!}" class="menu-link">
+                  <li class="menu-item {{ Route::is('admin.plan.index') ? 'active' : '' }}">
+                    <a href="{!! route('admin.plan.index') !!}" class="menu-link">
                       <div data-i18n="New Blog">Manage Plan</div>
                     </a>
                   </li>

@@ -113,6 +113,15 @@ Route::group([
         Route::post('/{id}/endpoint/destroy',[ApihubController::class, 'ep_destroy'])->name('admin.rapi.endpoint.destroy');
     });
 
+    Route::prefix('plan')->group(function(){
+        Route::get('/',[ApihubController::class, 'plan_index'])->name('admin.plan.index');
+        Route::get('/create',[ApihubController::class, 'plan_create'])->name('admin.plan.create');
+        Route::post('/create',[ApihubController::class, 'plan_create'])->name('admin.plan.create');
+        Route::get('/edit/{id}',[ApihubController::class, 'plan_edit'])->name('admin.plan.edit');
+        Route::post('/edit/{id}',[ApihubController::class, 'plan_edit'])->name('admin.plan.edit');
+        Route::post('/delete',[ApihubController::class, 'plan_delete'])->name('admin.plan.delete');
+    });
+
     Route::prefix('users')->group(function(){
         Route::get('/', [UsersController::class, 'index'])->name('admin.users.index');
         Route::get('/json', [UsersController::class, 'json'])->name('admin.users.json');

@@ -259,7 +259,7 @@ class DashboardsController extends Controller
         RateLimiter::hit('apihub-planinfo:'.auth()->id());
         if(auth()->user()->api_key){
             $client = new Client();
-            $response = $client->get(rtrim(config('app.api_velixs_endpoint'), '/').'/velixs/apikey/user/'.auth()->id(),[
+            $response = $client->get(rtrim(config('app.api_velixs_endpoint'), '/').'/velixs/apikey/userid/'.auth()->id(),[
                 'headers' => [
                     'Content-Type' => 'application/json',
                     'X-Secret-Key' => config('app.api_velixs_secret'),
