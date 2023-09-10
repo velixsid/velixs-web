@@ -111,7 +111,7 @@
                                         </div>
                                         <div></div>
                                     </div>
-                                    <div class="editor language-json p-3 text-sm" data-body='{!! $ep->data ?? "{}" !!}'></div>
+                                    <div class="editor language-json p-3 text-sm !whitespace-nowrap overflow-x-auto" data-body='{!! $ep->data ?? "{}" !!}'></div>
                                     <input type="hidden" name="data-body" value='{!! $ep->data ?? "{}" !!}'>
                                 </div>
 
