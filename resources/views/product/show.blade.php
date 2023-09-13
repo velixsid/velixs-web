@@ -140,12 +140,21 @@
                                     @if ($item->github)
                                         <h1 class="text-2xl font-bold text-white mb-3">GitHub</h1>
                                     @else
-                                        @isset($item->price['usd'])
-                                            <h1 data-display-currency="USD" class="text-2xl font-bold text-white mb-3">{!! $item->_display_price('usd') !!}</h1>
-                                        @endisset
-                                        @isset($item->price['idr'])
-                                            <h1 data-display-currency="IDR" class="text-2xl font-bold text-white mb-3 hidden">{!! $item->_display_price('idr') !!}</h1>
-                                        @endisset
+                                        <div class="mb-3 flex items-center gap-x-2">
+                                            @isset($item->price['usd'])
+                                                <h1 data-display-currency="USD" class="text-2xl font-bold text-white animate-popup-in">{!! $item->_display_price('usd') !!}</h1>
+                                            @endisset
+                                            @isset($item->price['idr'])
+                                                <h1 data-display-currency="IDR" class="text-2xl font-bold text-white hidden animate-popup-in">{!! $item->_display_price('idr') !!}</h1>
+                                            @endisset
+                                            <div data-toggle-currency="" class="p-[3px] rounded bg-white text-primary-500 cursor-pointer">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                    <path d="M4 12v-3a3 3 0 0 1 3 -3h13m-3 -3l3 3l-3 3"></path>
+                                                    <path d="M20 12v3a3 3 0 0 1 -3 3h-13m3 3l-3 -3l3 -3"></path>
+                                                </svg>
+                                            </div>
+                                        </div>
                                     @endif
                                     <div class="flex">
                                         @if ($item->github)
@@ -273,16 +282,25 @@
                 <div @click="$store.navbarMobile = !$store.navbarMobile" class="cursor-pointer animate-pulse bg-gray-300 dark:bg-gray-600 py-[0.140rem] px-5 rounded-full"></div>
             </div>
             <div class="mt-3 px-3">
-                @if ($item->github)
-                    <h1 class="text-2xl font-bold dark:text-white text-gray-700 mb-3">GitHub</h1>
-                @else
-                    @isset($item->price['usd'])
-                        <h1 data-display-currency="USD" class="text-2xl font-bold dark:text-white text-gray-700 mb-3">{!! $item->_display_price('usd') !!}</h1>
-                    @endisset
-                    @isset($item->price['idr'])
-                        <h1 data-display-currency="IDR" class="text-2xl font-bold dark:text-white text-gray-700 mb-3 hidden">{!! $item->_display_price('idr') !!}</h1>
-                    @endisset
-                @endif
+                <div class="flex items-center mb-3 gap-x-2">
+                    @if ($item->github)
+                        <h1 class="text-2xl font-bold dark:text-white text-gray-700">GitHub</h1>
+                    @else
+                        @isset($item->price['usd'])
+                            <h1 data-display-currency="USD" class="text-2xl font-bold dark:text-white text-gray-700 ">{!! $item->_display_price('usd') !!}</h1>
+                        @endisset
+                        @isset($item->price['idr'])
+                            <h1 data-display-currency="IDR" class="text-2xl font-bold dark:text-white text-gray-700 hidden">{!! $item->_display_price('idr') !!}</h1>
+                        @endisset
+                        <div data-toggle-currency="" class="p-[3px] rounded bg-primary-500 text-white">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <path d="M4 12v-3a3 3 0 0 1 3 -3h13m-3 -3l3 3l-3 3"></path>
+                                <path d="M20 12v3a3 3 0 0 1 -3 3h-13m3 3l-3 -3l3 -3"></path>
+                            </svg>
+                        </div>
+                    @endif
+                </div>
                 <div class="flex">
                     <a href="{!! $item->preview !!}" class="bg-gray-200 dark:bg-slate-600 dark:hover:bg-slate-700 text-gray-700 dark:text-white rounded-xl p-3 mr-2">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -336,12 +354,6 @@
     </div>
 
 </main>
-<div class="fixed bottom-16 right-4 lg:bottom-[3rem] lg:right-[4rem] z-50">
-    <button data-toggle-currency="" class="animate-bounce btn-gradient-3 lg:w-12 lg:h-12 w-11 h-11 rounded-full flex items-center justify-center">
-        <div data-display-currency="USD" class="text-white text-sm font-semibold">USD</div>
-        <div data-display-currency="IDR" class="text-white text-sm font-semibold hidden">IDR</div>
-    </button>
-</div>
 @include('layouts.landing.footer')
 @endsection
 

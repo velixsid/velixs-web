@@ -11,8 +11,8 @@
                 </linearGradient>
             </defs>
         </svg>
-        <div class="mx-auto max-w-7xl px-6 lg:flex lg:items-center lg:gap-x-10 lg:px-8">
-            <div class="mx-auto max-w-2xl lg:flex-auto my-32"> {{-- mt-32 with mascot--}}
+        <div class="mx-auto max-w-7xl px-6 md:flex md:items-center md:gap-x-10 md:px-8 ">
+            <div class="mx-auto max-w-2xl md:flex-auto mt-32">
                 <div class="animate-fade-in-left-bounce">
                     <a href="{!! route('rapi') !!}" class="inline-flex space-x-6">
                         <span class="rounded-full bg-primary-600/10 px-3 py-1 text-sm font-semibold leading-6 text-primary-600 ring-1 ring-inset ring-primary-600/10">What's new</span>
@@ -52,13 +52,8 @@
                 </div>
             </div>
 
-            <div class="lg:flex-shrink-0 lg:flex-grow animate-fade-in-left-bounce-2">{{-- lg:h-[50rem] sm:h-[45rem] --}}
-                {{-- <div>
-                    <img class="hidden dark:block" src="assets/img/nakiri-dark.png" alt="Nakiri">
-                </div>
-                <div>
-                    <img class="dark:hidden block" src="assets/img/nakiri-light.png" alt="Nakiri">
-                </div> --}}
+            <div class="md:flex-shrink-0 md:flex-grow animate-fade-in-left-bounce-2">{{-- lg:h-[50rem] sm:h-[45rem] --}}
+                <img src="{{ asset('assets/img/ascot1.png') }}" alt="VELIXS">
             </div>
         </div>
         <div class="absolute left-[5rem] bottom-0 flex h-8 items-end overflow-hidden">
@@ -150,7 +145,7 @@
                         <ul role="list" class="mx-auto grid content-center grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-2 md:gap-x-6 lg:max-w-5xl lg:gap-x-8 lg:gap-y-12 xl:grid-cols-4 lg:grid-cols-4">
                             <li>
                                 <a href="{!! route('profile','ilsya') !!}" class="space-y-4">
-                                    <img class="mx-auto h-20 w-20 shadow border dark:border-none rounded-full lg:h-24 lg:w-24" src="assets/img/team/ilsya.jpg" alt="">
+                                    <img class="mx-auto h-20 w-20 shadow border dark:border-none rounded-full lg:h-24 lg:w-24" src="{{ asset("assets/img/team/ilsya.webp") }}" alt="">
                                     <div class="space-y-2">
                                         <div class="text-xs font-medium lg:text-sm">
                                             <h3 class="dark:text-slate-200">Ilsya</h3>
