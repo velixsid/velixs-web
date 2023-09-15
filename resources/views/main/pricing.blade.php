@@ -28,7 +28,7 @@
                             @if ($pricing['price']=="0")
                                 <span class="text-lg sm:text-xl font-bold tracking-tight text-slate-900 dark:text-slate-50">Lifetime</span>
                             @else
-                                <span class="text-lg sm:text-xl font-bold tracking-tight text-slate-900 dark:text-slate-50">Rp {{ $pricing['price'] }}</span>
+                                <span class="text-lg sm:text-xl font-bold tracking-tight text-slate-900 dark:text-slate-50">Rp {{ number_format($pricing['price'], 0, ',', '.') }}</span>
                                 <span class="text-sm sm:text-base font-medium text-gray-500">/ bulan</span>
                             @endif
                         </p>
