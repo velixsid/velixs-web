@@ -56,12 +56,13 @@ class UsersController extends Controller
                         'X-Wow' => config('app.api_velixs_wow')
                     ]
                 ]);
-                if($user->avatar){
-                    Storage::delete($user->avatar);
-                }
-                OwnedLicense::where('user_id', $user->id)->delete();
-                $user->delete();
             }catch(\Exception $e){}
+
+            if($user->avatar){
+                Storage::delete($user->avatar);
+            }
+            OwnedLicense::where('user_id', $user->id)->delete();
+            $user->delete();
         }
 
         return response()->json([
