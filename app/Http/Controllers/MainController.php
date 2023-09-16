@@ -28,6 +28,18 @@ class MainController extends Controller
         return Layouts::view('main/landing',$data);
     }
 
+    public function license_direct(Request $request){
+        $args = $request->segment(1);
+        $license = License::where('license_key', str_replace("@","",$args))->first();
+        if(!$license) return redirect()->route('main')->with('bug', 'License key not found.');
+        $data['seo'] = (object)[
+            'title'=> 'VELIXS',
+        ];
+        $data['blog_latest'] = Blog::orderBy('id', 'desc')->limit(3)->get();
+        $data['license_get'] = $license;
+        return Layouts::view('main/landing',$data);
+    }
+
     public function sus(Request $request){
         if(!auth()->check()) return redirect()->route('main');
         if(!auth()->user()->suspended) return redirect()->route('main');
@@ -58,7 +70,7 @@ class MainController extends Controller
                 }else{
                     $search = substr(str_replace(" ","",$search), 1);
                     if(strlen($search) >= 1){
-                        RateLimiter::hit('search-license:'.$request->ip());
+                        // RateLimiter::hit('search-license:'.$request->ip());
                         $getlicense = License::where('license_key', $search)->first();
                         if($getlicense){
                             $result['result'] = [

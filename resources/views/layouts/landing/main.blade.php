@@ -7,6 +7,7 @@ AJARIN DONG PUH SEPUH
 <html lang="en" data-theme="light" class="scroll-smooth">
 
 <head>
+    @isset($license_get) <meta name="license-get" content="{{ $license_get->license_key }}"> @endisset
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="base_url" content="{{ url('/') }}">
     <meta charset="UTF-8">
@@ -643,7 +644,7 @@ AJARIN DONG PUH SEPUH
     </div>
 
     <div id="modal-search" class="fixed z-20 w-full h-full top-0 left-0 hidden items-start justify-center p-4 sm:p-6 md:p-20" role="dialog" aria-modal="true">
-        <div class="modal-overlay absolute inset-0 dark:bg-slate-950/60 bg-slate-900/30 transition-opacity opacity-0"></div>
+        <div class="modal-overlay absolute inset-0 dark:bg-slate-950/60 bg-slate-900/30 backdrop-blur-sm transition-opacity opacity-0"></div>
         <div class="modal-container max-w-full w-[42rem] relative inset-0 overflow-y-auto transform transition-all duration-300 opacity-0 -translate-y-4">
             <div>
                 <div class="mx-auto animate-popup-in divide-y divide-gray-500 divide-opacity-10 overflow-hidden rounded-md bg-white dark:bg-slate-800 shadow-2x border dark:border-gray-700 border-opacity-70">

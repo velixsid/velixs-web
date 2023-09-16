@@ -103,7 +103,7 @@ Route::group([
     Route::get('/{slug}/lab', [RapiController::class, 'detail'])->name('rapi.lab');
 });
 
+Route::get('/@VELIXS-{license}', [MainController::class, 'license_direct'])->name('license.direct');
 Route::get('/@{username}', [MainController::class, 'profile'])->name('profile');
-
 // admin routes start
 require_once __DIR__ . '/admin.php';

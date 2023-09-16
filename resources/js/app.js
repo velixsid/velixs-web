@@ -156,6 +156,19 @@ import './bootstrap';
 
         typeEffect()
 
+        document.addEventListener('DOMContentLoaded', () => {
+            if(document.querySelector('meta[name="license-get"]')) {
+                toggleModalSearch(true, "#"+document.querySelector('meta[name="license-get"]').getAttribute('content'))
+                modal_search.querySelector('input').dispatchEvent(new Event('keyup'))
+            } else {
+                if(document.querySelector('#modal-search .modal-overlay')){
+                    document.querySelector('#modal-search .modal-overlay').addEventListener('click', () => {
+                        toggleModalSearch(false)
+                    })
+                }
+            }
+        })
+
         modal_search.querySelector('input').addEventListener('keyup', debounce(function (e) {
             modal_search.querySelector('#result').classList.remove('min-h-[20rem]')
             modal_search.querySelector('#result').innerHTML = ''
@@ -190,26 +203,26 @@ import './bootstrap';
                             delayForEach(response.data.result, (item, index) => {
                                 var a = document.createElement('a')
                                 a.href = item.url
-                                a.classList.add('group', 'animate-fade-in-left-bounce','flex', 'cursor-pointer', 'select-none', 'items-center', 'rounded-md', 'px-3', 'py-2', 'hover:bg-gray-900', 'hover:bg-opacity-5', 'dark:hover:bg-gray-900')
+                                a.classList.add('group', 'animate-fade-in-left-bounce','flex', 'cursor-pointer', 'select-none', 'items-center', 'px-3', 'py-2', 'hover:bg-gray-900', 'hover:bg-opacity-5', 'dark:hover:bg-gray-900')
                                 if(item.type == 'item') {
-                                    a.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 flex-none text-gray-900 dark:text-gray-400 text-opacity-40" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M12 3l8 4.5l0 9l-8 4.5l-8 -4.5l0 -9l8 -4.5"></path><path d="M12 12l8 -4.5"></path><path d="M12 12l0 9"></path><path d="M12 12l-8 -4.5"></path></svg>`
+                                    a.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 flex-none text-gray-900 dark:text-gray-400 text-opacity-40" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M12 3l8 4.5l0 9l-8 4.5l-8 -4.5l0 -9l8 -4.5"></path><path d="M12 12l8 -4.5"></path><path d="M12 12l0 9"></path><path d="M12 12l-8 -4.5"></path></svg>`
                                 } else {
-                                    a.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 flex-none text-gray-900 dark:text-gray-400 text-opacity-40" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M8 21h8a5 5 0 0 0 5 -5v-3a3 3 0 0 0 -3 -3h-1v-2a5 5 0 0 0 -5 -5h-4a5 5 0 0 0 -5 5v8a5 5 0 0 0 5 5z"></path><path d="M7 7m0 1.5a1.5 1.5 0 0 1 1.5 -1.5h3a1.5 1.5 0 0 1 1.5 1.5v0a1.5 1.5 0 0 1 -1.5 1.5h-3a1.5 1.5 0 0 1 -1.5 -1.5z"></path><path d="M7 14m0 1.5a1.5 1.5 0 0 1 1.5 -1.5h7a1.5 1.5 0 0 1 1.5 1.5v0a1.5 1.5 0 0 1 -1.5 1.5h-7a1.5 1.5 0 0 1 -1.5 -1.5z"></path></svg>`
+                                    a.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 flex-none text-gray-900 dark:text-gray-400 text-opacity-40" viewBox="0 0 24 24" stroke-width="3s" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M8 21h8a5 5 0 0 0 5 -5v-3a3 3 0 0 0 -3 -3h-1v-2a5 5 0 0 0 -5 -5h-4a5 5 0 0 0 -5 5v8a5 5 0 0 0 5 5z"></path><path d="M7 7m0 1.5a1.5 1.5 0 0 1 1.5 -1.5h3a1.5 1.5 0 0 1 1.5 1.5v0a1.5 1.5 0 0 1 -1.5 1.5h-3a1.5 1.5 0 0 1 -1.5 -1.5z"></path><path d="M7 14m0 1.5a1.5 1.5 0 0 1 1.5 -1.5h7a1.5 1.5 0 0 1 1.5 1.5v0a1.5 1.5 0 0 1 -1.5 1.5h-7a1.5 1.5 0 0 1 -1.5 -1.5z"></path></svg>`
                                 }
-                                a.innerHTML += `<span class="ml-3 flex-auto truncate dark:text-gray-200">${item.title}</span><span class="jump ml-3 hidden flex-none text-gray-500 group-hover:block">Jump to...</span>`
+                                a.innerHTML += `<span class="ml-3 flex-auto truncate dark:text-gray-200 text-slate-600 text-sm">${item.title}</span><span class="jump ml-3 text-xs hidden flex-none text-gray-500 group-hover:block">Jump to...</span>`
                                 ul.appendChild(a)
                             }, 80);
                         }else{
                             modal_search.querySelector('#empty').classList.remove('hidden')
-                            modal_search.querySelector("#empty").innerHTML = `<svg class="mx-auto h-6 w-6 text-gray-900 dark:text-gray-300 text-opacity-40" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.75V12A2.25 2.25 0 014.5 9.75h15A2.25 2.25 0 0121.75 12v.75m-8.69-6.44l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z" /></svg><p class="mt-4 text-sm text-gray-900 dark:text-gray-400">We couldn't find any items with that term. Please try again.</p>`
+                            modal_search.querySelector("#empty").innerHTML = `<span class="text-2xl" >😿</span><p class="mt-4 md:text-sm text-xs text-gray-900 dark:text-gray-400">We couldn't find any items with that term. Please try again.</p>`
                         }
                     } else if(response.data.for == 'license'){
                         if(response.data.error){
                             modal_search.querySelector('#empty').classList.remove('hidden')
-                            modal_search.querySelector("#empty").innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="mx-auto h-6 w-6 text-gray-900 dark:text-gray-300 text-opacity-40" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path><path d="M9 10l.01 0"></path><path d="M15 10l.01 0"></path><path d="M9 15l6 0"></path></svg><p class="mt-4 text-sm text-gray-900 dark:text-gray-400">${response.data.error}</p>`
+                            modal_search.querySelector("#empty").innerHTML = `<span class="text-2xl" >😿</span><p class="mt-4 text-xs md:text-sm text-gray-900 dark:text-gray-400">${response.data.error}</p>`
                         }else{
                             var resultforlicense = document.createElement('div')
-                            resultforlicense.innerHTML = `<div class="py-14 px-6 text-center sm:px-14 animate-popup-in"><svg xmlns="http://www.w3.org/2000/svg" class="mx-auto animate-spin h-6 w-6 text-gray-900 dark:text-gray-300 text-opacity-40" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path><path d="M9 10l.01 0"></path><path d="M15 10l.01 0"></path><path d="M9.5 15a3.5 3.5 0 0 0 5 0"></path></svg><p class="mt-4 text-sm text-gray-900 dark:text-gray-400">${response.data.result.item}<br>License available. Click the "claim" button below to proceed.<br><br><a class="btn-gradient w-full p-3 rounded-full font-semibold text-white block" href="${response.data.result.url}">CLAIM</a> </p></div>`
+                            resultforlicense.innerHTML = `<div class="py-14 px-6 text-center sm:px-14 animate-popup-in"><span class="text-2xl">😺</span><p class="mt-4 text-xs md:text-sm text-gray-900 dark:text-gray-400">${response.data.result.item}<br>License available. Click the "claim" button below to proceed.<br><br><a class="border bottom-2 border-slate-400 dark:border-slate-500 dark:text-slate-200 border-dashed w-full p-3 rounded-full font-semibold inline-block" href="${response.data.result.url}">CLAIM</a> </p></div>`
                             modal_search.querySelector('#result').appendChild(resultforlicense)
                         }
                     }
@@ -218,14 +231,7 @@ import './bootstrap';
                     modal_search.querySelector('#indicator-loading').classList.add('hidden')
                     console.log(error);
                 })
-        }, 450))
-    }
-
-    const overlay = document.querySelector('#modal-search .modal-overlay')
-    if(overlay){
-        overlay.addEventListener('click', () => {
-            toggleModalSearch(false)
-        })
+        }, 500))
     }
 
     // if input focus
@@ -234,12 +240,6 @@ import './bootstrap';
             toggleModalSearch(true)
         })
     }
-
-    document.querySelectorAll('#modal-search .modal-close').forEach(close => {
-        close.addEventListener('click', () => {
-            toggleModalSearch(false)
-        })
-    })
 
     document.onkeydown = function (evt) {
         evt = evt || window.event
@@ -291,7 +291,7 @@ import './bootstrap';
         }
     };
 
-    function toggleModalSearch(event) {
+    function toggleModalSearch(event, valueinput = "") {
         if(!modal_search) return
         if (event) {
             toggleQuickAccess(false)
@@ -299,7 +299,7 @@ import './bootstrap';
             // autofocus input
             modal_search.querySelector('input').focus()
             // set input value
-            modal_search.querySelector('input').value = ''
+            modal_search.querySelector('input').value = valueinput
             modal_search.querySelector('#result').innerHTML = ''
             modal_search.querySelector('#empty').classList.add('hidden')
             // disabled scroll
