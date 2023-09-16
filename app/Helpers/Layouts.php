@@ -48,6 +48,17 @@ class Layouts
         return $slug;
     }
 
+    public static function randomPasswordDefault($length = 10) {
+        $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        $password = '';
+
+        for ($i = 0; $i < $length; $i++) {
+            $password .= $characters[rand(0, strlen($characters) - 1)];
+        }
+
+        return $password;
+    }
+
     // short number
     public static function shortNumber($number){
         if($number >= 1000000000){

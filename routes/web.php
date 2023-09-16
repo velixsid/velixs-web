@@ -35,15 +35,15 @@ Route::get('/sus',[MainController::class, 'sus'])->name('sus');
 // auth routes start
 Route::get('login',[AuthController::class, 'index'])->name('login')->middleware('guest');
 Route::post('login',[AuthController::class, 'index'])->name('login')->middleware('guest');
-Route::get('register',[AuthController::class, 'register'])->name('register')->middleware('guest');
-Route::post('register',[AuthController::class, 'register'])->name('register')->middleware('guest');
+Route::get('register',[AuthController::class, 'register_v2'])->name('register')->middleware('guest');
+Route::post('register',[AuthController::class, 'register_v2'])->name('register')->middleware('guest');
+Route::get('register/welcome',[AuthController::class, 'register_welcome'])->name('register.welcome');
 Route::get('logout',[AuthController::class, 'logout'])->name('logout')->middleware('auth');
 Route::get('forgot',[AuthController::class, 'forgot'])->name('forgot')->middleware('guest');
 Route::post('forgot',[AuthController::class, 'forgot'])->name('forgot')->middleware('guest');
 Route::get('reset-password/{token}',[AuthController::class, 'reset'])->name('password.reset')->middleware('guest');
 Route::post('reset-password',[AuthController::class, 'resetpost'])->name('password.update')->middleware('guest');
 // auth routes end
-
 
 Route::group([
     'prefix' => 'blog',

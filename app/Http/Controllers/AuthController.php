@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\Layouts;
+use App\Mail\RegisterWelcomeMail;
 use App\Mail\ResetPasswordMail;
 use Illuminate\Support\Str;
 use App\Models\User;
@@ -12,7 +13,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\RateLimiter;
 
 class AuthController extends Controller
@@ -40,7 +40,7 @@ class AuthController extends Controller
                     RateLimiter::clear('login-attemp-lol:'.$request->ip());
                     return response()->json([
                         'message' => 'Login success. Redirecting...',
-                        'redirect' => $request->session()->get('url.intended', route('main')),
+                        'redirect' => $request->query('reff') ?? $request->session()->get('url.intended', route('main')),
                     ]);
                 }else{
                     return response()->json([
@@ -87,6 +87,58 @@ class AuthController extends Controller
             ];
             return Layouts::view('auth.register',$data);
         }
+    }
+
+    public function register_v2(Request $request){
+        if($request->method() == 'POST' && $request->ajax()) {
+            $request->validate([
+                'fullname' => 'required',
+                'username' => 'required|max:12|regex:/^[a-z0-9]+$/|unique:users,username',
+                'email' => 'required|email|unique:users,email',
+            ],[
+                'username.regex' => 'Username can only contain letters and numbers'
+            ]);
+
+            try{
+                $random = Layouts::randomPasswordDefault();
+
+                Mail::to($request->email)->send(new RegisterWelcomeMail([
+                    'name' => $request->fullname,
+                    'username' => $request->username,
+                    'email' => $request->email,
+                    'password' => $random
+                ]));
+
+                $user = new User();
+                $user->name = $request->fullname;
+                $user->username = $request->username;
+                $user->email = $request->email;
+                $user->password = bcrypt($random);
+                $user->save();
+
+                session()->flash('register.welcome', $user);
+
+                return response()->json([
+                    'message' => 'Register success. Redirecting...',
+                ]);
+            }catch(\Exception $e){
+                return response()->json([
+                    'message' => $e->getMessage()
+                ], 422);
+            }
+        } else {
+            $data['seo'] = (object)[
+                'title' => 'Sign Up',
+            ];
+            return Layouts::view('auth.register_v2',$data);
+        }
+    }
+
+    public function register_welcome(){
+        if(!session()->has('register.welcome')) return redirect()->route('login');
+        return Layouts::view('auth.register_welcome',[
+            'user' => session()->get('register.welcome')
+        ]);
     }
 
     public function forgot(Request $request) {
