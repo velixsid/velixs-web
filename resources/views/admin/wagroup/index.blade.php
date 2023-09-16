@@ -47,8 +47,50 @@
                         text: '<i class="ti ti-trash me-sm-1" style="margin-top: -3px;"></i> <span class="d-none d-sm-inline-block">Delete</span>',
                         className: 'itable-btn-delete btn btn-label-danger me-2'
                     },
+                    {
+                        text: '<i class="ti ti-repeat me-sm-1" style="margin-top: -3px;"></i> <span class="d-none d-sm-inline-block">Sync</span>',
+                        className: 'itable-btn-sync btn btn-label-primary me-2'
+                    },
                 ]
             });
+
+            $(document).on('click', '.itable-btn-sync', (e)=>{
+                e.preventDefault();
+                Swal.fire({
+                    html: '<div class="d-flex justify-content-center"><div class="sk-bounce sk-primary"><div class="sk-bounce-dot"></div><div class="sk-bounce-dot"></div></div></div><br>Loading...',
+                    allowOutsideClick: false,
+                    buttonsStyling: false,
+                    showConfirmButton: false,
+                });
+                $.ajax({
+                    url: '{!! route('admin.wagroup.sync') !!}',
+                    type: 'GET',
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                    },
+                    success: function(res){
+                        Swal.fire({
+                            icon: 'success',
+                            text: res.message ?? 'Sync successfully!',
+                            customClass: {
+                                confirmButton: 'btn btn-primary'
+                            },
+                            timer: 1500
+                        });
+                        table.ajax.reload();
+                    },
+                    error: function(data){
+                        Swal.fire({
+                            icon: 'error',
+                            text: data.responseJSON.message ?? 'Something went wrong!',
+                            customClass: {
+                                confirmButton: 'btn btn-primary'
+                            },
+                            timer: 1500
+                        });
+                    }
+                });
+            })
 
             //__btn_switch_status
             $(document).on('click','.__btn_switch_status',function(e){

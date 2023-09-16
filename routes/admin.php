@@ -92,6 +92,7 @@ Route::group([
         Route::get('/json',[WAProgrammerController::class, 'json'])->name('admin.wagroup.json');
         Route::post('/toggle-status',[WAProgrammerController::class, 'toggle_status'])->name('admin.wagroup.toggle.status')->withoutMiddleware(['csrf']);
         Route::post('/destroy',[WAProgrammerController::class, 'destroy'])->name('admin.wagroup.destroy');
+        Route::get('/sync',[WAProgrammerController::class, 'sync'])->name('admin.wagroup.sync');
     });
 
     Route::prefix('rapi')->group(function(){

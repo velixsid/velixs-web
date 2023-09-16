@@ -38,7 +38,7 @@
             <div class="lg:w-0 lg:flex-1">
                 <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl dark:text-slate-50">Punya Group Programmer ?</h2>
                 <p class="mt-3 max-w-3xl text-lg text-gray-500 dark:text-slate-400">
-                    Terimakasih atas kontribusinya, jika teman-teman memiliki group programmer yang ingin di share, silahkan submit link groupnya dibawah ini, nanti akan admin review terlebih dahulu sebelum di publish.
+                    Jika teman-teman memiliki group programmer yang ingin di share, silahkan submit link groupnya dibawah ini, nanti akan admin review terlebih dahulu sebelum di publish.
                 </p>
             </div>
             <div class="mt-8 lg:mt-0 lg:ml-8">
@@ -46,7 +46,9 @@
                     <label for="email-address" class="sr-only">Whatsapp Invite</label>
                     <input name="url" type="text" required class="w-full rounded-md input-versiku px-5 py-3 placeholder-gray-400 shadow-sm border sm:max-w-xs" placeholder="https://chat.whatsapp.com/example">
                     <div class="mt-3 rounded-md shadow sm:mt-0 sm:ml-3 sm:flex-shrink-0">
-                        <button type="submit" class="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-5 text-base font-medium text-white hover:bg-indigo-700">Submit</button>
+                        <button type="submit" class="flex w-full items-center justify-center gap-x-1 rounded-md border border-transparent bg-indigo-600 py-3 px-5 text-base font-medium text-white hover:bg-indigo-700">
+                            Submit
+                        </button>
                     </div>
                 </form>
                 <p class="mt-3 text-sm text-gray-500">
@@ -67,7 +69,7 @@
         document.getElementById('submit-wa').addEventListener('submit',function(e){
             e.preventDefault();
             this.querySelector('button').disabled = true;
-            this.querySelector('button').innerHTML = 'Loading...';
+            this.querySelector('button').innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 animate-spin" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M12 3a9 9 0 1 0 9 9"></path></svg>Submit';
             axios.post('{!! route('whatsapp.programmer.submit') !!}', new FormData(this)).then((res)=>{
                 playN();
                 toast.toast({

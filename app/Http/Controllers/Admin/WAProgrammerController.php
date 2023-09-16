@@ -5,7 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Helpers\Layouts;
 use App\Http\Controllers\Controller;
 use App\Models\waGroup;
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\RequestException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 
 class WAProgrammerController extends Controller
@@ -86,6 +89,40 @@ class WAProgrammerController extends Controller
         return response()->json([
             'status' => 'success',
             'message' => 'Group deleted successfully'
+        ]);
+    }
+
+
+    public function sync(Request $request){
+        $client = new Client();
+        $table = waGroup::all();
+        foreach($table as $row){
+            try{
+                $res = $client->get(rtrim(config('app.api_velixs_endpoint'), '/').'/whatsapp-group?url='.$row->whatsapp_url, [
+                    'headers' => [
+                        'Content-Type' => 'application/json',
+                        'X-VelixsAPI-Key' => config('app.api_velixs_apikey')
+                    ]
+                ]);
+                $http = json_decode($res->getBody()->getContents(), true);
+                $group = waGroup::find($row->id);
+                $group->name = $http['data']['title'];
+                $image = file_get_contents($http['data']['image']);
+                if($row->image){ Storage::delete($row->image); }
+                $imageName = 'wa-group-'.Str::random(10).'.jpg';
+                Storage::disk('public')->put('wagroup/'.$imageName, $image);
+                $group->image = 'wagroup/'.$imageName;
+                $group->save();
+            }catch(RequestException $e){
+                if(json_decode($e->getResponse()->getBody()->getContents())->message=='group not found'){
+                    waGroup::destroy($row->id);
+                }
+            }
+        }
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Group updated successfully'
         ]);
     }
 

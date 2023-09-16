@@ -21,6 +21,7 @@ return [
     'api_velixs_secret' => env('API_VELIXS_SECRET', ""),
     'api_velixs_wow' => env('API_VELIXS_WOW', ""),
     'api_velixs_endpoint' => env('API_VELIXS_ENDPOINT', false),
+    'api_velixs_apikey' => env('API_VELIXS_APIKEY_PERSONAL', ''),
     /*
     |--------------------------------------------------------------------------
     | Application Environment

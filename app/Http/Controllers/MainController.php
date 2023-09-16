@@ -10,11 +10,11 @@ use App\Models\User;
 use App\Models\waGroup;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\RequestException;
 use Illuminate\Support\Facades\Cache;
 
 class MainController extends Controller
@@ -159,34 +159,33 @@ class MainController extends Controller
                 }
             }
             try{
-                $http = Http::get('https://api.velixs.com/whatsapp-group?url='.$url)->object();
-                if($http->status){
-                    $group = new waGroup();
-                    $group->whatsapp_url = $url;
-                    $group->name = $http->data->title;
-                    $image = file_get_contents($http->data->image);
-                    $imageName = 'wa-group-'.Str::random(10).'.jpg';
-                    Storage::disk('public')->put('wagroup/'.$imageName, $image);
-                    $group->image = 'wagroup/'.$imageName;
-                    $group->save();
-                    return response()->json([
-                        'status' => true,
-                        'style' => 'success',
-                        'message' => 'Terimakasih sudah ikut berkontribusi, group akan kami review terlebih dahulu sebelum di publish',
-                        'data' => $http->data,
-                    ], 200);
-                } else {
-                    return response()->json([
-                        'status' => false,
-                        'style' => 'warning',
-                        'message' => 'Group tidak ditemukan',
-                    ], 404);
-                }
-            }catch(\Exception $e){
+                $client = new Client();
+                $res = $client->get(rtrim(config('app.api_velixs_endpoint'), '/').'/whatsapp-group?url='.$url, [
+                    'headers' => [
+                        'Content-Type' => 'application/json',
+                        'X-VelixsAPI-Key' => config('app.api_velixs_apikey')
+                    ]
+                ]);
+                $http = json_decode($res->getBody()->getContents(), true);
+                $group = new waGroup();
+                $group->whatsapp_url = $url;
+                $group->name = $http['data']['title'];
+                $image = file_get_contents($http['data']['image']);
+                $imageName = 'wa-group-'.Str::random(10).'.jpg';
+                Storage::disk('public')->put('wagroup/'.$imageName, $image);
+                $group->image = 'wagroup/'.$imageName;
+                $group->save();
+                return response()->json([
+                    'status' => true,
+                    'style' => 'success',
+                    'message' => 'Terimakasih sudah ikut berkontribusi, group akan kami review terlebih dahulu sebelum di publish',
+                    'data' => $http['data'],
+                ], 200);
+            }catch(RequestException $e){
                 return response()->json([
                     'status' => false,
                     'style' => 'error',
-                    'message' => $e->getMessage(),
+                    'message' => json_decode($e->getResponse()->getBody()->getContents())->message ?? 'Something went wrong',
                 ], 500);
             }
         } else {
