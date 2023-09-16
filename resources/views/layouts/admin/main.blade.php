@@ -168,11 +168,6 @@
                       <div data-i18n="Manage APIs">Manage APIs</div>
                     </a>
                   </li>
-                  <li class="menu-item {{ Route::is('admin.blog.index') ? 'active' : '' }}">
-                    <a href="{!! route('admin.blog.index') !!}" class="menu-link">
-                      <div data-i18n="Manage Blog">License & Apikey</div>
-                    </a>
-                  </li>
                   <li class="menu-item {{ Route::is('admin.plan.index') ? 'active' : '' }}">
                     <a href="{!! route('admin.plan.index') !!}" class="menu-link">
                       <div data-i18n="New Blog">Manage Plan</div>

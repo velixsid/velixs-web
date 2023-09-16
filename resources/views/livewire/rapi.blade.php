@@ -18,7 +18,7 @@
                 <div class="relative transform transition-all animate-pulse" wire:loading>
                     <div class="bg-gray-100 dark:bg-gray-800 p-3 rounded-xl overflow-hidden min-h-[9rem]">
                         <div class="flex items-center justify-between">
-                            <div class="flex h-8 w-8 lg:w-9 lg:h-9 flex-shrink-0 overflow-hidden mr-2 rounded-full bg-gray-400 dark:bg-gray-700"></div>
+                            <div class="flex h-8 w-8 lg:w-9 lg:h-9 flex-shrink-0 overflow-hidden mr-2 rounded-md bg-gray-400 dark:bg-gray-700"></div>
                         </div>
                         <div class="mt-4 dark:text-white line-clamp-1 flex items-center gap-x-1">
                             <p class="h-2 w-[80%] bg-gray-400/60 dark:bg-gray-700/60 rounded"></p>
@@ -33,7 +33,7 @@
                 <a href="{!! route('rapi.detail',$lt->slug) !!}" class="relative transform transition-all animate-popup-in" wire:loading.remove>
                     <div class="bg-white shadow dark:bg-gray-900 p-3 rounded-xl overflow-hidden min-h-[9rem]">
                         <div class="flex items-center justify-between">
-                            <div class="flex h-8 w-8 lg:w-9 lg:h-9 flex-shrink-0 overflow-hidden mr-2 rounded-full shadow-xl">
+                            <div class="flex h-8 w-8 lg:w-9 lg:h-9 flex-shrink-0 overflow-hidden mr-2 rounded-md shadow-xl">
                                 <img alt="{{ $lt->title }}" class="object-cover w-full h-full" src="{{ $lt->_image() }}">
                             </div>
                             <div class="text-base font-medium text-gray-900">

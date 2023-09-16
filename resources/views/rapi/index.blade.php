@@ -68,7 +68,7 @@
         <a href="{!! route('rapi.detail',$rcd->slug) !!}" class="relative transform transition-all animate-popup-in">
             <div class="bg-white shadow dark:bg-gray-900 p-3 rounded-xl overflow-hidden min-h-[9rem]">
                 <div class="flex items-center justify-between">
-                    <div class="flex h-8 w-8 lg:w-9 lg:h-9 flex-shrink-0 overflow-hidden mr-2 rounded-full shadow-xl">
+                    <div class="flex h-8 w-8 lg:w-9 lg:h-9 flex-shrink-0 overflow-hidden mr-2 rounded-md shadow-xl">
                         <img alt="{{ $rcd->title }}" class="object-cover w-full h-full" src="{{ $rcd->_image() }}">
                     </div>
                     <div class="text-base font-medium text-gray-900">
@@ -120,7 +120,7 @@
             <a href="{!! route('rapi.detail',$lt->slug) !!}" class="relative transform transition-all animate-popup-in">
                 <div class="bg-white shadow dark:bg-gray-900 p-3 rounded-xl overflow-hidden min-h-[9rem]">
                     <div class="flex items-center justify-between">
-                        <div class="flex h-8 w-8 lg:w-9 lg:h-9 flex-shrink-0 overflow-hidden mr-2 rounded-full shadow-xl">
+                        <div class="flex h-8 w-8 lg:w-9 lg:h-9 flex-shrink-0 overflow-hidden mr-2 rounded-md shadow-xl">
                             <img alt="{{ $lt->title }}" class="object-cover w-full h-full" src="{{ $lt->_image() }}">
                         </div>
                         <div class="text-base font-medium text-gray-900">
