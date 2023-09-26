@@ -6,8 +6,10 @@ use App\Helpers\Layouts;
 use App\Models\OwnedLicense;
 use App\Models\Product;
 use App\Models\ProductVisitor;
+use App\Helpers\Referral;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\RateLimiter;
 
 class ProductController extends Controller
@@ -29,9 +31,8 @@ class ProductController extends Controller
         ]);
         if(!$item->exists()) return abort(404);
         $item = $item->first();
-
         //hit visitor
-        $user_id = auth()->check() ? auth()->id() : null;
+        $user_id = auth()->id();
         $visitor = null;
         if($user_id){
             $visitor = ProductVisitor::where('product_id', $item->id)->where('user_id', $user_id);
@@ -58,6 +59,9 @@ class ProductController extends Controller
             'item' => 'digital-product',
             'item_id' => $item->id,
         ])->count());
+
+        Referral::handler($request->query('ref'));
+
         $data['page_product_detail'] = true;
         return Layouts::view('product.show', $data);
     }

@@ -42,6 +42,8 @@ class User extends Authenticatable
         'role',
         'password',
         'digital_product_wishlist',
+        'saldo',
+        'api_key',
     ];
 
     /**

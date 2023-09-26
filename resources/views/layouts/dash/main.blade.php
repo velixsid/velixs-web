@@ -44,7 +44,7 @@
                                 </div>
                                 <div>
                                     <div class="line-clamp-1 dark:text-white">{{ $auth->name }}</div>
-                                    <div class="text-xs text-gray-500 line-clamp-1 dark:text-gray-400">{{ __("@".$auth->username) }}</div>
+                                    <div class="text-xs text-gray-500 line-clamp-1 dark:text-gray-400">{{ __("Rp  ".number_format($auth->saldo, 2, ',', '.')) }}</div>
                                 </div>
                             </a>
                             <div class="py-4 px-3 text-xs font-semibold text-gray-600 dark:text-gray-400">GENERAL</div>
@@ -75,19 +75,18 @@
                                     <path d="M12 12c2 -2.96 0 -7 -1 -8c0 3.038 -1.773 4.741 -3 6c-1.226 1.26 -2 3.24 -2 5a6 6 0 1 0 12 0c0 -1.532 -1.056 -3.94 -2 -5c-1.786 3 -2.791 3 -4 2z"></path>
                                 </svg>
                                 <div>
-                                    <div class="line-clamp-1">API Hub <span class="bg-primary-500/80 animate-pulse ml-1 rounded-xl text-white text-[11px] py-[2px] px-2">New</span></div>
+                                    <div class="line-clamp-1">API Hub</div>
                                 </div>
                             </a>
                             @endif
-                            <a href="{!! route('dash.reports') !!}" class="{{ Route::is('dash.reports') ? 'active-menu-dash' : '' }} text-gray-900 dark:text-gray-300 group flex items-center px-3 py-3 text-sm font-medium rounded-md hover:bg-primary-50 dark:hover:bg-gray-800">
+                            <a href="{!! route('dash.referral') !!}" class="{{ Route::is('dash.referral') ? 'active-menu-dash' : '' }} text-gray-900 dark:text-gray-300 group flex items-center px-3 py-3 text-sm font-medium rounded-md hover:bg-primary-50 dark:hover:bg-gray-800">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="text-gray-500 mr-2 flex-shrink-0 h-6 w-6" viewBox="0 0 24 24" stroke-width="1.6" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                    <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"></path>
-                                    <path d="M12 8v4"></path>
-                                    <path d="M12 16h.01"></path>
-                                 </svg>
+                                    <path d="M6 5h12l3 5l-8.5 9.5a.7 .7 0 0 1 -1 0l-8.5 -9.5l3 -5"></path>
+                                    <path d="M10 12l-2 -2.2l.6 -1"></path>
+                                </svg>
                                 <div>
-                                    <div class="line-clamp-1">My Reports</div>
+                                    <div class="line-clamp-1">Referral <span class="bg-primary-500/80 animate-pulse ml-1 rounded-xl text-white text-[11px] py-[2px] px-2">New</span></div>
                                 </div>
                             </a>
                             <div class="py-4 px-3 text-xs font-semibold text-gray-600 dark:text-gray-400">PROFILE</div>

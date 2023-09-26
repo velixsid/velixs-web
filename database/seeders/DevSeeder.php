@@ -400,5 +400,38 @@ class DevSeeder extends Seeder
                 )
             )),
         ]);
+        \App\Models\UserTransaction::create([
+            'user_id' => $admin->id,
+            'type' => 'earnings',
+            'amount' => 45000,
+            'description' => 'Referral Earnings',
+            'status' => 'approved',
+        ]);
+        \App\Models\UserTransaction::create([
+            'user_id' => $admin->id,
+            'type' => 'earnings',
+            'amount' => 50000,
+            'description' => 'Referral Earnings',
+            'status' => 'approved',
+        ]);
+        \App\Models\UserTransaction::create([
+            'user_id' => $admin->id,
+            'type' => 'withdraw',
+            'amount' => 50000,
+            'method' => 'DANA',
+            'to' => '085745876650',
+            'description' => 'Withdrawal Amount',
+            'status' => 'approved',
+        ]);
+        \App\Models\UserTransaction::create([
+            'user_id' => $admin->id,
+            'type' => 'withdraw',
+            'amount' => 20000,
+            'description' => 'Withdrawal Amount',
+            'method' => 'DANA',
+            'to' => '085745876650',
+            'status' => 'rejected',
+            'message_status' => 'Saldo tidak mencukupi',
+        ]);
     }
 }

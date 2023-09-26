@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\Layouts;
+use App\Helpers\Referral;
 use App\Models\License;
 use App\Models\OwnedLicense;
 use App\Models\Product;
@@ -13,6 +14,7 @@ use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 use GuzzleHttp\Client;
+use Illuminate\Support\Facades\DB;
 
 class DashboardsController extends Controller
 {
@@ -174,7 +176,7 @@ class DashboardsController extends Controller
             'status' => 'error',
             'message' => 'You are not logged in'
         ], 422);
-        if (RateLimiter::tooManyAttempts('getdownload-dp:'.auth()->id(), 5)) {
+        if (RateLimiter::tooManyAttempts('getdownload-dp:'.auth()->id(), 10)) {
             return response()->json([
                 'type' => 'bug',
                 'message' => 'Too many attempts, please slow down'
@@ -213,31 +215,31 @@ class DashboardsController extends Controller
         $getl = License::where(['id' => $license])->first();
         if(!$getl) return redirect()->route('dash')->with('bug','License not found.');
 
-
         if($getl->item=='digital-product'){
             if(OwnedLicense::where(['user_id' => auth()->id(), 'item' => $getl->item, 'item_id' => $getl->item_id])->first()){
                 return redirect()->route('dash.purchases')->with('bug','You already have this license.');
             }
 
-            $owned = new OwnedLicense();
-            $owned->user_id = auth()->id();
-            $owned->license_key = $getl->license_key;
-            $owned->item = $getl->item;
-            $owned->item_id = $getl->item_id;
-            $owned->expires_at = $getl->expires_at;
-            $owned->save();
-
-            $getl->delete();
+            try{
+                DB::beginTransaction();
+                $owned = new OwnedLicense();
+                $owned->user_id = auth()->id();
+                $owned->license_key = $getl->license_key;
+                $owned->item = $getl->item;
+                $owned->item_id = $getl->item_id;
+                $owned->expires_at = $getl->expires_at;
+                $owned->save();
+                $getl->delete();
+                $ref = Referral::claim($owned->_item);
+                if(!$ref) throw new \Exception("Something went wrong, please try again later");
+                DB::commit();
+            }catch(\Exception $e){
+                DB::rollBack();
+                return redirect()->route('dash.purchases')->with('bug','Something went wrong, please try again later');
+            }
 
             return redirect()->route('dash.purchases')->with('success','License claimed successfully for '.$owned->_item->title.'');
         }
-    }
-
-    public function reports(){
-        $data['seo'] = (object)[
-            'title' => 'Reports',
-        ];
-        return Layouts::view('dash.reports',$data);
     }
 
     // apihub -------------------------------------------------

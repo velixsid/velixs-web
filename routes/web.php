@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\DashboardsController;
+use App\Http\Controllers\DashReferralController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RapiController;
@@ -55,7 +56,6 @@ Route::group([
     Route::post('/react',[BlogController::class, 'react'])->name('blog.react.axios');
 });
 
-
 Route::group([
     'prefix' => 'item',
 ],function(){
@@ -82,16 +82,17 @@ Route::group([
     Route::get('/purchases', [DashboardsController::class, 'purchases'])->name('dash.purchases');
     Route::get('/getdownload/dp/{id}', [DashboardsController::class, 'getdownloadDproduct'])->name('dash.getdownload.axio.dp');
 
-    Route::get('/reports', [DashboardsController::class, 'reports'])->name('dash.reports');
-
     Route::get('/wishlist', [DashboardsController::class, 'wishlist'])->name('dash.wishlist');
 
     Route::get('/license/{license}', [DashboardsController::class, 'claimLicense'])->name('dash.license');
 
-
     Route::get('/apihub', [DashboardsController::class, 'apihub'])->name('dash.apihub');
     Route::get('/apihub/generate-apikey', [DashboardsController::class, 'apihub_generateapikey'])->name('dash.apihub.generateapikey.ajax');
     Route::get('/apihub/plan-info', [DashboardsController::class, 'apihub_planinfo'])->name('dash.apihub.planinfo.ajax');
+
+    Route::get('/referral', [DashReferralController::class, 'index'])->name('dash.referral');
+    Route::get('/referral/transaction/axios', [DashReferralController::class, 'getTransaction'])->name('dash.referral.transaction.axios');
+    Route::post('/referral/withdraw', [DashReferralController::class, 'withdraw'])->name('dash.referral.withdraw');
 });
 
 Route::group([

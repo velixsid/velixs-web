@@ -23,6 +23,9 @@ export default {
       colors: {
         'primary': colors.indigo,
       },
+      boxShadow: {
+        center: '0 0 40px',
+      },
       keyframes: {
         fadeIn: {
           '0%': {
