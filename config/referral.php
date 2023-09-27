@@ -50,7 +50,7 @@ return [
         ],
         [
             "name" => "OVO",
-            "status" => false,
+            "status" => true,
             "currency" => "Rp",
             "placeholder" => "Phone number:0812xxxxxxxx",
             "section" => $section
