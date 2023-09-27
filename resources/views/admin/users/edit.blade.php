@@ -44,6 +44,17 @@
                                 Change Avatar
                             </label>
                         </div>
+                        <ul class="list-unstyled mb-4 mt-3">
+                            <li class="d-flex align-items-center mb-3">
+                              <i class="ti ti-wallet"></i><span class="fw-bold mx-2">Saldo:</span> <span><small>Rp</small> {{ number_format($user->saldo, 2, ',', '.') }}</span>
+                            </li>
+                            <li class="d-flex align-items-center mb-3">
+                              <i class="ti ti-flame"></i><span class="fw-bold mx-2">Apikey:</span> <span>{{ $user->api_key ?? '-' }}</span>
+                            </li>
+                            <li class="d-flex align-items-center mb-3">
+                              <i class="ti ti-hash"></i><span class="fw-bold mx-2">License:</span> <span>{{ $user->_count_license() }}</span>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -71,7 +82,11 @@
                             <label class="form-label" for="accountLastName">Whatsapp</label>
                             <input type="text" class="form-control" name="whatsapp" value="{{ $user->whatsapp }}" placeholder="62xxx">
                         </div>
-                        <div class="col-12 mb-1">
+                        <div class="col-12 col-xl-6 col-lg-6 mb-1">
+                            <label class="form-label" for="accountLastName">Saldo</label>
+                            <input type="text" class="form-control" name="saldo" value="{{ $user->saldo }}">
+                        </div>
+                        <div class="col-12 col-xl-6 col-lg-6 mb-1">
                             <label class="form-label" for="accountLastName">Role</label>
                             <select class="form-select" name="role" required="">
                                 <option {{ $user->role=='admin' ? 'selected' :'' }} value="admin">Admin</option>

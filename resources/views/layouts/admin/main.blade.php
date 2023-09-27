@@ -79,7 +79,7 @@
                     <path d="M13 12h-6"></path>
                     <path d="M11 7h-4"></path>
                 </svg>
-                <div data-i18n="Product">Product</div>
+                <div data-i18n="Products">Products</div>
               </a>
               <ul class="menu-sub">
                 <li class="menu-item {{ Route::is('admin.product.index') ? 'active' : '' }}">
@@ -101,13 +101,13 @@
             </li>
             <li class="menu-item {{ Route::is('admin.blog*') ? 'active open' : '' }}">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <svg xmlns="http://www.w3.org/2000/svg" class="menu-icon tf-icons" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <svg xmlns="http://www.w3.org/2000/svg" class="menu-icon tf-icons" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                     <path d="M8 21h8a5 5 0 0 0 5 -5v-3a3 3 0 0 0 -3 -3h-1v-2a5 5 0 0 0 -5 -5h-4a5 5 0 0 0 -5 5v8a5 5 0 0 0 5 5z"></path>
                     <path d="M7 7m0 1.5a1.5 1.5 0 0 1 1.5 -1.5h3a1.5 1.5 0 0 1 1.5 1.5v0a1.5 1.5 0 0 1 -1.5 1.5h-3a1.5 1.5 0 0 1 -1.5 -1.5z"></path>
                     <path d="M7 14m0 1.5a1.5 1.5 0 0 1 1.5 -1.5h7a1.5 1.5 0 0 1 1.5 1.5v0a1.5 1.5 0 0 1 -1.5 1.5h-7a1.5 1.5 0 0 1 -1.5 -1.5z"></path>
                  </svg>
-                <div data-i18n="Blog">Blog</div>
+                <div data-i18n="Blogs">Blogs</div>
               </a>
               <ul class="menu-sub">
                 <li class="menu-item {{ Route::is('admin.blog.index') ? 'active' : '' }}">
@@ -126,6 +126,27 @@
                   </a>
                 </li>
               </ul>
+            </li>
+            <li class="menu-item {{ Route::is('admin.rapi*') ? 'active open' : '' }} {{ Route::is('admin.plan*') ? 'active open' : '' }}">
+                <a href="javascript:void(0);" class="menu-link menu-toggle">
+                   <svg xmlns="http://www.w3.org/2000/svg" class="menu-icon tf-icons" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <path d="M12 12c2 -2.96 0 -7 -1 -8c0 3.038 -1.773 4.741 -3 6c-1.226 1.26 -2 3.24 -2 5a6 6 0 1 0 12 0c0 -1.532 -1.056 -3.94 -2 -5c-1.786 3 -2.791 3 -4 2z"></path>
+                    </svg>
+                  <div data-i18n="API HUB">API HUB</div>
+                </a>
+                <ul class="menu-sub">
+                  <li class="menu-item {{ Route::is('admin.rapi.index') ? 'active' : '' }}">
+                    <a href="{!! route('admin.rapi.index') !!}" class="menu-link">
+                      <div data-i18n="Manage APIs">Manage APIs</div>
+                    </a>
+                  </li>
+                  <li class="menu-item {{ Route::is('admin.plan.index') ? 'active' : '' }}">
+                    <a href="{!! route('admin.plan.index') !!}" class="menu-link">
+                      <div data-i18n="Manage Plan">Manage Plan</div>
+                    </a>
+                  </li>
+                </ul>
             </li>
             <li class="menu-header small text-uppercase">
                 <span class="menu-header-text">Management</span>
@@ -154,27 +175,29 @@
                 <div data-i18n="Manage Users">Manage WAGroup</div>
               </a>
             </li>
-            <li class="menu-item {{ Route::is('admin.rapi*') ? 'active open' : '' }} {{ Route::is('admin.plan*') ? 'active open' : '' }}">
+            <li class="menu-item {{ Route::is('admin.ref*') ? 'active open' : '' }} {{ Route::is('admin.plan*') ? 'active open' : '' }}">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
-                   <svg xmlns="http://www.w3.org/2000/svg" class="menu-icon tf-icons" viewBox="0 0 24 24" stroke-width="1.25" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="menu-icon tf-icons" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                        <path d="M12 12c2 -2.96 0 -7 -1 -8c0 3.038 -1.773 4.741 -3 6c-1.226 1.26 -2 3.24 -2 5a6 6 0 1 0 12 0c0 -1.532 -1.056 -3.94 -2 -5c-1.786 3 -2.791 3 -4 2z"></path>
+                        <path d="M6 5h12l3 5l-8.5 9.5a.7 .7 0 0 1 -1 0l-8.5 -9.5l3 -5"></path>
+                        <path d="M10 12l-2 -2.2l.6 -1"></path>
                     </svg>
-                  <div data-i18n="Manage Rest APi">API HUB</div>
+                  <div data-i18n="Manage Rest APi">Manage Referral</div>
                 </a>
                 <ul class="menu-sub">
-                  <li class="menu-item {{ Route::is('admin.rapi.index') ? 'active' : '' }}">
-                    <a href="{!! route('admin.rapi.index') !!}" class="menu-link">
-                      <div data-i18n="Manage APIs">Manage APIs</div>
+                  <li class="menu-item">
+                    <a href="{!! route('admin.ref.index') !!}" class="menu-link">
+                      <div data-i18n="Referral Earnings">Referral Earnings</div>
                     </a>
                   </li>
-                  <li class="menu-item {{ Route::is('admin.plan.index') ? 'active' : '' }}">
-                    <a href="{!! route('admin.plan.index') !!}" class="menu-link">
-                      <div data-i18n="New Blog">Manage Plan</div>
+                  <li class="menu-item">
+                    <a href="{!! route('admin.ref.index', ['type'=>'withdraw']) !!}" class="menu-link">
+                      <div data-i18n="Request Withdraw">Request Withdraw</div>
                     </a>
                   </li>
                 </ul>
             </li>
+
             <li class="menu-header small text-uppercase">
                 <span class="menu-header-text">Other</span>
             </li>

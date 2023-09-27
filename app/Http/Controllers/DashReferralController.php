@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\Layouts;
+use App\Models\Product;
+use App\Models\User;
 use App\Models\UserTransaction;
-use Illuminate\Cache\RateLimiter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -23,14 +24,32 @@ class DashReferralController extends Controller
     public function getTransaction(Request $request){
         if($request->ajax()){
             $type = $request->query('type');
-            $table = UserTransaction::where(['type' => $type, 'user_id' => auth()->id()])->orderBy('created_at', 'desc')->paginate(5);
+            $table = UserTransaction::where(['type' => $type, 'user_id' => auth()->id()])->orderBy('created_at', 'desc')->paginate(6);
             $table->map(function($row){
                 if($row->type=='withdraw'){
                     $row->amount = "- ". number_format($row->amount, 2, '.', ',');
                 }else if($row->type=='earnings'){
-                    $row->amount = "+ ". number_format($row->amount, 2, '.', ',');
+                    $row->amount = "<span class='dark:text-green-400 gap-3 text-green-600'>+</span> ". number_format($row->amount, 2, '.', ',');
                 }
                 $row->created = $row->created_at->format('d, M Y');
+
+                if (preg_match_all('/<@(user|item):([^>]+)>/', $row->description, $matches)) {
+                    $user_id = $matches[2][0];
+                    $item_id = $matches[2][1];
+                    $user = User::where('id',$user_id)->first();
+                    $item = Product::where('id',$item_id)->first();
+                    return $row->description = preg_replace(
+                        [
+                            '/<@(user):([^>]+)>/',
+                            '/<@(item):([^>]+)>/'
+                        ],
+                        [
+                            $user ? '<a class="dark:text-primary-400 gap-3 text-primary-600" href="'.route('profile',$user->username).'">'.$user->username.'</a>' : 'N/A',
+                            $item ? '<a class="dark:text-primary-400 gap-3 text-primary-600" href="'.route('product.detail',$item->slug).'">'.$item->title.'</a>' : 'N/A'
+                        ],
+                        $row->description
+                    );
+                }
             });
             return response()->json($table);
         }

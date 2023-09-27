@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\FilesController;
 use App\Http\Controllers\Admin\LicenseController;
 use App\Http\Controllers\Admin\MainController;
 use App\Http\Controllers\Admin\OtherController;
+use App\Http\Controllers\Admin\RefController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Admin\WAProgrammerController;
 use Illuminate\Support\Facades\Route;
@@ -142,5 +143,13 @@ Route::group([
     Route::prefix('files')->group(function(){
         Route::get('/',[FilesController::class, 'index'])->name('admin.files.index');
         Route::get('/tinymce',[FilesController::class, 'fortinymce'])->name('admin.files.fortinymce');
+    });
+
+    Route::prefix('referral')->group(function(){
+        Route::get('/', [RefController::class, 'index'])->name('admin.ref.index');
+        Route::get('/json', [RefController::class, 'index'])->name('admin.ref.json');
+        Route::get('/edit/status/{id}', [RefController::class, 'edit_status_ajax'])->name('admin.ref.edit.status.ajax');
+        Route::post('/update/status', [RefController::class, 'update_status_ajax'])->name('admin.ref.update.status.ajax');
+        Route::post('/destroy', [RefController::class, 'destroy'])->name('admin.ref.destroy');
     });
 });

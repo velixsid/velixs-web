@@ -30,4 +30,8 @@ class UserTransaction extends Model
         'updated_at',
     ];
 
+    public function _user(){
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
 }

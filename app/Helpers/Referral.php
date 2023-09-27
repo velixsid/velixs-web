@@ -33,7 +33,7 @@ class Referral
                             'user_id' => $user->id,
                             'type' => 'earnings',
                             'amount' => floatval($amount),
-                            'description' => 'Referral Earnings from <a href="'.route('profile',auth()->user()->username).'">'.auth()->user()->username.'</a> with <a href="'.route('product.detail', $item->slug).'">item</a>',
+                            'description' => 'Referral Earnings from <@user:'.auth()->id().'> with an <@item:'.$item->id.'>',
                             'status' => 'approved',
                         ]);
                         $user->saldo += floatval($amount);
