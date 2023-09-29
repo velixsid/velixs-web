@@ -26,7 +26,7 @@
                                 <!-- modal share start-->
                                 <div x-show="modal" x-on:click.away="modal = false" x-transition class="absolute top-10 right-2 z-[902] flex w-56 flex-col overflow-hidden rounded-2xl border bg-white/70 pb-2 pt-1 backdrop-blur dark:border-slate-800 dark:bg-slate-900" style="display: hidden;">
                                     <div class="py-3 px-4 text-center text-[13px] text-lg font-bold" role="none">Share this on</div>
-                                    <a href="https://www.facebook.com/sharer/sharer.php?u={!! url()->current() !!}{{ auth()->check() ? '?ref=' . auth()->user()->username : '' }}" target="_blank" rel="noreferrer nofollow" class="flex w-full items-center gap-3 px-4 py-2 text-[13px] hover:bg-slate-100 hover:dark:bg-[#1d263a]" role="none">
+                                    <a href="https://www.facebook.com/sharer/sharer.php?u={!! url()->current() !!}" target="_blank" rel="noreferrer nofollow" class="flex w-full items-center gap-3 px-4 py-2 text-[13px] hover:bg-slate-100 hover:dark:bg-[#1d263a]" role="none">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                             <path d="M12 10.174c1.766 -2.784 3.315 -4.174 4.648 -4.174c2 0 3.263 2.213 4 5.217c.704 2.869 .5 6.783 -2 6.783c-1.114 0 -2.648 -1.565 -4.148 -3.652a27.627 27.627 0 0 1 -2.5 -4.174z"></path>
@@ -40,10 +40,11 @@
                                             </svg>
                                         </span>
                                     </a>
-                                    <a href="https://twitter.com/intent/tweet?via=ilsya&amp;url={!! url()->current() !!}{{ auth()->check() ? '?ref=' . auth()->user()->username : '' }}" target="_blank" rel="noreferrer nofollow" class="flex w-full items-center gap-3 px-4 py-2 text-[13px] hover:bg-slate-100 hover:dark:bg-[#1d263a]" role="none">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" role="img" fill="currentColor" class="h-4 w-4">
-                                            <title role="none">Twitter Icon</title>
-                                            <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z" role="none"></path>
+                                    <a href="https://twitter.com/intent/tweet?via=ilsya&amp;url={!! url()->current() !!}" target="_blank" rel="noreferrer nofollow" class="flex w-full items-center gap-3 px-4 py-2 text-[13px] hover:bg-slate-100 hover:dark:bg-[#1d263a]" role="none">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                            <path d="M4 4l11.733 16h4.267l-11.733 -16z"></path>
+                                            <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"></path>
                                         </svg>
                                         <span class="flex items-center gap-2" role="none">
                                             Twitter
@@ -53,7 +54,7 @@
                                             </svg>
                                         </span>
                                     </a>
-                                    <a href="https://www.linkedin.com/sharing/share-offsite/?url={!! url()->current() !!}{{ auth()->check() ? '?ref=' . auth()->user()->username : '' }}" target="_blank" rel="noreferrer nofollow" class="flex w-full items-center gap-3 px-4 py-2 text-[13px] hover:bg-slate-100 hover:dark:bg-[#1d263a]" role="none">
+                                    <a href="https://www.linkedin.com/sharing/share-offsite/?url={!! url()->current() !!}" target="_blank" rel="noreferrer nofollow" class="flex w-full items-center gap-3 px-4 py-2 text-[13px] hover:bg-slate-100 hover:dark:bg-[#1d263a]" role="none">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                             <path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z"></path>
@@ -70,7 +71,7 @@
                                             </svg>
                                         </span>
                                     </a>
-                                    <a href="whatsapp://send?text={!! url()->current() !!}{{ auth()->check() ? '?ref=' . auth()->user()->username : '' }}" target="_blank" rel="noreferrer nofollow" class="flex w-full items-center gap-3 px-4 py-2 text-[13px] hover:bg-slate-100 hover:dark:bg-[#1d263a]" role="none">
+                                    <a href="whatsapp://send?text={!! url()->current() !!}" target="_blank" rel="noreferrer nofollow" class="flex w-full items-center gap-3 px-4 py-2 text-[13px] hover:bg-slate-100 hover:dark:bg-[#1d263a]" role="none">
                                          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                             <path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9"></path>
@@ -85,10 +86,18 @@
                                         </span>
                                     </a>
                                     <div class="border-t dark:border-slate-800" role="none"></div>
-                                    <button @click="modal =! modal" type="button" data-clipboard-text="{!! url()->current() !!}{{ auth()->check() ? '?ref=' . auth()->user()->username : '' }}" class="copy-link flex w-full items-center gap-3 px-4 py-2 text-[13px] hover:bg-slate-100 hover:dark:bg-[#1d263a]" role="none">
+                                    <button @click="modal =! modal" type="button" data-clipboard-text="{!! url()->current() !!}" class="copy-link flex w-full items-center gap-3 px-4 py-2 text-[13px] hover:bg-slate-100 hover:dark:bg-[#1d263a]" role="none">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4" role="none">
                                             <path fill-rule="evenodd" d="M18.97 3.659a2.25 2.25 0 00-3.182 0l-10.94 10.94a3.75 3.75 0 105.304 5.303l7.693-7.693a.75.75 0 011.06 1.06l-7.693 7.693a5.25 5.25 0 11-7.424-7.424l10.939-10.94a3.75 3.75 0 115.303 5.304L9.097 18.835l-.008.008-.007.007-.002.002-.003.002A2.25 2.25 0 015.91 15.66l7.81-7.81a.75.75 0 011.061 1.06l-7.81 7.81a.75.75 0 001.054 1.068L18.97 6.84a2.25 2.25 0 000-3.182z" clip-rule="evenodd" role="none"></path>
                                         </svg>Copy link
+                                    </button>
+                                    <button @click="modal =! modal" type="button" data-clipboard-text="{!! url()->current() !!}{{ auth()->check() ? '?ref=' . auth()->user()->username : '' }}" class="copy-link flex w-full items-center gap-3 px-4 py-2 text-[13px] hover:bg-slate-100 hover:dark:bg-[#1d263a]" role="none">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                            <path d="M9 15l6 -6"></path>
+                                            <path d="M11 6l.463 -.536a5 5 0 0 1 7.071 7.072l-.534 .464"></path>
+                                            <path d="M13 18l-.397 .534a5.068 5.068 0 0 1 -7.127 0a4.972 4.972 0 0 1 0 -7.071l.524 -.463"></path>
+                                        </svg>Copy link with Referral
                                     </button>
                                 </div>
                                 <!-- modal share end -->

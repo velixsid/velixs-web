@@ -131,10 +131,10 @@
 
                                                     <!-- emot react -->
                                                     <div class="flex items-center gap-4">
-                                                        <div class="flex flex-col items-center gap-2" x-data="{ imgSrc: '{!! asset('assets/img/emojis/clapping-hands.png') !!}' }">
-                                                            <button class="btn-react relative cursor-pointer select-none group" x-on:mouseenter="imgSrc = '{!! asset('assets/img/emojis/clapping-hands-animated.png') !!}'" x-on:mouseleave="imgSrc = '{!! asset('assets/img/emojis/clapping-hands.png') !!}'">
+                                                        <div class="flex flex-col items-center gap-2">
+                                                            <button class="btn-react relative cursor-pointer select-none group">
                                                                 <div data-react="clap" class="h-10 w-10 group-hover:scale-125 transition-transform duration-200 ease-in-out">
-                                                                    <img alt="Clap" x-bind:src="imgSrc" class="pointer-events-none h-full w-full">
+                                                                    <img alt="Clap" src="{!! asset('assets/img/emojis/clapping-hands-animated.png') !!}" class="pointer-events-none h-full w-full">
                                                                 </div>
                                                             </button>
                                                             <div class="relative flex h-6 items-center rounded-full bg-slate-200 py-1 px-2 dark:bg-[#1d263a]">
@@ -142,10 +142,10 @@
                                                             </div>
                                                         </div>
 
-                                                        <div class="flex flex-col items-center gap-2" x-data="{ imgSrc: '{!! asset('assets/img/emojis/astonished-face.png') !!}' }">
-                                                            <button class="btn-react relative cursor-pointer select-none group" x-on:mouseenter="imgSrc = '{!! asset('assets/img/emojis/astonished-face-animated.png') !!}'" x-on:mouseleave="imgSrc = '{!! asset('assets/img/emojis/astonished-face.png') !!}'">
+                                                        <div class="flex flex-col items-center gap-2">
+                                                            <button class="btn-react relative cursor-pointer select-none group">
                                                                 <div data-react="wow" class="h-10 w-10 group-hover:scale-125 transition-transform duration-200 ease-in-out">
-                                                                    <img alt="Wow" x-bind:src="imgSrc" class="pointer-events-none h-full w-full">
+                                                                    <img alt="Wow" src="{!! asset('assets/img/emojis/astonished-face-animated.png') !!}" class="pointer-events-none h-full w-full">
                                                                 </div>
                                                             </button>
                                                             <div class="relative flex h-6 items-center rounded-full bg-slate-200 py-1 px-2 dark:bg-[#1d263a]">
@@ -153,10 +153,10 @@
                                                             </div>
                                                         </div>
 
-                                                        <div class="flex flex-col items-center gap-2" x-data="{ imgSrc: '{!! asset('assets/img/emojis/face-with-monocle.png') !!}' }">
-                                                            <button class="btn-react relative cursor-pointer select-none group" x-on:mouseenter="imgSrc = '{!! asset('assets/img/emojis/face-with-monocle-animated.png') !!}'" x-on:mouseleave="imgSrc = '{!! asset('assets/img/emojis/face-with-monocle.png') !!}'">
+                                                        <div class="flex flex-col items-center gap-2">
+                                                            <button class="btn-react relative cursor-pointer select-none group">
                                                                 <div data-react="hmm" class="h-10 w-10 group-hover:scale-125 transition-transform duration-200 ease-in-out">
-                                                                    <img alt="Hmm" x-bind:src="imgSrc" class="pointer-events-none h-full w-full">
+                                                                    <img alt="Hmm" src="{!! asset('assets/img/emojis/face-with-monocle-animated.png') !!}" class="pointer-events-none h-full w-full">
                                                                 </div>
                                                             </button>
                                                             <div class="relative flex h-6 items-center rounded-full bg-slate-200 py-1 px-2 dark:bg-[#1d263a]">
