@@ -35,7 +35,8 @@ class RapiController extends Controller
         $api = $api->first();
         $data['seo'] = (object)[
             'title'=> $api->title,
-            'description' => $api->meta_description
+            'description' => $api->meta_description,
+            'image' => $api->thumbnail ? $api->_thumbnail() : $api->_image()
         ];
         $data['api'] = $api;
         if($request->segment(3) == 'lab'){

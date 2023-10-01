@@ -35,4 +35,4 @@
 {{-- <meta name="theme-color" content="#ffffff"> --}}
 
 
-<script type="application/ld+json">{"@context": "https://schema.org","@type": "{{ $seo->type ?? 'website' }}","name": "{{ $seo->title ?? $ws->meta_title }}","url": "{{ url()->current() }}","description": "{{ $seo->description ?? $ws->meta_description }}","image": "{{ $seo->image ?? $ws->meta_thumbnail }}","publisher": {"@type": "Organization","name": "Ilsya",} }</script>
+<script type="application/ld+json">{"@context": "https://schema.org","@type": "{{ $seo->type ?? 'website' }}","name": "{{ $seo->title ?? $ws->meta_title }}","url": "{{ url()->current() }}","description": "{{ $seo->description ?? $ws->meta_description }}","image": "{{ $seo->image ?? $ws->meta_thumbnail }}","publisher": {"@type": "Organization","name": "Ilsya"} }</script>
