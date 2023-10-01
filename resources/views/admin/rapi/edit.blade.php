@@ -88,7 +88,7 @@
                     <input class="form-control" onchange="loadFile(event)" type="file" name="image">
                 </div>
             </div>
-            <div class="card">
+            <div class="card mb-3">
                 <div class="card-body p-3">
                     <h5 class="card-title">Status</h5>
                     <select class="form-select" name="is_published">
@@ -96,6 +96,12 @@
                         <option {{ $row->is_published == 0 ? 'selected' : '' }}  value="0">Draft</option>
                         <option {{ $row->is_published == 2 ? 'selected' : '' }}  value="2">Maintenance</option>
                     </select>
+                </div>
+            </div>
+            <div class="card mb-3">
+                <div class="card-body p-3 text-center">
+                    <img class="card-img mb-2" id="preview-thumbnial" src="{!! $row->_thumbnail() !!}" alt="">
+                    <button class="btn btn-primary w-100 mt-2" id="btn-sync-thumbnail">Sync Thumbnail</button>
                 </div>
             </div>
         </div>
@@ -261,5 +267,39 @@
             });
         });
 
+        $("#btn-sync-thumbnail").on("click", (e) =>{
+            e.preventDefault();
+            Swal.fire({
+                html: '<div class="d-flex justify-content-center"><div class="sk-bounce sk-primary"><div class="sk-bounce-dot"></div><div class="sk-bounce-dot"></div></div></div><br>Loading...',
+                allowOutsideClick: false,
+                buttonsStyling: false,
+                showConfirmButton: false,
+            });
+            $.ajax({
+                url: "{{ route('admin.rapi.syncthumb', $row->id) }}",
+                type: "GET",
+                success : (res)=>{
+                    Swal.fire({
+                        icon: 'success',
+                        text: res.message,
+                        customClass: {
+                            confirmButton: 'btn btn-primary'
+                        },
+                        timer: 1500
+                    });
+                    $("#preview-thumbnial").attr("src", res.data.preview);
+                },
+                error : (res)=>{
+                    Swal.fire({
+                        icon: 'error',
+                        text: data.responseJSON.message ?? 'Something went wrong!',
+                        customClass: {
+                            confirmButton: 'btn btn-primary'
+                        },
+                        timer: 1500
+                    });
+                }
+            })
+        })
     </script>
 @endpush

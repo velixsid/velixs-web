@@ -9,8 +9,9 @@ use App\Models\ApihubEndpoint;
 use App\Models\ApihubTags;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Cache;
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\RequestException;
 
 class ApihubController extends Controller
 {
@@ -188,6 +189,50 @@ class ApihubController extends Controller
             'status' => 'success',
             'message' => 'Api updated successfully',
         ]);
+    }
+
+    public function syncThumbnail(Request $request, $id){
+        if(!$request->ajax()) return redirect()->route('admin.rapi.index');
+        $table = Apihub::find($id);
+        if(!$table) return response()->json([
+            'message' => 'Api not found.'
+        ], 404);
+
+        try{
+            $client = new Client();
+            $res = $client->post(rtrim(config('app.api_velixs_endpoint'), '/').'/card-info', [
+                'form_params' => [
+                    'avatar' => $table->_image(),
+                    'title' => $table->title,
+                    'description' => $table->meta_description,
+                    'footer' => route('rapi.detail', $table->slug),
+                    'logo' => 'https://velixs.com/storage/web/logo.svg'
+                ],
+                'headers' => [
+                    'X-VelixsAPI-Key' => config('app.api_velixs_apikey')
+                ]
+            ]);
+
+            $responseData = $res->getBody()->getContents();
+            $uniqueName = 'apis/'.uniqid() . '-thumbnail.jpg';
+            if($table->thumbnail){
+                Storage::delete($table->thumbnail);
+            }
+            Storage::disk('public')->put($uniqueName, $responseData);
+
+            $table->thumbnail = $uniqueName;
+            $table->save();
+
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Thumbnail updated successfully',
+                'data' => [
+                    'preview' => asset('storage/'.$uniqueName),
+                ]
+            ]);
+        }catch (RequestException $e){
+            return response()->json(json_decode($e->getResponse()->getBody()->getContents()), 500);
+        }
     }
 
     public function destroy(Request $request){

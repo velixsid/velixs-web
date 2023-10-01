@@ -103,6 +103,7 @@ Route::group([
         Route::get('/create',[ApihubController::class, 'create'])->name('admin.rapi.create');
         Route::post('/store',[ApihubController::class, 'store'])->name('admin.rapi.store');
         Route::get('/edit/{id}',[ApihubController::class, 'edit'])->name('admin.rapi.edit');
+        Route::get('/syncthumb/{id}',[ApihubController::class, 'syncThumbnail'])->name('admin.rapi.syncthumb');
         Route::post('/update/{id}',[ApihubController::class, 'update'])->name('admin.rapi.update');
         Route::post('/destroy',[ApihubController::class, 'destroy'])->name('admin.rapi.destroy');
 
