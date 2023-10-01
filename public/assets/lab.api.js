@@ -22,7 +22,6 @@ document.querySelectorAll('.btn-endpoint').forEach((btns)=>{
             data : JSON.parse(data),
             responseType : 'arraybuffer',
         }).then((res)=>{
-            console.log(res);
             setTimeout(() => {
                 parentDiv.querySelectorAll('.btn-endpoint').forEach((btn) => {
                     btn.disabled = false
@@ -41,6 +40,14 @@ document.querySelectorAll('.btn-endpoint').forEach((btns)=>{
                 }, ''));
 
                 const newTab = window.open();
+                if(!newTab){
+                    playN()
+                    return toast.toast({
+                        style: 'bug',
+                        title: 'Pop-ups Blocked',
+                        msg: 'Izinkan Browser ini membuat tab baru.',
+                    })
+                }
                 newTab.document.write(`<html style="height: 100%;"><head><meta name="viewport" content="width=device-width, minimum-scale=0.1"><title>Response API</title></head><body style="margin: 0; display: flex; justify-content: center; align-items: center; height: 100vh; background-color: rgb(14, 14, 14);"><img style="display: block;-webkit-user-select: none;margin: auto;background-color: hsl(0, 0%, 90%);transition: background-color 300ms; max-width: 100%; max-height: 100%" src="data:${res.headers['content-type']};base64,${base64Data}"></body></html>`);
             }
         }).catch((err)=>{
@@ -51,8 +58,8 @@ document.querySelectorAll('.btn-endpoint').forEach((btns)=>{
                 })
             }, 3000);
             console.error(err);
-            rui.textContent = JSON.stringify(err.response.data ?? {}, null , 2)
-            rscode.setHTML('<span class="text-red-600">'+err.response.status+'</span>')
+            rui.textContent = JSON.stringify(err?.response?.data ?? {}, null , 2)
+            rscode.setHTML('<span class="text-red-600">'+err?.response?.status ?? 500 +'</span>')
             hljs.highlightBlock(rui);
         })
     })
