@@ -118,6 +118,7 @@ class UsersController extends Controller
         $user->username = $request->username;
         $user->whatsapp = $request->whatsapp;
         $user->saldo = floatval($request->saldo);
+        $user->role = $request->role;
         $user->about = $request->about;
         $user->suspended = $request->suspended ?? null;
         if($request->new_password){
