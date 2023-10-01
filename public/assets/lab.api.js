@@ -19,17 +19,30 @@ document.querySelectorAll('.btn-endpoint').forEach((btns)=>{
         axios({
             method,
             url,
-            data : JSON.parse(data)
+            data : JSON.parse(data),
+            responseType : 'arraybuffer',
         }).then((res)=>{
+            console.log(res);
             setTimeout(() => {
                 parentDiv.querySelectorAll('.btn-endpoint').forEach((btn) => {
                     btn.disabled = false
                     btn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M21 7l-18 0"></path><path d="M18 10l3 -3l-3 -3"></path><path d="M6 20l-3 -3l3 -3"></path><path d="M3 17l18 0"></path></svg>Test Endpoint'
                 })
             }, 3000);
-            rui.textContent = JSON.stringify(res.data ?? {}, null , 2)
-            rscode.setHTML('<span class="text-green-600">'+res.status+'</span>')
-            hljs.highlightBlock(rui);
+            const arrayBuffer = res.data;
+            if(res.headers['content-type'].includes('application/json')){
+                var json = new TextDecoder('utf-8').decode(new Uint8Array(arrayBuffer));
+                rui.textContent = JSON.stringify(JSON.parse(json) ?? {}, null , 2)
+                rscode.setHTML('<span class="text-green-600">'+res.status+'</span>')
+                hljs.highlightBlock(rui);
+            } else if(res.headers['content-type'].includes('image/')){
+                const base64Data = btoa(new Uint8Array(arrayBuffer).reduce((data, byte) => {
+                    return data + String.fromCharCode(byte);
+                }, ''));
+
+                const newTab = window.open();
+                newTab.document.write(`<html style="height: 100%;"><head><meta name="viewport" content="width=device-width, minimum-scale=0.1"><title>Response API</title></head><body style="margin: 0; display: flex; justify-content: center; align-items: center; height: 100vh; background-color: rgb(14, 14, 14);"><img style="display: block;-webkit-user-select: none;margin: auto;background-color: hsl(0, 0%, 90%);transition: background-color 300ms; max-width: 100%; max-height: 100%" src="data:${res.headers['content-type']};base64,${base64Data}"></body></html>`);
+            }
         }).catch((err)=>{
             setTimeout(() => {
                 parentDiv.querySelectorAll('.btn-endpoint').forEach((btn) => {
@@ -37,6 +50,7 @@ document.querySelectorAll('.btn-endpoint').forEach((btns)=>{
                     btn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M21 7l-18 0"></path><path d="M18 10l3 -3l-3 -3"></path><path d="M6 20l-3 -3l3 -3"></path><path d="M3 17l18 0"></path></svg>Test Endpoint'
                 })
             }, 3000);
+            console.error(err);
             rui.textContent = JSON.stringify(err.response.data ?? {}, null , 2)
             rscode.setHTML('<span class="text-red-600">'+err.response.status+'</span>')
             hljs.highlightBlock(rui);

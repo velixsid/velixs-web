@@ -194,7 +194,7 @@
             waduh.updateCode(JSON.stringify(JSON.parse(body), null , 2))
         })
     </script>
-    <script src="{{ asset('assets/lab.api.js') }}" type="module"></script>
+    <script src="{{ asset('assets/lab.api.js?v=2') }}" type="module"></script>
 @endpush
 
 @push('css')
