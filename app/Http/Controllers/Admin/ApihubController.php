@@ -200,7 +200,7 @@ class ApihubController extends Controller
 
         try{
             $client = new Client();
-            $res = $client->post(rtrim(config('app.api_velixs_endpoint'), '/').'/card-info', [
+            $res = $client->post(rtrim(config('app.api_velixs_endpoint'), '/').'/card/thumb', [
                 'form_params' => [
                     'avatar' => $table->_image(),
                     'title' => $table->title,
