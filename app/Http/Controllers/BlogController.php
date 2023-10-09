@@ -19,7 +19,7 @@ class BlogController extends Controller
         $data['sort'] = request()->segment(3);
         $data['tags'] = request()->query('tags');
         $data['seo'] = (object)[
-            'title' => 'Blog Articles',
+            'title' => 'Articles / Velixs',
             'description' => 'We provide some interesting aticles that you may find useful. Read on to fill your free time.',
         ];
         return Layouts::view('blog.index',$data);

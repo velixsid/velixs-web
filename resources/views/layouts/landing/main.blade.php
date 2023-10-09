@@ -376,6 +376,17 @@ AJARIN DONG PUH SEPUH
                                                 <div class="inline-flex w-auto items-center justify-start rounded-xl py-2 pr-4 text-left font-medium duration-200 group-hover:bg-muted pl-3">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-3" viewBox="0 0 24 24" stroke-width="1.25" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                        <path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z"></path>
+                                                        <path d="M10 4l4 16"></path>
+                                                        <path d="M12 12l-8 2"></path>
+                                                    </svg>
+                                                    <span>Dashboards</span>
+                                                </div>
+                                            </a>
+                                            <a class="group block w-full text-left focus:outline-none" href="{{ route('dash') }}">
+                                                <div class="inline-flex w-auto items-center justify-start rounded-xl py-2 pr-4 text-left font-medium duration-200 group-hover:bg-muted pl-3">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-3" viewBox="0 0 24 24" stroke-width="1.25" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                                         <path d="M12 13a3 3 0 1 0 0 -6a3 3 0 0 0 0 6z"></path>
                                                         <path d="M6.201 18.744a4 4 0 0 1 3.799 -2.744h4a4 4 0 0 1 3.798 2.741"></path>
                                                         <path d="M19.875 6.27c.7 .398 1.13 1.143 1.125 1.948v7.284c0 .809 -.443 1.555 -1.158 1.948l-6.75 4.27a2.269 2.269 0 0 1 -2.184 0l-6.75 -4.27a2.225 2.225 0 0 1 -1.158 -1.948v-7.285c0 -.809 .443 -1.554 1.158 -1.947l6.75 -3.98a2.33 2.33 0 0 1 2.25 0l6.75 3.98h-.033z"></path>
@@ -452,6 +463,8 @@ AJARIN DONG PUH SEPUH
     <!-- navbar section end -->
     @yield('content')
 
+    <div class="md:my-0 my-16"></div>
+
     @if(!isset($page_product_detail))
     <div>
         <div class="fixed z-20 w-full border-t dark:border-t-0 bottom-0 md:hidden block backdrop-blur bg-white/90 dark:bg-gray-900/90 px-3 py-2 transition-transform transform animate-footer-product">
@@ -459,7 +472,7 @@ AJARIN DONG PUH SEPUH
                 <div class="text-slate-600 dark:text-slate-200 grid h-full max-w-lg grid-cols-5 mx-auto">
                     <a href="{!! route('main') !!}" class="inline-flex flex-col items-center justify-center px-5">
                         <div class="sr-only">Home</div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                             <path d="M19.072 21h-14.144a1.928 1.928 0 0 1 -1.928 -1.928v-6.857c0 -.512 .203 -1 .566 -1.365l7.07 -7.063a1.928 1.928 0 0 1 2.727 0l7.071 7.063c.363 .362 .566 .853 .566 1.365v6.857a1.928 1.928 0 0 1 -1.928 1.928z"></path>
                             <path d="M7 13v4h10v-4l-5 -5"></path>
@@ -470,7 +483,7 @@ AJARIN DONG PUH SEPUH
                     </a>
                     <a href="{!! route('product') !!}" class="inline-flex flex-col items-center justify-center px-5">
                         <div class="sr-only">Projects</div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                             <path d="M4 8v-2a2 2 0 0 1 2 -2h2"></path>
                             <path d="M4 16v2a2 2 0 0 0 2 2h2"></path>
@@ -483,18 +496,18 @@ AJARIN DONG PUH SEPUH
                     </a>
                     <a href="{!! route('rapi') !!}" class="inline-flex flex-col items-center justify-center px-5">
                         <div class="sr-only">Apihub</div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                             <path d="M12 12c2 -2.96 0 -7 -1 -8c0 3.038 -1.773 4.741 -3 6c-1.226 1.26 -2 3.24 -2 5a6 6 0 1 0 12 0c0 -1.532 -1.056 -3.94 -2 -5c-1.786 3 -2.791 3 -4 2z"></path>
                          </svg><span class="text-[10px]">APIHub</span>
                     </a>
                     <button data-switch-theme="" class="inline-flex flex-col items-center justify-center px-5">
                         <div class="sr-only">darklight</div>
-                        <svg data-active-theme="dark" xmlns="http://www.w3.org/2000/svg" class="hidden" width="21" height="21" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <svg data-active-theme="dark" xmlns="http://www.w3.org/2000/svg" class="hidden" width="21" height="21" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                             <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"></path>
                         </svg>
-                        <svg data-active-theme="light" xmlns="http://www.w3.org/2000/svg" class="" width="21" height="21" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <svg data-active-theme="light" xmlns="http://www.w3.org/2000/svg" class="" width="21" height="21" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                             <path d="M14.828 14.828a4 4 0 1 0 -5.656 -5.656a4 4 0 0 0 5.656 5.656z"></path>
                             <path d="M6.343 17.657l-1.414 1.414"></path>
@@ -509,7 +522,7 @@ AJARIN DONG PUH SEPUH
                     </button>
                     <a href="javascript:void(0)" x-data x-on:click="$store.navbarSlide.toggle()" class="inline-flex flex-col items-center justify-center px-5">
                         <div class="sr-only">Menu</div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                             <path d="M4 4h6v6h-6z"></path>
                             <path d="M14 4h6v6h-6z"></path>

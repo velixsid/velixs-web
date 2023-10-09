@@ -25,7 +25,7 @@
                     </a>
                 </div>
                 <h1 class="mt-10 max-w-lg animate-fade-in-left-bounce text-5xl font-bold tracking-tight text-gray-900 dark:text-gray-50 sm:text-6xl">
-                    <span class="bg-white dark:bg-slate-800/40 inline-block -rotate-1 shadow py-1 px-3 rounded-xl"><span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-500 to-violet-600">VELIXS</span></span><span class="text-4xl"> .com</span>
+                    <span class="bg-white dark:bg-slate-800/40 inline-block -rotate-1 shadow py-1 px-3 rounded-xl"><span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-500 to-violet-600">VELIXS</span></span><span class="text-4xl text-outline"> .com</span>
                 </h1>
                 <p class="mt-6 leading-8 animate-fade-in-left-bounce-2 text-slate-600 dark:text-slate-400">
                     We offer specialized <span class="text-slate-800 dark:text-slate-300 font-semibold">website development</span> services for web developers. With various categories, we also provide complete <span class="text-slate-800 dark:text-slate-500 font-semibold">resources to develop your web projects</span>.
