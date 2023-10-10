@@ -63,7 +63,7 @@ class BlogController extends Controller
             'title' => $row->title,
             'description' => $row->meta_description,
             'image' => $row->_image(),
-            'type' => 'article',
+            'type' => 'Article',
         ];
         return Layouts::view('blog.show',$data);
     }

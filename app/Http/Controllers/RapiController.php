@@ -13,7 +13,8 @@ class RapiController extends Controller
     public function index(){
         $data['seo'] = (object)[
             'title'=> 'API Hub - Public Rest APIs',
-            'description'=> 'Browse Public Rest APIs in the Velixs API API Hub - API directory. Register today Free!'
+            'description'=> 'Browse Public Rest APIs in the Velixs API API Hub - API directory. Register today Free!',
+            'image' => asset('assets/img/apis-thumbnail.jpg'),
         ];
         if(auth()->check() && auth()->user()->role == 'admin'){
             $data['latest'] = Apihub::orderBy('id','desc')->limit(12)->get();
