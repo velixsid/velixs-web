@@ -91,8 +91,13 @@ class AuthController extends Controller
 
     public function register_v2(Request $request){
         if($request->method() == 'POST' && $request->ajax()) {
+            if(RateLimiter::tooManyAttempts('register-attemp-lol:'.$request->ip(), 1)){
+                return response()->json([
+                    'message' => 'Too many login attempts. Please try again later.'
+                ], 429);
+            }
             $request->validate([
-                'fullname' => 'required',
+                'fullname' => 'required|max:20',
                 'username' => 'required|max:12|regex:/^[a-z0-9]+$/|unique:users,username',
                 'email' => 'required|email|unique:users,email',
             ],[
@@ -100,6 +105,7 @@ class AuthController extends Controller
             ]);
 
             try{
+                DB::beginTransaction();
                 $random = Layouts::randomPasswordDefault();
 
                 Mail::to($request->email)->send(new RegisterWelcomeMail([
@@ -118,10 +124,13 @@ class AuthController extends Controller
 
                 session()->flash('register.welcome', $user);
 
+                DB::commit();
+                RateLimiter::hit('register-attemp-lol:'.$request->ip());
                 return response()->json([
                     'message' => 'Register success. Redirecting...',
                 ]);
             }catch(\Exception $e){
+                DB::rollBack();
                 return response()->json([
                     'message' => $e->getMessage()
                 ], 422);
