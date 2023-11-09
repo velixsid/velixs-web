@@ -130,7 +130,7 @@
             e.preventDefault();
             button = this.querySelector('button[type="submit"]');
             button.disabled = true;
-            button.setHTML('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading...');
+            button.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading...'
             var formData = new FormData(this);
             axios.post(this.action, formData,{
                 headers: {
@@ -150,7 +150,7 @@
                 }, 2000);
             }).catch(function(error){
                 button.disabled = false;
-                button.setHTML('Create Account');
+                button.innerHTML = 'Create Account'
                 playN();
                 toast.toast({
                     title: error.response.status,

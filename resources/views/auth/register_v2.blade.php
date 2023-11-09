@@ -143,7 +143,7 @@
                 }, 2000);
             }).catch(function(error){
                 button.disabled = false;
-                button.setHTML('Create Account');
+                button.innerHTML = 'Create Account'
                 playN();
                 toast.toast({
                     title: error.response.status,

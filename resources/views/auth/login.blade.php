@@ -118,7 +118,7 @@
             e.preventDefault();
             button = this.querySelector('button[type="submit"]');
             button.disabled = true;
-            button.setHTML('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading...')
+            button.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading...';
             var formData = new FormData(this);
             axios.post(this.action, formData,{
                 headers: {
@@ -137,7 +137,7 @@
                 setTimeout(() => {
                     window.location.href = ''+response.data.redirect+'';
                     button.disabled = false;
-                    button.setHTML('Sign in')
+                    button.innerHTML = 'Sign in'
                 }, 2000);
             }).catch(function(error){
                 if(error.response.data.label == 'already_logged_in'){
@@ -151,7 +151,7 @@
                     }, 2000);
                 }else{
                     button.disabled = false;
-                    button.setHTML('Sign in')
+                    button.innerHTML = 'Sign in'
                     playN();
                     toast.toast({
                         title: error.response.status,

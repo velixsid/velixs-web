@@ -95,7 +95,7 @@
             e.preventDefault();
             button = this.querySelector('button[type="submit"]');
             button.disabled = true;
-            button.setHTML('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading...');
+            button.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading...'
             var formData = new FormData(this);
             axios.post(this.action, formData,{
                 headers: {
@@ -116,7 +116,7 @@
             }).catch(function(error){
                 playN();
                 button.disabled = false;
-                button.setHTML('Reset Password');
+                button.innerHTML = 'Reset Password'
                 toast.toast({
                     title: error.response.status,
                     msg: error.response.data.message ?? 'Reset password failed.',

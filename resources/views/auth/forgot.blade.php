@@ -104,7 +104,7 @@
         document.getElementById('form').addEventListener('submit', function(e){
             button = this.querySelector('button[type="submit"]');
             button.disabled = true;
-            button.setHTML('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading...');
+            button.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading...'
         });
     </script>
 </body>
